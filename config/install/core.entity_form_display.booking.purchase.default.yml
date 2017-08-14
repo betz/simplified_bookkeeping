@@ -1,0 +1,77 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.booking.purchase
+    - field.field.booking.purchase.field_booking_date
+    - field.field.booking.purchase.field_booking_id
+    - field.field.booking.purchase.field_booking_payment_date
+    - field.field.booking.purchase.field_booking_payment_way
+    - field.field.booking.purchase.field_booking_supplier
+    - field.field.booking.purchase.field_booking_total_amount
+  module:
+    - datetime
+id: booking.purchase.default
+targetEntityType: booking
+bundle: purchase
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_booking_date:
+    weight: 11
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_booking_id:
+    weight: 12
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_booking_payment_date:
+    weight: 16
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_booking_payment_way:
+    weight: 15
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_booking_supplier:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_booking_total_amount:
+    weight: 14
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,90 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.booking.purchase
+    - field.field.booking.purchase.field_booking_date
+    - field.field.booking.purchase.field_booking_id
+    - field.field.booking.purchase.field_booking_payment_date
+    - field.field.booking.purchase.field_booking_payment_way
+    - field.field.booking.purchase.field_booking_supplier
+    - field.field.booking.purchase.field_booking_total_amount
+  module:
+    - datetime
+    - user
+id: booking.purchase.default
+targetEntityType: booking
+bundle: purchase
+mode: default
+content:
+  created:
+    label: hidden
+    type: timestamp
+    weight: 0
+    region: content
+    settings:
+      date_format: medium
+      custom_date_format: ''
+      timezone: ''
+    third_party_settings: {  }
+  field_booking_date:
+    weight: 1
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_booking_id:
+    weight: 2
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_booking_payment_date:
+    weight: 6
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_booking_payment_way:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_booking_supplier:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_booking_total_amount:
+    weight: 4
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  uid:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

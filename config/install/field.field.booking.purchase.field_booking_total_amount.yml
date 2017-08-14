@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.booking.purchase
+    - field.storage.booking.field_booking_total_amount
+id: booking.purchase.field_booking_total_amount
+field_name: field_booking_total_amount
+entity_type: booking
+bundle: purchase
+label: 'Total amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

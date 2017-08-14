@@ -1,0 +1,10 @@
+name: 'Simplified Bookkeeping'
+description: 'Basic functionality to have a simplified bookkeeping. Used for a Belgian nonprofit.'
+type: module
+core: 8.x
+dependencies:
+  - datetime
+  - eck
+  - field
+  - user
+version: 8.x-1.0-alpha1
