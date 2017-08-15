@@ -3,15 +3,17 @@ status: true
 dependencies:
   module:
     - eck
-id: booking.field_booking_payment_way
-field_name: field_booking_payment_way
+    - file
+id: booking.field_booking_file
+field_name: field_booking_file
 entity_type: booking
-type: string
+type: file
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
-module: core
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
 locked: false
 cardinality: 1
 translatable: true

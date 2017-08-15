@@ -3,12 +3,12 @@ status: true
 dependencies:
   config:
     - eck.eck_type.booking.purchase
-    - field.storage.booking.field_booking_total_amount
-id: booking.purchase.field_booking_total_amount
-field_name: field_booking_total_amount
+    - field.storage.booking.field_booking_credit_note_vat
+id: booking.purchase.field_booking_credit_note_vat
+field_name: field_booking_credit_note_vat
 entity_type: booking
 bundle: purchase
-label: 'Total amount'
+label: 'VAT Credit note'
 description: ''
 required: false
 translatable: false

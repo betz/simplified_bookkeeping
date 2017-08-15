@@ -3,16 +3,20 @@ status: true
 dependencies:
   config:
     - eck.eck_type.booking.purchase
-    - field.storage.booking.field_booking_payment_way
-id: booking.purchase.field_booking_payment_way
-field_name: field_booking_payment_way
+    - field.storage.booking.field_booking_assets
+id: booking.purchase.field_booking_assets
+field_name: field_booking_assets
 entity_type: booking
 bundle: purchase
-label: 'Payment way'
+label: Assets
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: string
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

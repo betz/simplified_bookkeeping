@@ -3,14 +3,13 @@ status: true
 dependencies:
   module:
     - eck
-id: booking.field_booking_payment_way
-field_name: field_booking_payment_way
+id: booking.field_credit_note_ta
+field_name: field_credit_note_ta
 entity_type: booking
-type: string
+type: decimal
 settings:
-  max_length: 255
-  is_ascii: false
-  case_sensitive: false
+  precision: 10
+  scale: 2
 module: core
 locked: false
 cardinality: 1

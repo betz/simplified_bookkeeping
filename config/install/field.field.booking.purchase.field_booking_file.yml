@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.booking.purchase
+    - field.storage.booking.field_booking_file
+  module:
+    - file
+id: booking.purchase.field_booking_file
+field_name: field_booking_file
+entity_type: booking
+bundle: purchase
+label: File
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'bookings/purchases/[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

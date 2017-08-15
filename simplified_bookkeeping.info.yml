@@ -6,5 +6,8 @@ dependencies:
   - datetime
   - eck
   - field
+  - field_group
+  - file
   - user
+  - views
 version: 8.x-1.0-alpha1
