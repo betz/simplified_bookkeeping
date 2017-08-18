@@ -1,0 +1,14 @@
+{
+  "name": "hsbxl/simplified_bookkeeping",
+  "type": "drupal-custom-module",
+  "description": "Simplified bookkeeping for D8",
+  "keywords": ["Drupal"],
+  "license": "GPL-2.0+",
+  "homepage": "https://github.com/hsbxl/hsbxl_payments",
+  "minimum-stability": "dev",
+  "support": {
+    "issues": "https://github.com/betz/simplified_bookkeeping/issues",
+    "source": "https://github.com/betz/simplified_bookkeeping"
+  },
+  "require": { }
+}
