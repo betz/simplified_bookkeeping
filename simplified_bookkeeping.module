@@ -1,5 +1,5 @@
 <?php
 
 function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
-  ksm($entity);
+  //ksm($entity);
 }
