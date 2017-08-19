@@ -3,8 +3,11 @@ status: true
 dependencies:
   config:
     - eck.eck_type.booking.bankstatement
+    - field.field.booking.bankstatement.field_bankstatement_account
     - field.field.booking.bankstatement.field_bankstatement_amount
     - field.field.booking.bankstatement.field_bankstatement_date
+    - field.field.booking.bankstatement.field_bankstatement_memo
+    - field.field.booking.bankstatement.field_bankstatement_name
     - field.field.booking.bankstatement.field_test_bank_account_nr
     - field.field.booking.bankstatement.field_test_date
     - field.field.booking.bankstatement.field_test_name_party
@@ -77,4 +80,7 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_bankstatement_account: true
+  field_bankstatement_memo: true
+  field_bankstatement_name: true
