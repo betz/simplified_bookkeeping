@@ -36,6 +36,9 @@ process:
   field_test_date: field_test_date
   field_bankstatement_amount: field_bankstatement_amount
   field_test_name_party: field_test_name_party
+  field_bankstatement_date:
+    plugin: fix_date
+    source: field_bankstatement_date
 destination:
   plugin: 'entity:booking'
   default_bundle: bankstatement
