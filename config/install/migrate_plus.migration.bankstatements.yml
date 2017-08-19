@@ -35,9 +35,13 @@ process:
     default_value: 'bankstatement XYZ'
   field_test_date: field_test_date
   field_bankstatement_amount: field_bankstatement_amount
-  field_test_name_party: field_test_name_party
+  field_bankstatement_account: field_bankstatement_account
+  field_bankstatement_name: field_bankstatement_name
+  field_bankstatement_memo: field_bankstatement_memo
   field_bankstatement_date:
-    plugin: fix_date_argenta
+    plugin: format_date
+    from_format: d-m-Y
+    to_format: Y-m-d
     source: field_bankstatement_date
 destination:
   plugin: 'entity:booking'

@@ -8,9 +8,7 @@ dependencies:
     - field.field.booking.bankstatement.field_bankstatement_date
     - field.field.booking.bankstatement.field_bankstatement_memo
     - field.field.booking.bankstatement.field_bankstatement_name
-    - field.field.booking.bankstatement.field_test_bank_account_nr
     - field.field.booking.bankstatement.field_test_date
-    - field.field.booking.bankstatement.field_test_name_party
   module:
     - datetime
 id: booking.bankstatement.default
@@ -20,41 +18,49 @@ mode: default
 content:
   created:
     type: datetime_timestamp
-    weight: 10
+    weight: 1
     region: content
     settings: {  }
     third_party_settings: {  }
+  field_bankstatement_account:
+    type: string_textfield
+    weight: 7
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_bankstatement_amount:
-    weight: 11
+    weight: 2
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_bankstatement_date:
-    weight: 12
+    weight: 3
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_test_bank_account_nr:
-    weight: 14
+  field_bankstatement_memo:
+    type: string_textfield
+    weight: 8
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+  field_bankstatement_name:
     type: string_textfield
+    weight: 9
     region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_test_date:
-    weight: 13
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_test_name_party:
-    weight: 15
+    weight: 4
     settings:
       size: 60
       placeholder: ''
@@ -63,14 +69,11 @@ content:
     region: content
   uid:
     type: entity_reference_autocomplete
-    weight: 5
+    weight: 0
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     region: content
     third_party_settings: {  }
-hidden:
-  field_bankstatement_account: true
-  field_bankstatement_memo: true
-  field_bankstatement_name: true
+hidden: {  }

@@ -8,9 +8,7 @@ dependencies:
     - field.field.booking.bankstatement.field_bankstatement_date
     - field.field.booking.bankstatement.field_bankstatement_memo
     - field.field.booking.bankstatement.field_bankstatement_name
-    - field.field.booking.bankstatement.field_test_bank_account_nr
     - field.field.booking.bankstatement.field_test_date
-    - field.field.booking.bankstatement.field_test_name_party
   module:
     - datetime
     - user
@@ -22,15 +20,23 @@ content:
   created:
     label: hidden
     type: timestamp
-    weight: 0
+    weight: 1
     region: content
     settings:
       date_format: medium
       custom_date_format: ''
       timezone: ''
     third_party_settings: {  }
+  field_bankstatement_account:
+    type: string
+    weight: 7
+    region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_bankstatement_amount:
-    weight: 1
+    weight: 2
     label: above
     settings:
       thousand_separator: ''
@@ -41,7 +47,7 @@ content:
     type: number_decimal
     region: content
   field_bankstatement_date:
-    weight: 2
+    weight: 3
     label: above
     settings:
       format_type: medium
@@ -49,24 +55,24 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_test_bank_account_nr:
-    weight: 4
+  field_bankstatement_memo:
+    type: string
+    weight: 8
+    region: content
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_bankstatement_name:
     type: string
+    weight: 9
     region: content
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
   field_test_date:
-    weight: 3
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_test_name_party:
-    weight: 5
+    weight: 4
     label: above
     settings:
       link_to_entity: false
@@ -80,7 +86,4 @@ content:
     region: content
     settings: {  }
     third_party_settings: {  }
-hidden:
-  field_bankstatement_account: true
-  field_bankstatement_memo: true
-  field_bankstatement_name: true
+hidden: {  }
