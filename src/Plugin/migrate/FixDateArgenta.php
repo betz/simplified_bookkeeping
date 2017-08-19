@@ -11,7 +11,7 @@ use Drupal\migrate\Row;
  * Convert a date field to the proper format.
  *
  * @MigrateProcessPlugin(
- *   id = "fix_date",
+ *   id = "fix_date_argenta",
  * )
  */
 class FixDateArgenta extends ProcessPluginBase {
