@@ -10,10 +10,12 @@ migration_group: null
 label: 'Import articles'
 source:
   plugin: csv
-  path: /var/www/drupalvm/demousers_migrate.csv
+  path: /home/vagrant/bankstatements.csv
   delimiter: ;
   enclosure: ''
   header_row_count: 1
+  keys:
+    - field_bankstatement_amount
   column_names:
     0:
       field_test_date: 'Transfer date'
