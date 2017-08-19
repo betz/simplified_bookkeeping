@@ -4,6 +4,9 @@ dependencies:
   config:
     - eck.eck_type.booking.bankstatement
     - field.field.booking.bankstatement.field_bankstatement_amount
+    - field.field.booking.bankstatement.field_bankstatement_date
+  module:
+    - datetime
 id: booking.bankstatement.default
 targetEntityType: booking
 bundle: bankstatement
@@ -21,6 +24,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: number
+    region: content
+  field_bankstatement_date:
+    weight: 12
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   uid:
     type: entity_reference_autocomplete

@@ -1,0 +1,23 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.booking.bankstatement
+    - field.storage.booking.field_bankstatement_date
+  module:
+    - datetime
+id: booking.bankstatement.field_bankstatement_date
+field_name: field_bankstatement_date
+entity_type: booking
+bundle: bankstatement
+label: 'Transfer date'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    default_date_type: now
+    default_date: now
+default_value_callback: ''
+settings: {  }
+field_type: datetime

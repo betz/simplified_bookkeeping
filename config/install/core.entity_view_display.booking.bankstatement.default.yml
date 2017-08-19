@@ -4,7 +4,9 @@ dependencies:
   config:
     - eck.eck_type.booking.bankstatement
     - field.field.booking.bankstatement.field_bankstatement_amount
+    - field.field.booking.bankstatement.field_bankstatement_date
   module:
+    - datetime
     - user
 id: booking.bankstatement.default
 targetEntityType: booking
@@ -31,6 +33,15 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
+  field_bankstatement_date:
+    weight: 2
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   uid:
     label: hidden
