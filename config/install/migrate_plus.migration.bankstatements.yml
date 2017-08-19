@@ -21,7 +21,13 @@ source:
       field_bankstatement_amount: Amount
     4:
       field_test_name_party: 'Transfer name'
-process: null
+process:
+  title:
+    plugin: default_value
+    default_value: bankstatement XYZ
+  field_test_date: field_test_date
+  field_bankstatement_amount: field_bankstatement_amount
+  field_test_name_party: field_test_name_party
 destination:
   plugin: 'entity:booking'
   default_bundle: bankstatement
