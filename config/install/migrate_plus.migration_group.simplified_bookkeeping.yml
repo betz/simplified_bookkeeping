@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies: {  }
+id: simplified_bookkeeping
+label: 'Simplified bookkeeping'
+description: 'All migrations needed for the simplified bookkeeping module'
+source_type: ''
+module: null
+shared_configuration: null

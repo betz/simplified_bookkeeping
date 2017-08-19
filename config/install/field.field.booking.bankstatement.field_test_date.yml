@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - eck.eck_type.booking.bankstatement
+    - field.storage.booking.field_test_date
+id: booking.bankstatement.field_test_date
+field_name: field_test_date
+entity_type: booking
+bundle: bankstatement
+label: 'Test Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

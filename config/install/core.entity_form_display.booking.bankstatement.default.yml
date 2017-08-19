@@ -5,6 +5,9 @@ dependencies:
     - eck.eck_type.booking.bankstatement
     - field.field.booking.bankstatement.field_bankstatement_amount
     - field.field.booking.bankstatement.field_bankstatement_date
+    - field.field.booking.bankstatement.field_test_bank_account_nr
+    - field.field.booking.bankstatement.field_test_date
+    - field.field.booking.bankstatement.field_test_name_party
   module:
     - datetime
 id: booking.bankstatement.default
@@ -30,6 +33,30 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_test_bank_account_nr:
+    weight: 14
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_test_date:
+    weight: 13
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_test_name_party:
+    weight: 15
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
   uid:
     type: entity_reference_autocomplete

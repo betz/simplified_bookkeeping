@@ -5,6 +5,9 @@ dependencies:
     - eck.eck_type.booking.bankstatement
     - field.field.booking.bankstatement.field_bankstatement_amount
     - field.field.booking.bankstatement.field_bankstatement_date
+    - field.field.booking.bankstatement.field_test_bank_account_nr
+    - field.field.booking.bankstatement.field_test_date
+    - field.field.booking.bankstatement.field_test_name_party
   module:
     - datetime
     - user
@@ -42,6 +45,30 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_test_bank_account_nr:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_test_date:
+    weight: 3
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_test_name_party:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   uid:
     label: hidden
