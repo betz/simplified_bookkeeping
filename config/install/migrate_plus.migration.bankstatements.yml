@@ -18,31 +18,36 @@ source:
     - transferkey
   column_names:
     0:
-      field_test_date: 'Transfer date'
+      date: 'Transfer date'
     1:
       transferkey: 'Transfer key Argenta'
     3:
-      field_bankstatement_amount: Amount
+      amount: Amount
     6:
-      field_bankstatement_account: Bankaccount
+      account: Bankaccount
     7:
-      field_bankstatement_name: Name
+      name: Name
     8:
-      field_bankstatement_memo: Memo
+      memo: Memo
 process:
   title:
     plugin: default_value
     default_value: 'bankstatement XYZ'
-  field_test_date: field_test_date
-  field_bankstatement_amount: field_bankstatement_amount
-  field_bankstatement_account: field_bankstatement_account
-  field_bankstatement_name: field_bankstatement_name
-  field_bankstatement_memo: field_bankstatement_memo
+  field_test_date: date
+
+  field_bankstatement_amount:
+    plugin: str_replace
+    source: amount
+    search: ","
+    replace: "."
+  field_bankstatement_account: account
+  field_bankstatement_name: name
+  field_bankstatement_memo: memo
   field_bankstatement_date:
     plugin: format_date
     from_format: d-m-Y
     to_format: Y-m-d
-    source: field_bankstatement_date
+    source: date
 destination:
   plugin: 'entity:booking'
   default_bundle: bankstatement
