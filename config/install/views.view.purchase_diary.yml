@@ -1011,25 +1011,23 @@ display:
           plugin_id: text
       relationships: {  }
       arguments:
-        field_booking_date_value_month:
-          id: field_booking_date_value_month
-          table: booking__field_booking_date
-          field: field_booking_date_value_month
+        field_bankstatement_date_value_year_month:
+          id: field_bankstatement_date_value_year_month
+          table: booking__field_bankstatement_date
+          field: field_bankstatement_date_value_year_month
           relationship: none
           group_type: group
           admin_label: ''
-          default_action: default
+          default_action: ignore
           exception:
             value: all
             title_enable: false
             title: All
           title_enable: false
           title: ''
-          default_argument_type: query_parameter
+          default_argument_type: fixed
           default_argument_options:
-            query_param: month
-            fallback: ''
-            multiple: and
+            argument: ''
           default_argument_skip_url: false
           summary_options:
             base_path: ''
@@ -1045,42 +1043,7 @@ display:
             type: none
             fail: 'not found'
           validate_options: {  }
-          plugin_id: datetime_month
-        field_booking_date_value_year:
-          id: field_booking_date_value_year
-          table: booking__field_booking_date
-          field: field_booking_date_value_year
-          relationship: none
-          group_type: group
-          admin_label: ''
-          default_action: default
-          exception:
-            value: all
-            title_enable: false
-            title: All
-          title_enable: false
-          title: ''
-          default_argument_type: query_parameter
-          default_argument_options:
-            query_param: year
-            fallback: ''
-            multiple: and
-          default_argument_skip_url: false
-          summary_options:
-            base_path: ''
-            count: true
-            items_per_page: 25
-            override: false
-          summary:
-            sort_order: asc
-            number_of_records: 0
-            format: default_summary
-          specify_validation: false
-          validate:
-            type: none
-            fail: 'not found'
-          validate_options: {  }
-          plugin_id: datetime_year
+          plugin_id: datetime_year_month
       display_extenders: {  }
     cache_metadata:
       max-age: 0
