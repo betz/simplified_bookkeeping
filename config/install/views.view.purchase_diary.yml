@@ -15,6 +15,7 @@ dependencies:
     - field.storage.booking.field_booking_total_amount
     - field.storage.booking.field_booking_vat
     - field.storage.booking.field_credit_note_ta
+    - system.menu.books-better-be-balanced
   module:
     - datetime
     - eck
@@ -1108,6 +1109,15 @@ display:
     display_options:
       display_extenders: {  }
       path: bookkeeping/purchases
+      menu:
+        type: normal
+        title: 'Purchase diary'
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: books-better-be-balanced
     cache_metadata:
       max-age: 0
       contexts:

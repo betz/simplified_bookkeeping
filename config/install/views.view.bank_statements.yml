@@ -8,6 +8,7 @@ dependencies:
     - field.storage.booking.field_bankstatement_date
     - field.storage.booking.field_bankstatement_memo
     - field.storage.booking.field_bankstatement_name
+    - system.menu.books-better-be-balanced
     - user.role.administrator
     - user.role.bookkeeper
   module:
@@ -609,6 +610,15 @@ display:
       display_extenders: {  }
       path: bookkeeping/bank-statements
       display_comment: 'All bank transfers'
+      menu:
+        type: normal
+        title: 'Bank statements'
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: books-better-be-balanced
     cache_metadata:
       max-age: 0
       contexts:
