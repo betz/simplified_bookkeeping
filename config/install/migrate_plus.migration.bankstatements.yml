@@ -42,7 +42,6 @@ process:
       replace: ''
     -
       plugin: str_replace
-      source: amount
       search: ','
       replace: '.'
   field_bankstatement_account: account
