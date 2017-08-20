@@ -8,9 +8,11 @@ dependencies:
   - field
   - field_group
   - file
+  - hsbxl_payments
   - image
   - migrate_plus
   - path
+  - system
   - user
   - views
 version: 8.x-1.0-alpha1

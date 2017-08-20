@@ -8,9 +8,13 @@ dependencies:
     - field.storage.booking.field_bankstatement_date
     - field.storage.booking.field_bankstatement_memo
     - field.storage.booking.field_bankstatement_name
+    - system.menu.books-better-be-balanced
+    - user.role.administrator
+    - user.role.bookkeeper
   module:
     - datetime
     - eck
+    - user
 id: bank_statements
 label: 'Bank statements'
 module: views
@@ -27,8 +31,11 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: role
+        options:
+          role:
+            administrator: administrator
+            bookkeeper: bookkeeper
       cache:
         type: tag
         options: {  }
@@ -574,26 +581,38 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.roles
       tags:
         - 'config:field.storage.booking.field_bankstatement_account'
         - 'config:field.storage.booking.field_bankstatement_amount'
         - 'config:field.storage.booking.field_bankstatement_date'
         - 'config:field.storage.booking.field_bankstatement_memo'
         - 'config:field.storage.booking.field_bankstatement_name'
-  page_1:
+  bank_statements_page:
     display_plugin: page
-    id: page_1
+    id: bank_statements_page
     display_title: Page
     position: 1
     display_options:
       display_extenders: {  }
-      path: bank-statements
+      path: bookkeeping/bank-statements
+      menu:
+        type: normal
+        title: 'Bank statements'
+        description: ''
+        expanded: false
+        parent: ''
+        weight: 0
+        context: '0'
+        menu_name: books-better-be-balanced
+      display_comment: 'All bank transfers'
     cache_metadata:
       max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.roles
       tags:
         - 'config:field.storage.booking.field_bankstatement_account'
         - 'config:field.storage.booking.field_bankstatement_amount'
