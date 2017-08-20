@@ -30,6 +30,10 @@ source:
     8:
       memo: Memo
 process:
+  title:
+    plugin: default_value
+    default_value: 'bankstatement XYZ'
+  field_test_date: date
   field_bankstatement_amount:
     plugin: str_replace
     source: amount

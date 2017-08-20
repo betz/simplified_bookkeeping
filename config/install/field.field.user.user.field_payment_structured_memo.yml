@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_payment_structured_memo
+  module:
+    - user
+id: user.user.field_payment_structured_memo
+field_name: field_payment_structured_memo
+entity_type: user
+bundle: user
+label: 'Payment structured memo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -8,7 +8,9 @@ dependencies:
   - field
   - field_group
   - file
+  - image
   - migrate_plus
+  - path
   - user
   - views
 version: 8.x-1.0-alpha1
