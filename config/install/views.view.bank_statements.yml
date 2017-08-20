@@ -8,7 +8,6 @@ dependencies:
     - field.storage.booking.field_bankstatement_date
     - field.storage.booking.field_bankstatement_memo
     - field.storage.booking.field_bankstatement_name
-    - system.menu.books-better-be-balanced
     - user.role.administrator
     - user.role.bookkeeper
   module:
@@ -571,7 +570,20 @@ display:
       title: 'Bank statements'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No bank statements found.'
+            format: basic_html
+          plugin_id: text
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
@@ -596,15 +608,6 @@ display:
     display_options:
       display_extenders: {  }
       path: bookkeeping/bank-statements
-      menu:
-        type: normal
-        title: 'Bank statements'
-        description: ''
-        expanded: false
-        parent: ''
-        weight: 0
-        context: '0'
-        menu_name: books-better-be-balanced
       display_comment: 'All bank transfers'
     cache_metadata:
       max-age: 0

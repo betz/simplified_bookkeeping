@@ -994,7 +994,20 @@ display:
       title: 'Purchase diary'
       header: {  }
       footer: {  }
-      empty: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No purchases found.'
+            format: basic_html
+          plugin_id: text
       relationships: {  }
       arguments:
         field_booking_date_value_month:
@@ -1011,10 +1024,11 @@ display:
             title: All
           title_enable: false
           title: ''
-          default_argument_type: raw
+          default_argument_type: query_parameter
           default_argument_options:
-            index: 2
-            use_alias: false
+            query_param: month
+            fallback: ''
+            multiple: and
           default_argument_skip_url: false
           summary_options:
             base_path: ''
@@ -1045,10 +1059,11 @@ display:
             title: All
           title_enable: false
           title: ''
-          default_argument_type: raw
+          default_argument_type: query_parameter
           default_argument_options:
-            index: 3
-            use_alias: false
+            query_param: year
+            fallback: ''
+            multiple: and
           default_argument_skip_url: false
           summary_options:
             base_path: ''
