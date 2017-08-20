@@ -8,7 +8,6 @@ dependencies:
     - field.field.booking.bankstatement.field_bankstatement_date
     - field.field.booking.bankstatement.field_bankstatement_memo
     - field.field.booking.bankstatement.field_bankstatement_name
-    - field.field.booking.bankstatement.field_test_date
   module:
     - datetime
     - user
@@ -71,14 +70,6 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  field_test_date:
-    weight: 4
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
   uid:
     label: hidden
     type: author

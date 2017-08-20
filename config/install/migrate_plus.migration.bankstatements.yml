@@ -34,12 +34,11 @@ process:
     plugin: default_value
     default_value: 'bankstatement XYZ'
   field_test_date: date
-
   field_bankstatement_amount:
     plugin: str_replace
     source: amount
-    search: ","
-    replace: "."
+    search: ','
+    replace: .
   field_bankstatement_account: account
   field_bankstatement_name: name
   field_bankstatement_memo: memo

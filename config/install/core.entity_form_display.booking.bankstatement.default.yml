@@ -8,7 +8,6 @@ dependencies:
     - field.field.booking.bankstatement.field_bankstatement_date
     - field.field.booking.bankstatement.field_bankstatement_memo
     - field.field.booking.bankstatement.field_bankstatement_name
-    - field.field.booking.bankstatement.field_test_date
   module:
     - datetime
 id: booking.bankstatement.default
@@ -59,14 +58,6 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_test_date:
-    weight: 4
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   uid:
     type: entity_reference_autocomplete
     weight: 0
