@@ -643,7 +643,7 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: bookkeeping/bank-statements
+      path: bookkeeping/bankstatements
       display_comment: 'All bank transfers'
       menu:
         type: normal
