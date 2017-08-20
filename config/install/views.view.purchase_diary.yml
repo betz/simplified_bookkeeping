@@ -994,7 +994,20 @@ display:
           plugin_id: datetime
       title: 'Purchase diary'
       header: {  }
-      footer: {  }
+      footer:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: '<a href="/admin/structure/eck/booking/add/purchase?destination=bookkeeping/purchases">Register a purchase</a>'
+            format: basic_html
+          plugin_id: text
       empty:
         area:
           id: area
