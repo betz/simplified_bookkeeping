@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_purchase_expense_note
+    - simplified_bookkeeping.booking_type.purchase
+  module:
+    - file
+id: booking.purchase.field_purchase_expense_note
+field_name: field_purchase_expense_note
+entity_type: booking
+bundle: purchase
+label: 'Expense note'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'expense_notes/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'pdf zip tar.gz txt'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

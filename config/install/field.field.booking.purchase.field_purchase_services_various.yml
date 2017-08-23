@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_purchase_services_various
+    - simplified_bookkeeping.booking_type.purchase
+id: booking.purchase.field_purchase_services_various
+field_name: field_purchase_services_various
+entity_type: booking
+bundle: purchase
+label: 'Services & various goods'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

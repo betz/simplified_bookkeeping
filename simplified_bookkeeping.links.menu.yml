@@ -1,0 +1,18 @@
+
+# Booking menu items definition
+entity.booking.collection:
+  title: 'Booking list'
+  route_name: entity.booking.collection
+  description: 'List Booking entities'
+  parent: system.admin_structure
+  weight: 100
+
+
+# Booking type menu items definition
+entity.booking_type.collection:
+  title: 'Booking type'
+  route_name: entity.booking_type.collection
+  description: 'List Booking type (bundles)'
+  parent: system.admin_structure
+  weight: 99
+

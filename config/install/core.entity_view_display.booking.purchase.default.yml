@@ -2,41 +2,41 @@ langcode: en
 status: true
 dependencies:
   config:
-    - eck.eck_type.booking.purchase
-    - field.field.booking.purchase.field_booking_assets
-    - field.field.booking.purchase.field_booking_commodities
-    - field.field.booking.purchase.field_booking_credit_note_vat
-    - field.field.booking.purchase.field_booking_date
-    - field.field.booking.purchase.field_booking_file
-    - field.field.booking.purchase.field_booking_id
-    - field.field.booking.purchase.field_booking_payment_date
-    - field.field.booking.purchase.field_booking_payment_way
-    - field.field.booking.purchase.field_booking_serv_various_goods
-    - field.field.booking.purchase.field_booking_supplier
-    - field.field.booking.purchase.field_booking_total_amount
-    - field.field.booking.purchase.field_booking_vat
-    - field.field.booking.purchase.field_credit_note_ta
+    - field.field.booking.purchase.field_bankstatement
+    - field.field.booking.purchase.field_purchase_assets
+    - field.field.booking.purchase.field_purchase_commodities
+    - field.field.booking.purchase.field_purchase_credit_note_ta
+    - field.field.booking.purchase.field_purchase_date
+    - field.field.booking.purchase.field_purchase_expense_note
+    - field.field.booking.purchase.field_purchase_id
+    - field.field.booking.purchase.field_purchase_payment_date
+    - field.field.booking.purchase.field_purchase_payment_method
+    - field.field.booking.purchase.field_purchase_services_various
+    - field.field.booking.purchase.field_purchase_supplier
+    - field.field.booking.purchase.field_purchase_total_amount
+    - field.field.booking.purchase.field_purchase_vat
+    - field.field.booking.purchase.field_purchase_vat_credit_note
+    - simplified_bookkeeping.booking_type.purchase
   module:
     - datetime
     - file
+    - text
     - user
 id: booking.purchase.default
 targetEntityType: booking
 bundle: purchase
 mode: default
 content:
-  created:
-    label: hidden
-    type: timestamp
-    weight: 0
-    region: content
+  field_bankstatement:
+    weight: 2
+    label: above
     settings:
-      date_format: medium
-      custom_date_format: ''
-      timezone: ''
+      link: true
     third_party_settings: {  }
-  field_booking_assets:
-    weight: 9
+    type: entity_reference_label
+    region: content
+  field_purchase_assets:
+    weight: 1
     label: above
     settings:
       thousand_separator: ''
@@ -46,18 +46,69 @@ content:
     third_party_settings: {  }
     type: number_decimal
     region: content
-  field_booking_commodities:
+  field_purchase_commodities:
+    weight: 5
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_purchase_credit_note_ta:
+    weight: 6
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_purchase_date:
+    weight: 3
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_purchase_expense_note:
     weight: 7
     label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
+    settings: {  }
     third_party_settings: {  }
-    type: number_decimal
+    type: file_default
     region: content
-  field_booking_credit_note_vat:
+  field_purchase_id:
+    weight: 4
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
+  field_purchase_payment_date:
+    weight: 8
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_purchase_payment_method:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: text_default
+    region: content
+  field_purchase_services_various:
     weight: 10
     label: above
     settings:
@@ -68,78 +119,15 @@ content:
     third_party_settings: {  }
     type: number_decimal
     region: content
-  field_booking_date:
-    weight: 1
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_booking_file:
-    weight: 13
-    label: above
-    settings: {  }
-    third_party_settings: {  }
-    type: file_default
-    region: content
-  field_booking_id:
-    weight: 2
+  field_purchase_supplier:
+    weight: 11
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  field_booking_payment_date:
-    weight: 6
-    label: above
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_booking_payment_way:
-    weight: 5
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_booking_serv_various_goods:
-    weight: 8
-    label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_decimal
-    region: content
-  field_booking_supplier:
-    weight: 3
-    label: above
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_booking_total_amount:
-    weight: 4
-    label: above
-    settings:
-      thousand_separator: ''
-      decimal_separator: .
-      scale: 2
-      prefix_suffix: true
-    third_party_settings: {  }
-    type: number_decimal
-    region: content
-  field_booking_vat:
+  field_purchase_total_amount:
     weight: 12
     label: above
     settings:
@@ -150,8 +138,8 @@ content:
     third_party_settings: {  }
     type: number_decimal
     region: content
-  field_credit_note_ta:
-    weight: 11
+  field_purchase_vat:
+    weight: 13
     label: above
     settings:
       thousand_separator: ''
@@ -161,7 +149,26 @@ content:
     third_party_settings: {  }
     type: number_decimal
     region: content
-  uid:
+  field_purchase_vat_credit_note:
+    weight: 14
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
     label: hidden
     type: author
     weight: 0

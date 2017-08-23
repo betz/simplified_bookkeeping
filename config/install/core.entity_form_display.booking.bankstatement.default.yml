@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - eck.eck_type.booking.bankstatement
     - field.field.booking.bankstatement.field_bankstatement_account
     - field.field.booking.bankstatement.field_bankstatement_amount
     - field.field.booking.bankstatement.field_bankstatement_date
     - field.field.booking.bankstatement.field_bankstatement_memo
     - field.field.booking.bankstatement.field_bankstatement_name
+    - simplified_bookkeeping.booking_type.bankstatement
   module:
     - datetime
 id: booking.bankstatement.default
@@ -15,52 +15,54 @@ targetEntityType: booking
 bundle: bankstatement
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 1
-    region: content
-    settings: {  }
-    third_party_settings: {  }
   field_bankstatement_account:
-    type: string_textfield
-    weight: 7
-    region: content
+    weight: 27
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_bankstatement_amount:
-    weight: 2
+    weight: 26
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_bankstatement_date:
-    weight: 3
+    weight: 30
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_bankstatement_memo:
-    type: string_textfield
-    weight: 8
-    region: content
+    weight: 28
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_bankstatement_name:
+    weight: 29
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
     type: string_textfield
-    weight: 9
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  uid:
+  user_id:
     type: entity_reference_autocomplete
-    weight: 0
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60

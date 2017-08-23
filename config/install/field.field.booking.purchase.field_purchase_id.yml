@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_purchase_id
+    - simplified_bookkeeping.booking_type.purchase
+id: booking.purchase.field_purchase_id
+field_name: field_purchase_id
+entity_type: booking
+bundle: purchase
+label: ID
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

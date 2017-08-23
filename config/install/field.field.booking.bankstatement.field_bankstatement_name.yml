@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - eck.eck_type.booking.bankstatement
     - field.storage.booking.field_bankstatement_name
+    - simplified_bookkeeping.booking_type.bankstatement
 id: booking.bankstatement.field_bankstatement_name
 field_name: field_bankstatement_name
 entity_type: booking
 bundle: bankstatement
-label: 'Bankstatement name'
+label: Name
 description: ''
 required: false
 translatable: false

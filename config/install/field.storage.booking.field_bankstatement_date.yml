@@ -3,7 +3,7 @@ status: true
 dependencies:
   module:
     - datetime
-    - eck
+    - simplified_bookkeeping
 id: booking.field_bankstatement_date
 field_name: field_bankstatement_date
 entity_type: booking

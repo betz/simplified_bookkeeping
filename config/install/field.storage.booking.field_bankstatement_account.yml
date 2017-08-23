@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   module:
-    - eck
+    - simplified_bookkeeping
 id: booking.field_bankstatement_account
 field_name: field_bankstatement_account
 entity_type: booking

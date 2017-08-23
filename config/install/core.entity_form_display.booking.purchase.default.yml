@@ -2,173 +2,142 @@ langcode: en
 status: true
 dependencies:
   config:
-    - eck.eck_type.booking.purchase
-    - field.field.booking.purchase.field_booking_assets
-    - field.field.booking.purchase.field_booking_commodities
-    - field.field.booking.purchase.field_booking_credit_note_vat
-    - field.field.booking.purchase.field_booking_date
-    - field.field.booking.purchase.field_booking_file
-    - field.field.booking.purchase.field_booking_id
-    - field.field.booking.purchase.field_booking_payment_date
-    - field.field.booking.purchase.field_booking_payment_way
-    - field.field.booking.purchase.field_booking_serv_various_goods
-    - field.field.booking.purchase.field_booking_supplier
-    - field.field.booking.purchase.field_booking_total_amount
-    - field.field.booking.purchase.field_booking_vat
-    - field.field.booking.purchase.field_credit_note_ta
+    - field.field.booking.purchase.field_bankstatement
+    - field.field.booking.purchase.field_purchase_assets
+    - field.field.booking.purchase.field_purchase_commodities
+    - field.field.booking.purchase.field_purchase_credit_note_ta
+    - field.field.booking.purchase.field_purchase_date
+    - field.field.booking.purchase.field_purchase_expense_note
+    - field.field.booking.purchase.field_purchase_id
+    - field.field.booking.purchase.field_purchase_payment_date
+    - field.field.booking.purchase.field_purchase_payment_method
+    - field.field.booking.purchase.field_purchase_services_various
+    - field.field.booking.purchase.field_purchase_supplier
+    - field.field.booking.purchase.field_purchase_total_amount
+    - field.field.booking.purchase.field_purchase_vat
+    - field.field.booking.purchase.field_purchase_vat_credit_note
+    - simplified_bookkeeping.booking_type.purchase
   module:
     - datetime
-    - field_group
     - file
-third_party_settings:
-  field_group:
-    group_taxable_amount:
-      children:
-        - field_booking_commodities
-        - field_booking_serv_various_goods
-        - field_booking_assets
-        - field_credit_note_ta
-      parent_name: ''
-      weight: 4
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        required_fields: true
-      label: 'Taxable amount'
-    group_vat:
-      children:
-        - field_booking_credit_note_vat
-        - field_booking_vat
-      parent_name: ''
-      weight: 5
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        required_fields: true
-      label: VAT
-    group_payment:
-      children:
-        - field_booking_payment_way
-        - field_booking_payment_date
-      parent_name: ''
-      weight: 6
-      format_type: fieldset
-      format_settings:
-        id: ''
-        classes: ''
-        description: ''
-        required_fields: true
-      label: Payment
+    - text
 id: booking.purchase.default
 targetEntityType: booking
 bundle: purchase
 mode: default
 content:
-  created:
-    type: datetime_timestamp
-    weight: 9
-    region: content
-    settings: {  }
+  field_bankstatement:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
-  field_booking_assets:
-    weight: 9
+    type: entity_reference_autocomplete
+    region: content
+  field_purchase_assets:
+    weight: 26
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
-  field_booking_commodities:
-    weight: 7
+  field_purchase_commodities:
+    weight: 30
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
-  field_booking_credit_note_vat:
-    weight: 11
+  field_purchase_credit_note_ta:
+    weight: 31
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
-  field_booking_date:
-    weight: 0
+  field_purchase_date:
+    weight: 28
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_booking_file:
-    weight: 7
+  field_purchase_expense_note:
+    weight: 32
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
-  field_booking_id:
-    weight: 1
+  field_purchase_id:
+    weight: 29
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_booking_payment_date:
-    weight: 8
+  field_purchase_payment_date:
+    weight: 33
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_booking_payment_way:
-    weight: 7
+  field_purchase_payment_method:
+    weight: 34
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: text_textfield
+    region: content
+  field_purchase_services_various:
+    weight: 35
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_purchase_supplier:
+    weight: 36
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
     region: content
-  field_booking_serv_various_goods:
-    weight: 8
+  field_purchase_total_amount:
+    weight: 37
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
-  field_booking_supplier:
-    weight: 2
+  field_purchase_vat:
+    weight: 38
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_purchase_vat_credit_note:
+    weight: 39
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-    type: string_textfield
-    region: content
-  field_booking_total_amount:
-    weight: 3
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
-  field_booking_vat:
-    weight: 12
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
-  field_credit_note_ta:
-    weight: 10
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
-    region: content
-  uid:
+  user_id:
     type: entity_reference_autocomplete
-    weight: 8
+    weight: 5
     settings:
       match_operator: CONTAINS
       size: 60

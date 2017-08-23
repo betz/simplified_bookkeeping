@@ -1,5 +1,51 @@
 <?php
 
+
+/**
+ * Implements hook_entity_presave().
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ */
 function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
-  //ksm($entity);
+
+
+  if($entity->bundle() == 'bankstatement') {
+
+    if($entity->get('field_bankstatement_amount')->getValue()[0]['value'] < 0) {
+
+    }
+  }
+}
+/**
+ * Implements hook_theme().
+ */
+function simplified_bookkeeping_theme() {
+  $theme = [];
+  $theme['booking'] = [
+    'render element' => 'elements',
+    'file' => 'booking.page.inc',
+    'template' => 'booking',
+  ];
+  $theme['booking_content_add_list'] = [
+    'render element' => 'content',
+    'variables' => ['content' => NULL],
+    'file' => 'booking.page.inc',
+  ];
+  return $theme;
+}
+
+/**
+* Implements hook_theme_suggestions_HOOK().
+*/
+function simplified_bookkeeping_theme_suggestions_booking(array $variables) {
+  $suggestions = [];
+  $entity = $variables['elements']['#booking'];
+  $sanitized_view_mode = strtr($variables['elements']['#view_mode'], '.', '_');
+
+  $suggestions[] = 'booking__' . $sanitized_view_mode;
+  $suggestions[] = 'booking__' . $entity->bundle();
+  $suggestions[] = 'booking__' . $entity->bundle() . '__' . $sanitized_view_mode;
+  $suggestions[] = 'booking__' . $entity->id();
+  $suggestions[] = 'booking__' . $entity->id() . '__' . $sanitized_view_mode;
+  return $suggestions;
 }

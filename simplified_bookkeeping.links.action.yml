@@ -1,0 +1,11 @@
+entity.booking.add_form:
+  route_name: entity.booking.add_page
+  title: 'Add Booking'
+  appears_on:
+    - entity.booking.collection
+entity.booking_type.add_form:
+  route_name: entity.booking_type.add_form
+  title: 'Add Booking type'
+  appears_on:
+    - entity.booking_type.collection
+

@@ -4,6 +4,7 @@ type: module
 core: 8.x
 dependencies:
   - block
+  - comment
   - datetime
   - eck
   - field
@@ -14,7 +15,9 @@ dependencies:
   - migrate_plus
   - migrate_tools
   - path
+  - simplified_bookkeeping
   - system
+  - text
   - user
   - views
 version: 8.x-1.0-alpha1

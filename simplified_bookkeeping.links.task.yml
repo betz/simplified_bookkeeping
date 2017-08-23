@@ -1,0 +1,23 @@
+# Booking routing definition
+
+entity.booking.canonical:
+  route_name: entity.booking.canonical
+  base_route: entity.booking.canonical
+  title: 'View'
+
+entity.booking.edit_form:
+  route_name: entity.booking.edit_form
+  base_route: entity.booking.canonical
+  title: 'Edit'
+
+entity.booking.version_history:
+  route_name: entity.booking.version_history
+  base_route: entity.booking.canonical
+  title: 'Revisions'
+
+entity.booking.delete_form:
+  route_name:  entity.booking.delete_form
+  base_route:  entity.booking.canonical
+  title: Delete
+  weight: 10
+

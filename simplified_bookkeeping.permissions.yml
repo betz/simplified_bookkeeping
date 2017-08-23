@@ -1,0 +1,33 @@
+add booking entities:
+  title: 'Create new Booking entities'
+
+administer booking entities:
+  title: 'Administer Booking entities'
+  description: 'Allow to access the administration form to configure Booking entities.'
+  restrict access: true
+
+delete booking entities:
+  title: 'Delete Booking entities'
+
+edit booking entities:
+  title: 'Edit Booking entities'
+
+access booking overview:
+  title: 'Access the Booking overview page'
+
+view published booking entities:
+  title: 'View published Booking entities'
+
+view unpublished booking entities:
+  title: 'View unpublished Booking entities'
+
+view all booking revisions:
+  title: 'View all Booking revisions'
+
+revert all booking revisions:
+  title: 'Revert all Booking revisions'
+  description: 'Role requires permission <em>view Booking revisions</em> and <em>edit rights</em> for booking entities in question or <em>administer booking entities</em>.'
+
+delete all booking revisions:
+  title: 'Delete all revisions'
+  description: 'Role requires permission to <em>view Booking revisions</em> and <em>delete rights</em> for booking entities in question or <em>administer booking entities</em>.'

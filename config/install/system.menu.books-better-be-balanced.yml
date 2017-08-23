@@ -1,7 +1,0 @@
-langcode: en
-status: true
-dependencies: {  }
-id: books-better-be-balanced
-label: 'Books better be balanced'
-description: ''
-locked: false
