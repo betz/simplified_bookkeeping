@@ -9,11 +9,11 @@ dependencies:
   - field
   - field_group
   - file
-  - hsbxl_payments
   - image
   - migrate_plus
   - migrate_tools
   - path
+  - simplified_bookkeeping
   - system
   - text
   - user
