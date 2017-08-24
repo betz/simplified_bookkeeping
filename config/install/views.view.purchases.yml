@@ -83,15 +83,38 @@ display:
           summary: ''
           description: ''
           columns:
-            name: name
+            field_purchase_date: field_purchase_date
+            field_purchase_id: field_purchase_id
+            field_purchase_supplier: field_purchase_supplier
             field_purchase_total_amount: field_purchase_total_amount
+            field_purchase_commodities: field_purchase_commodities
+            field_purchase_services_various: field_purchase_services_various
+            field_purchase_assets: field_purchase_assets
+            field_purchase_credit_note_ta: field_purchase_credit_note_ta
+            field_purchase_vat_credit_note: field_purchase_vat_credit_note
+            field_purchase_vat: field_purchase_vat
+            field_purchase_payment_method: field_purchase_payment_method
             field_purchase_payment_date: field_purchase_payment_date
             field_bankstatement: field_bankstatement
             delete_booking: delete_booking
             edit_booking: edit_booking
           info:
-            name:
-              sortable: true
+            field_purchase_date:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_purchase_id:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: true
+              responsive: ''
+            field_purchase_supplier:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
@@ -100,6 +123,55 @@ display:
             field_purchase_total_amount:
               sortable: true
               default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_purchase_commodities:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: true
+              responsive: ''
+            field_purchase_services_various:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: true
+              responsive: ''
+            field_purchase_assets:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: true
+              responsive: ''
+            field_purchase_credit_note_ta:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: true
+              responsive: ''
+            field_purchase_vat_credit_note:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: true
+              responsive: ''
+            field_purchase_vat:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: true
+              responsive: ''
+            field_purchase_payment_method:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
