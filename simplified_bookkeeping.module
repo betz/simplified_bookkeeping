@@ -59,6 +59,11 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         $sale_data['field_sale_client'] = $first_name . ' ' . $last_name;
       }
 
+      // Find Bitkassa payments, set as fridge sales.
+      if(strpos($memo, 'BitKassa') === 0) {
+        $sale_data['field_sale_client'] = 'Drinks';
+      }
+
       $sale = BookingEntity::create($sale_data);
       $sale->save();
     }

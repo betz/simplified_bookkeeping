@@ -80,13 +80,14 @@ display:
           row_class: ''
           default_row_class: true
           override: true
-          sticky: false
+          sticky: true
           caption: ''
           summary: ''
           description: ''
           columns:
             field_sale_date: field_sale_date
             field_sale_id: field_sale_id
+            field_sale_membership_member: field_sale_membership_member
             field_sale_client: field_sale_client
             field_sale_total_amount: field_sale_total_amount
             field_sale_taxable_amount_6: field_sale_taxable_amount_6
@@ -98,8 +99,8 @@ display:
             field_sale_vat: field_sale_vat
             field_sale_payment_method: field_sale_payment_method
             field_sale_payment_date: field_sale_payment_date
+            name: name
             field_bankstatement: field_bankstatement
-            delete_booking: delete_booking
             edit_booking: edit_booking
           info:
             field_sale_date:
@@ -111,6 +112,13 @@ display:
               responsive: ''
             field_sale_id:
               sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: true
+              responsive: ''
+            field_sale_membership_member:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
@@ -135,49 +143,49 @@ display:
               default_sort_order: asc
               align: ''
               separator: ''
-              empty_column: false
+              empty_column: true
               responsive: ''
             field_sale_taxable_amount_12:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
-              empty_column: false
+              empty_column: true
               responsive: ''
             field_sale_taxable_amount_21:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
-              empty_column: false
+              empty_column: true
               responsive: ''
             field_ta_assets:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
-              empty_column: false
+              empty_column: true
               responsive: ''
             field_sale_credit_note_ta:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
-              empty_column: false
+              empty_column: true
               responsive: ''
             field_sale_vat_credit_note:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
-              empty_column: false
+              empty_column: true
               responsive: ''
             field_sale_vat:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
-              empty_column: false
+              empty_column: true
               responsive: ''
             field_sale_payment_method:
               sortable: true
@@ -193,15 +201,15 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_bankstatement:
-              sortable: true
+            name:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            delete_booking:
-              sortable: false
+            field_bankstatement:
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
@@ -357,7 +365,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<a href="/user/{{ field_sale_membership_member__target_id }}">M</a>'
+            text: '<a href="/user/{{ field_sale_membership_member__target_id }}">[M]</a>'
             make_link: false
             path: ''
             absolute: false
@@ -1126,6 +1134,71 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        name:
+          id: name
+          table: booking
+          field: name
+          relationship: field_bankstatement
+          group_type: group
+          admin_label: ''
+          label: ''
+          exclude: true
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: false
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: booking
+          entity_field: name
+          plugin_id: field
         field_bankstatement:
           id: field_bankstatement
           table: booking__field_bankstatement
@@ -1145,12 +1218,12 @@ display:
             replace_spaces: false
             path_case: none
             trim_whitespace: false
-            alt: ''
+            alt: '{{ name }}'
             rel: ''
             link_class: ''
             prefix: ''
             suffix: ''
-            target: ''
+            target: _blank
             nl2br: false
             max_length: 0
             word_boundary: true
@@ -1188,57 +1261,6 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        delete_booking:
-          id: delete_booking
-          table: booking
-          field: delete_booking
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Delete
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          text: delete
-          entity_type: booking
-          plugin_id: entity_link_delete
         edit_booking:
           id: edit_booking
           table: booking
@@ -1304,8 +1326,30 @@ display:
       title: 'Sale diary'
       header: {  }
       footer: {  }
-      empty: {  }
-      relationships: {  }
+      empty:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: false
+          content:
+            value: 'No sale bookings found.'
+            format: basic_html
+          plugin_id: text
+      relationships:
+        field_bankstatement:
+          id: field_bankstatement
+          table: booking__field_bankstatement
+          field: field_bankstatement
+          relationship: none
+          group_type: group
+          admin_label: 'field_bankstatement: Booking'
+          required: false
+          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
     cache_metadata:
