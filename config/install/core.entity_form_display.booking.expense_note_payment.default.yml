@@ -1,0 +1,83 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.booking.expense_note_payment.field_expense_note
+    - field.field.booking.expense_note_payment.field_expensenote_payed_by
+    - field.field.booking.expense_note_payment.field_expensenote_payed_to
+    - field.field.booking.expense_note_payment.field_expensenote_payment_date
+    - field.field.booking.expense_note_payment.field_expensenote_payment_method
+    - field.field.booking.expense_note_payment.field_expensenote_payment_paid
+    - field.field.booking.expense_note_payment.field_payed_from
+    - simplified_bookkeeping.booking_type.expense_note_payment
+  module:
+    - datetime
+id: booking.expense_note_payment.default
+targetEntityType: booking
+bundle: expense_note_payment
+mode: default
+content:
+  field_expense_note:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_expensenote_payed_by:
+    weight: 7
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_expensenote_payed_to:
+    weight: 6
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_expensenote_payment_date:
+    weight: 4
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_expensenote_payment_method:
+    weight: 3
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_expensenote_payment_paid:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_payed_from:
+    weight: 5
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  user_id: true

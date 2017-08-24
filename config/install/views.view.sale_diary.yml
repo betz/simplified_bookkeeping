@@ -279,7 +279,7 @@ display:
           type: datetime_default
           settings:
             timezone_override: ''
-            format_type: html_date
+            format_type: bookkeeping_date
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1122,7 +1122,7 @@ display:
           type: datetime_default
           settings:
             timezone_override: ''
-            format_type: html_date
+            format_type: bookkeeping_date
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -1389,7 +1389,7 @@ display:
         description: ''
         expanded: false
         parent: ''
-        weight: 0
+        weight: -47
         context: '0'
         menu_name: bookkeeping
     cache_metadata:

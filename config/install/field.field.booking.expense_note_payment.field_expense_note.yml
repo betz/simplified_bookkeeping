@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_expense_note
+    - simplified_bookkeeping.booking_type.expense_note
+    - simplified_bookkeeping.booking_type.expense_note_payment
+id: booking.expense_note_payment.field_expense_note
+field_name: field_expense_note
+entity_type: booking
+bundle: expense_note_payment
+label: 'Expense note'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:booking'
+  handler_settings:
+    target_bundles:
+      expense_note: expense_note
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

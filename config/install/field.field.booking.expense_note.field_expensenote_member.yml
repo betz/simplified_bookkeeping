@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_expensenote_member
+    - simplified_bookkeeping.booking_type.expense_note
+id: booking.expense_note.field_expensenote_member
+field_name: field_expensenote_member
+entity_type: booking
+bundle: expense_note
+label: Member
+description: 'Who did the buy? If someone needs reimbursement, who?'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: true
+    filter:
+      type: _none
+    target_bundles: null
+    sort:
+      field: name
+      direction: ASC
+    auto_create: false
+field_type: entity_reference

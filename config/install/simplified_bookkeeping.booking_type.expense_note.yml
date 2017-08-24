@@ -1,0 +1,5 @@
+langcode: en
+status: true
+dependencies: {  }
+id: expense_note
+label: 'Expense note'

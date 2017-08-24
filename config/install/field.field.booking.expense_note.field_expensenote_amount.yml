@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_expensenote_amount
+    - simplified_bookkeeping.booking_type.expense_note
+id: booking.expense_note.field_expensenote_amount
+field_name: field_expensenote_amount
+entity_type: booking
+bundle: expense_note
+label: Amount
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: !!float 0
+  max: null
+  prefix: €
+  suffix: ''
+field_type: decimal

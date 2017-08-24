@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bookkeeping_date
+label: 'Bookkeeping date'
+locked: false
+pattern: d-m-Y

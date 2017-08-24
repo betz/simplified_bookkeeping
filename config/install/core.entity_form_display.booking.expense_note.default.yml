@@ -1,0 +1,48 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.booking.expense_note.field_expense_note_attachment
+    - field.field.booking.expense_note.field_expensenote_amount
+    - field.field.booking.expense_note.field_expensenote_member
+    - simplified_bookkeeping.booking_type.expense_note
+  module:
+    - file
+id: booking.expense_note.default
+targetEntityType: booking
+bundle: expense_note
+mode: default
+content:
+  field_expense_note_attachment:
+    weight: 3
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_expensenote_amount:
+    weight: 2
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_expensenote_member:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: Description
+    third_party_settings: {  }
+hidden:
+  user_id: true

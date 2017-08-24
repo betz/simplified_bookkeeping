@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_payed_from
+    - simplified_bookkeeping.booking_type.expense_note_payment
+id: booking.expense_note_payment.field_payed_from
+field_name: field_payed_from
+entity_type: booking
+bundle: expense_note_payment
+label: 'Payed from'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_expensenote_payed_to
+    - simplified_bookkeeping.booking_type.expense_note_payment
+id: booking.expense_note_payment.field_expensenote_payed_to
+field_name: field_expensenote_payed_to
+entity_type: booking
+bundle: expense_note_payment
+label: 'Payed to'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:user'
+  handler_settings:
+    include_anonymous: true
+    filter:
+      type: _none
+    target_bundles: null
+    sort:
+      field: name
+      direction: ASC
+    auto_create: false
+field_type: entity_reference

@@ -2,21 +2,19 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_bankstatement_account
-    - field.storage.booking.field_bankstatement_amount
-    - field.storage.booking.field_bankstatement_date
-    - field.storage.booking.field_bankstatement_memo
-    - field.storage.booking.field_booking
-    - simplified_bookkeeping.booking_type.bankstatement
+    - field.storage.booking.field_expense_note_attachment
+    - field.storage.booking.field_expensenote_amount
+    - field.storage.booking.field_expensenote_member
+    - simplified_bookkeeping.booking_type.expense_note
     - system.menu.bookkeeping
     - user.role.administrator
     - user.role.bookkeeper
   module:
-    - datetime
+    - file
     - simplified_bookkeeping
     - user
-id: bankstatements
-label: Bankstatements
+id: expense_notes
+label: 'Expense notes'
 module: views
 description: ''
 tag: ''
@@ -60,6 +58,7 @@ display:
       pager:
         type: none
         options:
+          items_per_page: 0
           offset: 0
       style:
         type: table
@@ -73,57 +72,74 @@ display:
           summary: ''
           description: ''
           columns:
-            field_bankstatement_date: field_bankstatement_date
-            field_bankstatement_amount: field_bankstatement_amount
-            field_bankstatement_account: field_bankstatement_account
-            field_bankstatement_memo: field_bankstatement_memo
+            created: created
+            name: name
+            field_expensenote_amount: field_expensenote_amount
+            field_expensenote_member: field_expensenote_member
+            field_expense_note_attachment: field_expense_note_attachment
+            delete_booking: delete_booking
+            edit_booking: edit_booking
           info:
-            field_bankstatement_date:
+            created:
               sortable: true
               default_sort_order: desc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_bankstatement_amount:
+            name:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_expensenote_amount:
               sortable: true
               default_sort_order: desc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_bankstatement_account:
+            field_expensenote_member:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_bankstatement_memo:
-              sortable: true
+            field_expense_note_attachment:
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            delete_booking:
+              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-          default: field_bankstatement_date
+            edit_booking:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: created
           empty_table: false
       row:
         type: fields
-        options:
-          inline: {  }
-          separator: ''
-          hide_empty: false
-          default_field_elements: true
       fields:
-        field_bankstatement_date:
-          id: field_bankstatement_date
-          table: booking__field_bankstatement_date
-          field: field_bankstatement_date
+        created:
+          id: created
+          table: booking
+          field: created
           relationship: none
           group_type: group
           admin_label: ''
-          label: Date
+          label: Created
           exclude: false
           alter:
             alter_text: false
@@ -165,10 +181,11 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: datetime_default
+          type: timestamp
           settings:
-            timezone_override: ''
-            format_type: bookkeeping_date
+            date_format: bookkeeping_date
+            custom_date_format: ''
+            timezone: ''
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -179,11 +196,78 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
+          entity_type: booking
+          entity_field: created
           plugin_id: field
-        field_bankstatement_amount:
-          id: field_bankstatement_amount
-          table: booking__field_bankstatement_amount
-          field: field_bankstatement_amount
+        name:
+          id: name
+          table: booking
+          field: name
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Description
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: true
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          entity_type: null
+          entity_field: name
+          plugin_id: field
+        field_expensenote_amount:
+          id: field_expensenote_amount
+          table: booking__field_expensenote_amount
+          field: field_expensenote_amount
           relationship: none
           group_type: group
           admin_label: ''
@@ -246,191 +330,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_bankstatement_account:
-          id: field_bankstatement_account
-          table: booking__field_bankstatement_account
-          field: field_bankstatement_account
+        field_expensenote_member:
+          id: field_expensenote_member
+          table: booking__field_expensenote_member
+          field: field_expensenote_member
           relationship: none
           group_type: group
           admin_label: ''
-          label: Account
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_bankstatement_memo:
-          id: field_bankstatement_memo
-          table: booking__field_bankstatement_memo
-          field: field_bankstatement_memo
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Memo
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        edit_booking:
-          id: edit_booking
-          table: booking
-          field: edit_booking
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Edit
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          text: edit
-          entity_type: booking
-          plugin_id: entity_link_edit
-        field_booking:
-          id: field_booking
-          table: booking__field_booking
-          field: field_booking
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Purchase/Sale
+          label: Member
           exclude: false
           alter:
             alter_text: false
@@ -486,47 +393,188 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
+        field_expense_note_attachment:
+          id: field_expense_note_attachment
+          table: booking__field_expense_note_attachment
+          field: field_expense_note_attachment
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Attachment
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: target_id
+          type: file_default
+          settings: {  }
+          group_column: ''
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        delete_booking:
+          id: delete_booking
+          table: booking
+          field: delete_booking
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Delete
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: delete
+          entity_type: booking
+          plugin_id: entity_link_delete
+        edit_booking:
+          id: edit_booking
+          table: booking
+          field: edit_booking
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Edit
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          text: edit
+          entity_type: booking
+          plugin_id: entity_link_edit
       filters:
         type:
           id: type
           table: booking
           field: type
           value:
-            bankstatement: bankstatement
+            expense_note: expense_note
           entity_type: booking
           entity_field: type
           plugin_id: bundle
       sorts: {  }
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: false
-          content: 'Displaying @start - @end of @total'
-          plugin_id: result
+      title: 'Expense notes'
+      header: {  }
       footer: {  }
-      empty:
-        area:
-          id: area
-          table: views
-          field: area
-          relationship: none
-          group_type: group
-          admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: 'No bankstatements found.'
-            format: basic_html
-          plugin_id: text
+      empty: {  }
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      title: Bankstatements
     cache_metadata:
       max-age: 0
       contexts:
@@ -535,11 +583,9 @@ display:
         - url.query_args
         - user.roles
       tags:
-        - 'config:field.storage.booking.field_bankstatement_account'
-        - 'config:field.storage.booking.field_bankstatement_amount'
-        - 'config:field.storage.booking.field_bankstatement_date'
-        - 'config:field.storage.booking.field_bankstatement_memo'
-        - 'config:field.storage.booking.field_booking'
+        - 'config:field.storage.booking.field_expense_note_attachment'
+        - 'config:field.storage.booking.field_expensenote_amount'
+        - 'config:field.storage.booking.field_expensenote_member'
   page_1:
     display_plugin: page
     id: page_1
@@ -547,14 +593,14 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: bookkeeping/bankstatements
+      path: bookkeeping/expensenotes
       menu:
         type: normal
-        title: Bankstatements
+        title: 'Expense notes'
         description: ''
         expanded: false
         parent: ''
-        weight: -49
+        weight: -50
         context: '0'
         menu_name: bookkeeping
     cache_metadata:
@@ -565,8 +611,6 @@ display:
         - url.query_args
         - user.roles
       tags:
-        - 'config:field.storage.booking.field_bankstatement_account'
-        - 'config:field.storage.booking.field_bankstatement_amount'
-        - 'config:field.storage.booking.field_bankstatement_date'
-        - 'config:field.storage.booking.field_bankstatement_memo'
-        - 'config:field.storage.booking.field_booking'
+        - 'config:field.storage.booking.field_expense_note_attachment'
+        - 'config:field.storage.booking.field_expensenote_amount'
+        - 'config:field.storage.booking.field_expensenote_member'
