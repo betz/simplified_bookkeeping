@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - simplified_bookkeeping
+id: booking.expense_note_payment_preview
+label: 'Expense note payment preview'
+targetEntityType: booking
+cache: true

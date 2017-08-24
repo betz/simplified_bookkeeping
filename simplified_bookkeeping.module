@@ -1,6 +1,7 @@
 <?php
 
 use \Drupal\simplified_bookkeeping\entity\BookingEntity;
+use \Drupal\Core\Form\FormStateInterface;
 
 /**
  * Implements hook_entity_insert().
@@ -79,6 +80,37 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
       $sale->save();
     }
   }
+}
+
+/**
+ * Implements hook_form_alter().
+ * Add a button 'Save and close expense note to expense not payment forms.
+ */
+function simplified_bookkeeping_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if($form_id == 'booking_expense_note_payment_add_form') {
+    $form['actions']['submit_close_expenseenote'] = array(
+      '#type' => 'submit',
+      '#value' => 'Save and close expense note',
+      '#weight' => 7,
+      '#submit' => [
+        '::submitForm',
+        '::save',
+        'simplified_bookkeeping_close_expensenote',
+      ],
+    );
+  }
+}
+
+/**
+ * Custom submit function for closing an expense note.
+ * @param array $form
+ * @param \FormStateInterface $form_state
+ */
+function simplified_bookkeeping_close_expensenote($form, FormStateInterface $form_state) {
+  $entity = $form_state->getFormObject()->getEntity();
+  $booking_id = $entity->field_expense_note->getString();
+  $expense_note = BookingEntity::load($booking_id);
+  $expense_note->set('field_expensenote_status', 'closed');
 }
 
 /**

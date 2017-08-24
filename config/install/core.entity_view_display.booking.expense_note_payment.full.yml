@@ -1,7 +1,8 @@
 langcode: en
-status: true
+status: false
 dependencies:
   config:
+    - core.entity_view_mode.booking.full
     - field.field.booking.expense_note_payment.field_expense_note
     - field.field.booking.expense_note_payment.field_expensenote_payed_by
     - field.field.booking.expense_note_payment.field_expensenote_payed_to
@@ -14,10 +15,10 @@ dependencies:
     - datetime
     - options
     - user
-id: booking.expense_note_payment.default
+id: booking.expense_note_payment.full
 targetEntityType: booking
 bundle: expense_note_payment
-mode: default
+mode: full
 content:
   field_expense_note:
     weight: 7
@@ -79,7 +80,7 @@ content:
     type: string
     region: content
   name:
-    label: hidden
+    label: above
     type: string
     weight: -4
     region: content

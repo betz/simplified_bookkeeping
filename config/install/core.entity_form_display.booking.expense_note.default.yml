@@ -5,6 +5,8 @@ dependencies:
     - field.field.booking.expense_note.field_expense_note_attachment
     - field.field.booking.expense_note.field_expensenote_amount
     - field.field.booking.expense_note.field_expensenote_member
+    - field.field.booking.expense_note.field_expensenote_payments
+    - field.field.booking.expense_note.field_expensenote_status
     - simplified_bookkeeping.booking_type.expense_note
   module:
     - file
@@ -35,6 +37,21 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_expensenote_payments:
+    weight: 27
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_expensenote_status:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   name:
     type: string_textfield

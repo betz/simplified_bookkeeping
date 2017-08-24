@@ -2,21 +2,22 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_expense_note_attachment
-    - field.storage.booking.field_expensenote_amount
-    - field.storage.booking.field_expensenote_member
-    - field.storage.booking.field_expensenote_status
-    - simplified_bookkeeping.booking_type.expense_note
-    - system.menu.bookkeeping
+    - field.storage.booking.field_expensenote_payed_by
+    - field.storage.booking.field_expensenote_payed_to
+    - field.storage.booking.field_expensenote_payment_date
+    - field.storage.booking.field_expensenote_payment_method
+    - field.storage.booking.field_expensenote_payment_paid
+    - field.storage.booking.field_payed_from
+    - simplified_bookkeeping.booking_type.expense_note_payment
     - user.role.administrator
     - user.role.bookkeeper
   module:
-    - file
+    - datetime
     - options
     - simplified_bookkeeping
     - user
-id: expense_notes
-label: 'Expense notes'
+id: expense_note_payments
+label: 'Expense note payments'
 module: views
 description: ''
 tag: ''
@@ -60,7 +61,6 @@ display:
       pager:
         type: none
         options:
-          items_per_page: 0
           offset: 0
       style:
         type: table
@@ -74,90 +74,73 @@ display:
           summary: ''
           description: ''
           columns:
-            created: created
-            name: name
-            field_expensenote_status: field_expensenote_status
-            field_expensenote_amount: field_expensenote_amount
-            field_expensenote_member: field_expensenote_member
-            field_expense_note_attachment: field_expense_note_attachment
-            delete_booking: delete_booking
-            edit_booking: edit_booking
+            field_expensenote_payment_date: field_expensenote_payment_date
+            field_expensenote_payment_paid: field_expensenote_payment_paid
+            field_expensenote_payment_method: field_expensenote_payment_method
             field_payed_from: field_payed_from
+            field_expensenote_payed_by: field_expensenote_payed_by
+            field_expensenote_payed_to: field_expensenote_payed_to
           info:
-            created:
+            field_expensenote_payment_date:
               sortable: true
               default_sort_order: desc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            name:
+            field_expensenote_payment_paid:
               sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_expensenote_status:
+            field_expensenote_payment_method:
               sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_expensenote_amount:
-              sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_expensenote_member:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_expense_note_attachment:
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            delete_booking:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            edit_booking:
-              sortable: false
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
             field_payed_from:
-              sortable: false
+              sortable: true
               default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-          default: created
+            field_expensenote_payed_by:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_expensenote_payed_to:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: field_expensenote_payment_date
           empty_table: false
       row:
         type: fields
+        options:
+          inline: {  }
+          separator: ''
+          hide_empty: false
+          default_field_elements: true
       fields:
-        created:
-          id: created
-          table: booking
-          field: created
+        field_expensenote_payment_date:
+          id: field_expensenote_payment_date
+          table: booking__field_expensenote_payment_date
+          field: field_expensenote_payment_date
           relationship: none
           group_type: group
           admin_label: ''
-          label: Created
+          label: 'Payment date'
           exclude: false
           alter:
             alter_text: false
@@ -199,140 +182,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: timestamp
+          type: datetime_default
           settings:
-            date_format: bookkeeping_date
-            custom_date_format: ''
-            timezone: ''
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: booking
-          entity_field: created
-          plugin_id: field
-        name:
-          id: name
-          table: booking
-          field: name
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Description
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: null
-          entity_field: name
-          plugin_id: field
-        field_expensenote_status:
-          id: field_expensenote_status
-          table: booking__field_expensenote_status
-          field: field_expensenote_status
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Status
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: list_default
-          settings: {  }
+            timezone_override: ''
+            format_type: bookkeeping_date
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -344,14 +197,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_expensenote_amount:
-          id: field_expensenote_amount
-          table: booking__field_expensenote_amount
-          field: field_expensenote_amount
+        field_expensenote_payment_paid:
+          id: field_expensenote_payment_paid
+          table: booking__field_expensenote_payment_paid
+          field: field_expensenote_payment_paid
           relationship: none
           group_type: group
           admin_label: ''
-          label: Amount
+          label: Paid
           exclude: false
           alter:
             alter_text: false
@@ -410,14 +263,139 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_expensenote_member:
-          id: field_expensenote_member
-          table: booking__field_expensenote_member
-          field: field_expensenote_member
+        field_expensenote_payment_method:
+          id: field_expensenote_payment_method
+          table: booking__field_expensenote_payment_method
+          field: field_expensenote_payment_method
           relationship: none
           group_type: group
           admin_label: ''
-          label: Member
+          label: 'Payment method'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: list_default
+          settings: {  }
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_payed_from:
+          id: field_payed_from
+          table: booking__field_payed_from
+          field: field_payed_from
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Payed from'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_expensenote_payed_by:
+          id: field_expensenote_payed_by
+          table: booking__field_expensenote_payed_by
+          field: field_expensenote_payed_by
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Payed by'
           exclude: false
           alter:
             alter_text: false
@@ -473,14 +451,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_expense_note_attachment:
-          id: field_expense_note_attachment
-          table: booking__field_expense_note_attachment
-          field: field_expense_note_attachment
+        field_expensenote_payed_to:
+          id: field_expensenote_payed_to
+          table: booking__field_expensenote_payed_to
+          field: field_expensenote_payed_to
           relationship: none
           group_type: group
           admin_label: ''
-          label: Attachment
+          label: 'Payed to'
           exclude: false
           alter:
             alter_text: false
@@ -522,9 +500,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: file_default
-          settings: {  }
-          group_column: ''
+          type: entity_reference_label
+          settings:
+            link: true
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -643,69 +622,92 @@ display:
           table: booking
           field: type
           value:
-            expense_note: expense_note
+            expense_note_payment: expense_note_payment
           entity_type: booking
           entity_field: type
           plugin_id: bundle
       sorts: {  }
-      title: 'Expense notes'
       header: {  }
-      footer:
-        area:
-          id: area
-          table: views
-          field: area
+      footer: {  }
+      empty: {  }
+      relationships: {  }
+      arguments:
+        field_expense_note_target_id:
+          id: field_expense_note_target_id
+          table: booking__field_expense_note
+          field: field_expense_note_target_id
           relationship: none
           group_type: group
           admin_label: ''
-          empty: true
-          tokenize: false
-          content:
-            value: '<a href="/booking/add/expense_note?destination=bookkeeping/expensenotes">Create new expense note</a>'
-            format: basic_html
-          plugin_id: text
-      empty: {  }
-      relationships: {  }
-      arguments: {  }
+          default_action: default
+          exception:
+            value: all
+            title_enable: false
+            title: All
+          title_enable: false
+          title: ''
+          default_argument_type: raw
+          default_argument_options:
+            index: 1
+            use_alias: false
+          default_argument_skip_url: false
+          summary_options:
+            base_path: ''
+            count: true
+            items_per_page: 25
+            override: false
+          summary:
+            sort_order: asc
+            number_of_records: 0
+            format: default_summary
+          specify_validation: false
+          validate:
+            type: none
+            fail: 'not found'
+          validate_options: {  }
+          break_phrase: false
+          not: false
+          plugin_id: numeric
       display_extenders: {  }
+      title: Payments
     cache_metadata:
       max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
         - user.roles
       tags:
-        - 'config:field.storage.booking.field_expense_note_attachment'
-        - 'config:field.storage.booking.field_expensenote_amount'
-        - 'config:field.storage.booking.field_expensenote_member'
-        - 'config:field.storage.booking.field_expensenote_status'
-  page_1:
-    display_plugin: page
-    id: page_1
-    display_title: Page
+        - 'config:field.storage.booking.field_expensenote_payed_by'
+        - 'config:field.storage.booking.field_expensenote_payed_to'
+        - 'config:field.storage.booking.field_expensenote_payment_date'
+        - 'config:field.storage.booking.field_expensenote_payment_method'
+        - 'config:field.storage.booking.field_expensenote_payment_paid'
+        - 'config:field.storage.booking.field_payed_from'
+  block_1:
+    display_plugin: block
+    id: block_1
+    display_title: Block
     position: 1
     display_options:
       display_extenders: {  }
-      path: bookkeeping/expensenotes
-      menu:
-        type: normal
-        title: 'Expense notes'
-        description: ''
-        expanded: false
-        parent: ''
-        weight: -50
-        context: '0'
-        menu_name: bookkeeping
+      block_description: 'expense note payments'
+      allow:
+        items_per_page: true
+      block_category: 'Lists (Views)'
     cache_metadata:
       max-age: 0
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
         - user.roles
       tags:
-        - 'config:field.storage.booking.field_expense_note_attachment'
-        - 'config:field.storage.booking.field_expensenote_amount'
-        - 'config:field.storage.booking.field_expensenote_member'
-        - 'config:field.storage.booking.field_expensenote_status'
+        - 'config:field.storage.booking.field_expensenote_payed_by'
+        - 'config:field.storage.booking.field_expensenote_payed_to'
+        - 'config:field.storage.booking.field_expensenote_payment_date'
+        - 'config:field.storage.booking.field_expensenote_payment_method'
+        - 'config:field.storage.booking.field_expensenote_payment_paid'
+        - 'config:field.storage.booking.field_payed_from'

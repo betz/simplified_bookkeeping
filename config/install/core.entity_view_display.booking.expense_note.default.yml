@@ -5,10 +5,12 @@ dependencies:
     - field.field.booking.expense_note.field_expense_note_attachment
     - field.field.booking.expense_note.field_expensenote_amount
     - field.field.booking.expense_note.field_expensenote_member
+    - field.field.booking.expense_note.field_expensenote_payments
+    - field.field.booking.expense_note.field_expensenote_status
     - simplified_bookkeeping.booking_type.expense_note
   module:
     - file
-    - user
+    - options
 id: booking.expense_note.default
 targetEntityType: booking
 bundle: expense_note
@@ -22,8 +24,8 @@ content:
     type: file_default
     region: content
   field_expensenote_amount:
-    weight: 3
-    label: above
+    weight: 1
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -33,26 +35,28 @@ content:
     type: number_decimal
     region: content
   field_expensenote_member:
-    weight: 1
-    label: above
+    weight: 3
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
     region: content
+  field_expensenote_status:
+    weight: 2
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
   name:
-    label: above
+    label: hidden
     type: string
-    weight: -4
+    weight: 0
     region: content
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_expensenote_payments: true
+  user_id: true

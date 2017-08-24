@@ -17,6 +17,6 @@ default_value_callback: ''
 settings:
   min: !!float 0
   max: null
-  prefix: ''
+  prefix: €
   suffix: ''
 field_type: decimal

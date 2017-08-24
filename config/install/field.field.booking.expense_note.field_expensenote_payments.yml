@@ -2,14 +2,14 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_expense_note
+    - field.storage.booking.field_expensenote_payments
     - simplified_bookkeeping.booking_type.expense_note
     - simplified_bookkeeping.booking_type.expense_note_payment
-id: booking.expense_note_payment.field_expense_note
-field_name: field_expense_note
+id: booking.expense_note.field_expensenote_payments
+field_name: field_expensenote_payments
 entity_type: booking
-bundle: expense_note_payment
-label: 'Expense note'
+bundle: expense_note
+label: Payments
 description: ''
 required: false
 translatable: false
@@ -19,7 +19,7 @@ settings:
   handler: 'default:booking'
   handler_settings:
     target_bundles:
-      expense_note: expense_note
+      expense_note_payment: expense_note_payment
     sort:
       field: created
       direction: DESC

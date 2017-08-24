@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: expense_note_payments
+label: 'Expense note payments'
+enabled: true
+first_field: field_expensenote_payments
+second_field: field_expense_note
+bundles:
+  booking:
+    - '*'

@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - simplified_bookkeeping
+id: booking.full
+label: Full
+targetEntityType: booking
+cache: true
