@@ -9,9 +9,12 @@ dependencies:
     - field.storage.booking.field_booking
     - simplified_bookkeeping.booking_type.bankstatement
     - system.menu.bookkeeping
+    - user.role.administrator
+    - user.role.bookkeeper
   module:
     - datetime
     - simplified_bookkeeping
+    - user
 id: bankstatements
 label: Bankstatements
 module: views
@@ -28,8 +31,11 @@ display:
     position: 0
     display_options:
       access:
-        type: none
-        options: {  }
+        type: role
+        options:
+          role:
+            administrator: administrator
+            bookkeeper: bookkeeper
       cache:
         type: tag
         options: {  }
@@ -527,6 +533,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.roles
       tags:
         - 'config:field.storage.booking.field_bankstatement_account'
         - 'config:field.storage.booking.field_bankstatement_amount'
@@ -556,6 +563,7 @@ display:
         - 'languages:language_content'
         - 'languages:language_interface'
         - url.query_args
+        - user.roles
       tags:
         - 'config:field.storage.booking.field_bankstatement_account'
         - 'config:field.storage.booking.field_bankstatement_amount'
