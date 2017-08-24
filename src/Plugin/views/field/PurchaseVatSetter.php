@@ -41,19 +41,7 @@ class PurchaseVatSetter extends FieldPluginBase {
    * Provide the options form.
    */
   public function buildOptionsForm(&$form, FormStateInterface $form_state) {
-    $types = NodeType::loadMultiple();
-    $options = [];
-    foreach ($types as $key => $type) {
-      $options[$key] = $type->label();
-    }
-    $form['PurchaseVatSetter'] = array(
-      '#title' => $this->t('Which node type should be flagged?'),
-      '#type' => 'select',
-      '#default_value' => $this->options['node_type'],
-      '#options' => $options,
-    );
-
-    parent::buildOptionsForm($form, $form_state);
+    
   }
 
   /**
