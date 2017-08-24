@@ -16,7 +16,10 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
 
       $purchase = BookingEntity::create([
         'type' => 'purchase',
-        'name' => 'test purchase',
+        'name' => 'test purchase 3',
+        'field_purchase_total_amount' => $entity->get('field_bankstatement_amount')->getValue()[0]['value'],
+        'field_purchase_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
+        'field_bankstatement' => $entity->id(),
         'uid' => 1
       ]);
 
