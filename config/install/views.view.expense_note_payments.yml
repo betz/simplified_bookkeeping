@@ -627,7 +627,20 @@ display:
           entity_field: type
           plugin_id: bundle
       sorts: {  }
-      header: {  }
+      header:
+        area:
+          id: area
+          table: views
+          field: area
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          tokenize: true
+          content:
+            value: '<a href="/booking/add/expense_note_payment?edit[field_expense_note]={{ arguments.field_expense_note_target_id }}&destination=booking/{{ arguments.field_expense_note_target_id }}">Create payment</a>'
+            format: basic_html
+          plugin_id: text
       footer: {  }
       empty: {  }
       relationships: {  }

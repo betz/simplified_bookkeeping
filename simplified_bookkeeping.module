@@ -111,6 +111,7 @@ function simplified_bookkeeping_close_expensenote($form, FormStateInterface $for
   $booking_id = $entity->field_expense_note->getString();
   $expense_note = BookingEntity::load($booking_id);
   $expense_note->set('field_expensenote_status', 'closed');
+  $expense_note->save();
 }
 
 /**

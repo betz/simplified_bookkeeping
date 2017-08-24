@@ -9,7 +9,7 @@ field_name: field_payed_from
 entity_type: booking
 bundle: expense_note_payment
 label: 'Payed from'
-description: ''
+description: 'Where is the money coming from?'
 required: false
 translatable: false
 default_value: {  }
