@@ -10,8 +10,8 @@ dependencies:
     - bartik
 id: bookkeeping
 theme: bartik
-region: sidebar_first
-weight: -5
+region: content
+weight: -2
 provider: null
 plugin: 'system_menu_block:bookkeeping'
 settings:

@@ -12,6 +12,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
 
   if($entity->bundle() == 'bankstatement') {
 
+
     if($entity->get('field_bankstatement_amount')->getValue()[0]['value'] < 0) {
 
       $purchase = BookingEntity::create([
@@ -22,7 +23,20 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'field_bankstatement' => $entity->id(),
         'uid' => 1
       ]);
+      $purchase->save();
+    }
 
+
+    if($entity->get('field_bankstatement_amount')->getValue()[0]['value'] < 0) {
+
+      $sale = BookingEntity::create([
+        'type' => 'sale',
+        'name' => $entity->get('field_bankstatement_memo')->getValue()[0]['value'],
+        'field_sale_total_amount' => $entity->get('field_bankstatement_amount')->getValue()[0]['value'],
+        'field_sale_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
+        'field_bankstatement' => $entity->id(),
+        'uid' => 1
+      ]);
       $purchase->save();
     }
   }

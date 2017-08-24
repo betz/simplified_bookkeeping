@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_sale_vat
+    - simplified_bookkeeping.booking_type.sale
+id: booking.sale.field_sale_vat
+field_name: field_sale_vat
+entity_type: booking
+bundle: sale
+label: VAT
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

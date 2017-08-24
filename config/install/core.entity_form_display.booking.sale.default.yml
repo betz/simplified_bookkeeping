@@ -1,0 +1,143 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.booking.sale.field_bankstatement
+    - field.field.booking.sale.field_sale_client
+    - field.field.booking.sale.field_sale_credit_note_ta
+    - field.field.booking.sale.field_sale_date
+    - field.field.booking.sale.field_sale_id
+    - field.field.booking.sale.field_sale_payment_date
+    - field.field.booking.sale.field_sale_payment_method
+    - field.field.booking.sale.field_sale_taxable_amount_12
+    - field.field.booking.sale.field_sale_taxable_amount_21
+    - field.field.booking.sale.field_sale_taxable_amount_6
+    - field.field.booking.sale.field_sale_total_amount
+    - field.field.booking.sale.field_sale_vat
+    - field.field.booking.sale.field_sale_vat_credit_note
+    - field.field.booking.sale.field_ta_assets
+    - simplified_bookkeeping.booking_type.sale
+  module:
+    - datetime
+id: booking.sale.default
+targetEntityType: booking
+bundle: sale
+mode: default
+content:
+  field_bankstatement:
+    weight: 39
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_sale_client:
+    weight: 28
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sale_credit_note_ta:
+    weight: 34
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_sale_date:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_sale_id:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
+  field_sale_payment_date:
+    weight: 38
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_sale_payment_method:
+    weight: 37
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+  field_sale_taxable_amount_12:
+    weight: 31
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_sale_taxable_amount_21:
+    weight: 32
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_sale_taxable_amount_6:
+    weight: 30
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_sale_total_amount:
+    weight: 29
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_sale_vat:
+    weight: 36
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_sale_vat_credit_note:
+    weight: 35
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_ta_assets:
+    weight: 33
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

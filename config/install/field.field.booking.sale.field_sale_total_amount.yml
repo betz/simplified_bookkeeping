@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_sale_total_amount
+    - simplified_bookkeeping.booking_type.sale
+id: booking.sale.field_sale_total_amount
+field_name: field_sale_total_amount
+entity_type: booking
+bundle: sale
+label: 'Total amount'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

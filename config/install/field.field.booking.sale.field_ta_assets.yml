@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_ta_assets
+    - simplified_bookkeeping.booking_type.sale
+id: booking.sale.field_ta_assets
+field_name: field_ta_assets
+entity_type: booking
+bundle: sale
+label: 'TA assets'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

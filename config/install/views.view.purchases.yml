@@ -3,8 +3,18 @@ status: true
 dependencies:
   config:
     - field.storage.booking.field_bankstatement
+    - field.storage.booking.field_purchase_assets
+    - field.storage.booking.field_purchase_commodities
+    - field.storage.booking.field_purchase_credit_note_ta
+    - field.storage.booking.field_purchase_date
+    - field.storage.booking.field_purchase_id
     - field.storage.booking.field_purchase_payment_date
+    - field.storage.booking.field_purchase_payment_method
+    - field.storage.booking.field_purchase_services_various
+    - field.storage.booking.field_purchase_supplier
     - field.storage.booking.field_purchase_total_amount
+    - field.storage.booking.field_purchase_vat
+    - field.storage.booking.field_purchase_vat_credit_note
     - simplified_bookkeeping.booking_type.purchase
     - system.menu.bookkeeping
     - user.role.administrator
@@ -12,6 +22,7 @@ dependencies:
   module:
     - datetime
     - simplified_bookkeeping
+    - text
     - user
 id: purchases
 label: Purchases
@@ -126,14 +137,14 @@ display:
       row:
         type: 'entity:booking'
       fields:
-        name:
-          id: name
-          table: booking
-          field: name
+        field_purchase_date:
+          id: field_purchase_date
+          table: booking__field_purchase_date
+          field: field_purchase_date
           relationship: none
           group_type: group
           admin_label: ''
-          label: ''
+          label: 'Purchase Date'
           exclude: false
           alter:
             alter_text: false
@@ -166,7 +177,7 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
+          element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
           element_default_classes: true
@@ -175,9 +186,10 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: string
+          type: datetime_default
           settings:
-            link_to_entity: true
+            timezone_override: ''
+            format_type: html_date
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -188,8 +200,132 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          entity_type: null
-          entity_field: name
+          plugin_id: field
+        field_purchase_id:
+          id: field_purchase_id
+          table: booking__field_purchase_id
+          field: field_purchase_id
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: ID
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_purchase_supplier:
+          id: field_purchase_supplier
+          table: booking__field_purchase_supplier
+          field: field_purchase_supplier
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Supplier
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
           plugin_id: field
         field_purchase_total_amount:
           id: field_purchase_total_amount
@@ -246,6 +382,464 @@ display:
             prefix_suffix: true
             decimal_separator: .
             scale: 2
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_purchase_commodities:
+          id: field_purchase_commodities
+          table: booking__field_purchase_commodities
+          field: field_purchase_commodities
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Commodities
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_purchase_services_various:
+          id: field_purchase_services_various
+          table: booking__field_purchase_services_various
+          field: field_purchase_services_various
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Services & various goods'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_purchase_assets:
+          id: field_purchase_assets
+          table: booking__field_purchase_assets
+          field: field_purchase_assets
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Assets
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_purchase_credit_note_ta:
+          id: field_purchase_credit_note_ta
+          table: booking__field_purchase_credit_note_ta
+          field: field_purchase_credit_note_ta
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Credit note'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_purchase_vat_credit_note:
+          id: field_purchase_vat_credit_note
+          table: booking__field_purchase_vat_credit_note
+          field: field_purchase_vat_credit_note
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'VAT Credit note'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_purchase_vat:
+          id: field_purchase_vat
+          table: booking__field_purchase_vat
+          field: field_purchase_vat
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: VAT
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: number_decimal
+          settings:
+            thousand_separator: ''
+            prefix_suffix: true
+            decimal_separator: .
+            scale: 2
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_purchase_payment_method:
+          id: field_purchase_payment_method
+          table: booking__field_purchase_payment_method
+          field: field_purchase_payment_method
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: 'Payment method'
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: text_default
+          settings: {  }
           group_column: value
           group_columns: {  }
           group_rows: true
@@ -523,8 +1117,18 @@ display:
         - user.roles
       tags:
         - 'config:field.storage.booking.field_bankstatement'
+        - 'config:field.storage.booking.field_purchase_assets'
+        - 'config:field.storage.booking.field_purchase_commodities'
+        - 'config:field.storage.booking.field_purchase_credit_note_ta'
+        - 'config:field.storage.booking.field_purchase_date'
+        - 'config:field.storage.booking.field_purchase_id'
         - 'config:field.storage.booking.field_purchase_payment_date'
+        - 'config:field.storage.booking.field_purchase_payment_method'
+        - 'config:field.storage.booking.field_purchase_services_various'
+        - 'config:field.storage.booking.field_purchase_supplier'
         - 'config:field.storage.booking.field_purchase_total_amount'
+        - 'config:field.storage.booking.field_purchase_vat'
+        - 'config:field.storage.booking.field_purchase_vat_credit_note'
   page_1:
     display_plugin: page
     id: page_1
@@ -551,5 +1155,15 @@ display:
         - user.roles
       tags:
         - 'config:field.storage.booking.field_bankstatement'
+        - 'config:field.storage.booking.field_purchase_assets'
+        - 'config:field.storage.booking.field_purchase_commodities'
+        - 'config:field.storage.booking.field_purchase_credit_note_ta'
+        - 'config:field.storage.booking.field_purchase_date'
+        - 'config:field.storage.booking.field_purchase_id'
         - 'config:field.storage.booking.field_purchase_payment_date'
+        - 'config:field.storage.booking.field_purchase_payment_method'
+        - 'config:field.storage.booking.field_purchase_services_various'
+        - 'config:field.storage.booking.field_purchase_supplier'
         - 'config:field.storage.booking.field_purchase_total_amount'
+        - 'config:field.storage.booking.field_purchase_vat'
+        - 'config:field.storage.booking.field_purchase_vat_credit_note'

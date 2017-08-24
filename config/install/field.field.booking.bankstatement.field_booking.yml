@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_booking
+    - simplified_bookkeeping.booking_type.bankstatement
+    - simplified_bookkeeping.booking_type.purchase
+    - simplified_bookkeeping.booking_type.sale
+id: booking.bankstatement.field_booking
+field_name: field_booking
+entity_type: booking
+bundle: bankstatement
+label: Booking
+description: 'Reference to purchase/sale booking.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:booking'
+  handler_settings:
+    target_bundles:
+      purchase: purchase
+      sale: sale
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: purchase
+field_type: entity_reference

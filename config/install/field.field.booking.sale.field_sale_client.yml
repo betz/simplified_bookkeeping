@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_sale_client
+    - simplified_bookkeeping.booking_type.sale
+id: booking.sale.field_sale_client
+field_name: field_sale_client
+entity_type: booking
+bundle: sale
+label: Client
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,11 @@
+langcode: en
+status: true
+dependencies: {  }
+id: booking
+label: Booking
+enabled: true
+first_field: field_booking
+second_field: field_bankstatement
+bundles:
+  booking:
+    - '*'

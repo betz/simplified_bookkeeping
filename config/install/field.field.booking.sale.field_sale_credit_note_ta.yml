@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_sale_credit_note_ta
+    - simplified_bookkeeping.booking_type.sale
+id: booking.sale.field_sale_credit_note_ta
+field_name: field_sale_credit_note_ta
+entity_type: booking
+bundle: sale
+label: 'Credit note TA'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal
