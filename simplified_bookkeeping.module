@@ -3,11 +3,11 @@
 use \Drupal\simplified_bookkeeping\entity\BookingEntity;
 
 /**
- * Implements hook_entity_presave().
+ * Implements hook_entity_insert().
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity
  */
-function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
 
 
   if($entity->bundle() == 'bankstatement') {
@@ -16,7 +16,7 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
 
       $purchase = BookingEntity::create([
         'type' => 'purchase',
-        'name' => 'test purchase 3',
+        'name' => $entity->get('field_bankstatement_memo')->getValue()[0]['value'],
         'field_purchase_total_amount' => $entity->get('field_bankstatement_amount')->getValue()[0]['value'],
         'field_purchase_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_bankstatement' => $entity->id(),
