@@ -9,38 +9,43 @@ use \Drupal\simplified_bookkeeping\entity\BookingEntity;
  */
 function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
 
-
+  // If the bundle is a bankstatement,
+  // we differentiate between purchase and sale,
+  // so we can create a purchase or sale booking.
   if($entity->bundle() == 'bankstatement') {
 
-
+    // If the bankstatement is negative, create a purchase booking
     if($entity->get('field_bankstatement_amount')->getValue()[0]['value'] < 0) {
-
       $purchase = BookingEntity::create([
         'type' => 'purchase',
         'name' => $entity->get('field_bankstatement_memo')->getValue()[0]['value'],
+        'field_purchase_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_purchase_total_amount' => $entity->get('field_bankstatement_amount')->getValue()[0]['value'],
         'field_purchase_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_bankstatement' => $entity->id(),
+        'field_purchase_payment_method' => 'banktransfer',
         'uid' => 1
       ]);
       $purchase->save();
     }
 
-
+    // If the bankstatement is positive, create a sale booking
     if($entity->get('field_bankstatement_amount')->getValue()[0]['value'] > 0) {
-
       $sale = BookingEntity::create([
         'type' => 'sale',
         'name' => $entity->get('field_bankstatement_memo')->getValue()[0]['value'],
         'field_sale_total_amount' => $entity->get('field_bankstatement_amount')->getValue()[0]['value'],
+        'field_sale_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_sale_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_bankstatement' => $entity->id(),
+        'field_sale_payment_method' => 'banktransfer',
         'uid' => 1
       ]);
       $sale->save();
     }
   }
 }
+
 /**
  * Implements hook_theme().
  */
