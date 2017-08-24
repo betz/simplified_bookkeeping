@@ -16,6 +16,7 @@ dependencies:
   - migrate_tools
   - options
   - path
+  - search
   - simplified_bookkeeping
   - system
   - text
