@@ -147,3 +147,17 @@ function simplified_bookkeeping_theme_suggestions_booking(array $variables) {
   $suggestions[] = 'booking__' . $entity->id() . '__' . $sanitized_view_mode;
   return $suggestions;
 }
+
+/**
+ * Implements hook_views_data_alter().
+ */
+function simplified_bookkeeping_views_data_alter(array &$data) {
+  $data['views']['purchase_vat_setter'] = array(
+    'title' => t('Set VAT'),
+    'field' => array(
+      'title' => t('Set VAT'),
+      'help' => t('Generates VAT setter links.'),
+      'id' => 'purchase_vat_setter',
+    ),
+  );
+}
