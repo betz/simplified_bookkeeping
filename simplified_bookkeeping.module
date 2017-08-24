@@ -31,16 +31,35 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
 
     // If the bankstatement is positive, create a sale booking
     if($entity->get('field_bankstatement_amount')->getValue()[0]['value'] > 0) {
-      $sale = BookingEntity::create([
+      $memo = $entity->get('field_bankstatement_memo')->getValue()[0]['value'];
+
+      $sale_data = [
         'type' => 'sale',
-        'name' => $entity->get('field_bankstatement_memo')->getValue()[0]['value'],
+        'name' => $memo,
         'field_sale_total_amount' => $entity->get('field_bankstatement_amount')->getValue()[0]['value'],
         'field_sale_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_sale_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_bankstatement' => $entity->id(),
         'field_sale_payment_method' => 'banktransfer',
         'uid' => 1
-      ]);
+      ];
+
+      // lets query the users with the structured memo.
+      $query = Drupal::service('entity.query')
+        ->get('user')
+        ->condition('field_structured_memo', $memo);
+      $entity_ids = $query->execute();
+
+      // We have a user, lets link it.
+      if(current($entity_ids) > 0) {
+        $client = \Drupal::entityTypeManager()->getStorage('user')->load(current($entity_ids));
+        $first_name = $client->get('field_first_name')->getValue()[0]['value'];
+        $last_name = $client->get('field_last_name')->getValue()[0]['value'];
+        $sale_data['field_sale_membership_member'] = current($entity_ids);
+        $sale_data['field_sale_client'] = $first_name . ' ' . $last_name;
+      }
+
+      $sale = BookingEntity::create($sale_data);
       $sale->save();
     }
   }
