@@ -24,7 +24,7 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "bookkeeping\r\nbookkeeping/*"
+    pages: "/bookkeeping\r\n/bookkeeping/*"
     negate: false
     context_mapping: {  }
   user_role:

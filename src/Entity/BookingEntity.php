@@ -59,7 +59,7 @@ use Drupal\user\UserInterface;
  *     "revision" = "/booking/{booking}/revisions/{booking_revision}/view",
  *     "revision_revert" = "/booking/{booking}/revisions/{booking_revision}/revert",
  *     "revision_delete" = "/booking/{booking}/revisions/{booking_revision}/delete",
- *     "collection" = "/admin/booking",
+ *     "collection" = "/booking",
  *   },
  *   bundle_entity_type = "booking_type",
  *   field_ui_base_route = "entity.booking_type.edit_form"

@@ -1,5 +1,6 @@
 <?php
 
+use \Drupal\simplified_bookkeeping\entity\BookingEntity;
 
 /**
  * Implements hook_entity_presave().
@@ -13,6 +14,13 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
 
     if($entity->get('field_bankstatement_amount')->getValue()[0]['value'] < 0) {
 
+      $purchase = BookingEntity::create([
+        'type' => 'purchase',
+        'name' => 'test purchase',
+        'uid' => 1
+      ]);
+
+      $purchase->save();
     }
   }
 }
