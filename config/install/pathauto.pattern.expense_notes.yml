@@ -3,7 +3,6 @@ status: true
 dependencies:
   module:
     - ctools
-    - simplified_bookkeeping
 id: expense_notes
 label: 'Expense notes'
 type: 'canonical_entities:booking'

@@ -21,7 +21,6 @@ dependencies:
   module:
     - datetime
     - file
-    - path
     - text
 id: booking.purchase.default
 targetEntityType: booking

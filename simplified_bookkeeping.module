@@ -3,13 +3,41 @@
 use \Drupal\simplified_bookkeeping\entity\BookingEntity;
 use \Drupal\Core\Form\FormStateInterface;
 
+
+/**
+ * Implements hook_entity_presave().
+ */
+function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+
+  if($entity->bundle() == 'sale') {
+
+    $entity->set('field_booking_valid', FALSE);
+
+    $field_sale_client = $entity->get('field_sale_client')->getValue()[0]['value'];
+    $field_sale_payment_date = $entity->get('field_sale_payment_date')->getValue()[0]['value'];
+    $field_sale_date = $entity->get('field_sale_date')->getValue()[0]['value'];
+    $field_sale_total_amount = $entity->get('field_sale_total_amount')->getValue()[0]['value'];
+    $field_sale_memo = $entity->get('field_sale_memo')->getValue()[0]['value'];
+
+    if(
+      (!empty($field_sale_client)) &&
+      (!empty($field_sale_payment_date)) &&
+      (!empty($field_sale_date)) &&
+      ($field_sale_total_amount > 0) &&
+      (!empty($field_sale_memo))
+    ) {
+      $entity->set('field_booking_valid', TRUE);
+      $a = 0;
+    }
+  }
+}
+
 /**
  * Implements hook_entity_insert().
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity
  */
 function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
-
 
   // If the bundle is a bankstatement,
   // we differentiate between purchase and sale,
@@ -61,6 +89,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         $last_name = $client->get('field_last_name')->getValue()[0]['value'];
         $sale_data['field_sale_membership_member'] = current($entity_ids);
         $sale_data['field_sale_client'] = $first_name . ' ' . $last_name;
+        $sale_data['field_sale_memo'] = 'Membership ' . $first_name . ' ' . $last_name;
 
         // it is a membership payment, so calculate VAT, which is 21%.
         $sale_data['field_sale_taxable_amount_21'] = 0.21 * $total_amount;
@@ -70,6 +99,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
       // Find Bitkassa payments, set as fridge sales.
       if(strpos($memo, 'BitKassa') === 0) {
         $sale_data['field_sale_client'] = 'Drinks';
+        $sale_data['field_sale_memo'] = 'Drinks';
 
         // it is a drink payment, calculate VAT, which is 21%.
         $sale_data['field_sale_taxable_amount_21'] = 0.21 * $total_amount;

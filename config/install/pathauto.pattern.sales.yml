@@ -3,7 +3,6 @@ status: true
 dependencies:
   module:
     - ctools
-    - simplified_bookkeeping
 id: sales
 label: Sales
 type: 'canonical_entities:booking'

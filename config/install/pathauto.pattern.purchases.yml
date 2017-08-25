@@ -3,7 +3,6 @@ status: true
 dependencies:
   module:
     - ctools
-    - simplified_bookkeeping
 id: purchases
 label: Purchases
 type: 'canonical_entities:booking'

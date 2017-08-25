@@ -9,6 +9,7 @@ dependencies:
     - field.storage.booking.field_sale_date
     - field.storage.booking.field_sale_id
     - field.storage.booking.field_sale_membership_member
+    - field.storage.booking.field_sale_memo
     - field.storage.booking.field_sale_payment_date
     - field.storage.booking.field_sale_payment_method
     - field.storage.booking.field_sale_taxable_amount_12
@@ -70,10 +71,26 @@ display:
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
-        type: none
+        type: full
         options:
-          items_per_page: 0
+          items_per_page: 50
           offset: 0
+          id: 0
+          total_pages: null
+          tags:
+            previous: '‹ Previous'
+            next: 'Next ›'
+            first: '« First'
+            last: 'Last »'
+          expose:
+            items_per_page: false
+            items_per_page_label: 'Items per page'
+            items_per_page_options: '5, 10, 25, 50'
+            items_per_page_options_all: false
+            items_per_page_options_all_label: '- All -'
+            offset: false
+            offset_label: Offset
+          quantity: 9
       style:
         type: table
         options:
@@ -86,10 +103,12 @@ display:
           summary: ''
           description: ''
           columns:
+            field_booking_valid: field_booking_valid
             field_sale_date: field_sale_date
             field_sale_id: field_sale_id
             field_sale_membership_member: field_sale_membership_member
             field_sale_client: field_sale_client
+            field_sale_memo: field_sale_memo
             field_sale_total_amount: field_sale_total_amount
             field_sale_taxable_amount_6: field_sale_taxable_amount_6
             field_sale_taxable_amount_12: field_sale_taxable_amount_12
@@ -103,7 +122,15 @@ display:
             name: name
             field_bankstatement: field_bankstatement
             edit_booking: edit_booking
+            purchase_vat_setter: purchase_vat_setter
           info:
+            field_booking_valid:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
             field_sale_date:
               sortable: true
               default_sort_order: desc
@@ -126,6 +153,13 @@ display:
               empty_column: false
               responsive: ''
             field_sale_client:
+              sortable: true
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_sale_memo:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -217,6 +251,13 @@ display:
               empty_column: false
               responsive: ''
             edit_booking:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            purchase_vat_setter:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -495,6 +536,69 @@ display:
           alter:
             alter_text: true
             text: '{{ field_sale_client__value }} {{ field_sale_membership_member }}'
+            make_link: false
+            path: ''
+            absolute: false
+            external: false
+            replace_spaces: false
+            path_case: none
+            trim_whitespace: false
+            alt: ''
+            rel: ''
+            link_class: ''
+            prefix: ''
+            suffix: ''
+            target: ''
+            nl2br: false
+            max_length: 0
+            word_boundary: true
+            ellipsis: true
+            more_link: false
+            more_link_text: ''
+            more_link_path: ''
+            strip_tags: false
+            trim: false
+            preserve_tags: ''
+            html: false
+          element_type: ''
+          element_class: ''
+          element_label_type: ''
+          element_label_class: ''
+          element_label_colon: true
+          element_wrapper_type: ''
+          element_wrapper_class: ''
+          element_default_classes: true
+          empty: ''
+          hide_empty: false
+          empty_zero: false
+          hide_alter_empty: true
+          click_sort_column: value
+          type: string
+          settings:
+            link_to_entity: false
+          group_column: value
+          group_columns: {  }
+          group_rows: true
+          delta_limit: 0
+          delta_offset: 0
+          delta_reversed: false
+          delta_first_last: false
+          multi_type: separator
+          separator: ', '
+          field_api_classes: false
+          plugin_id: field
+        field_sale_memo:
+          id: field_sale_memo
+          table: booking__field_sale_memo
+          field: field_sale_memo
+          relationship: none
+          group_type: group
+          admin_label: ''
+          label: Memo
+          exclude: false
+          alter:
+            alter_text: false
+            text: ''
             make_link: false
             path: ''
             absolute: false
@@ -1479,7 +1583,17 @@ display:
           plugin_id: boolean
       sorts: {  }
       title: 'Sale diary'
-      header: {  }
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          empty: true
+          content: 'Displaying @start - @end of @total'
+          plugin_id: result
       footer: {  }
       empty:
         area:
@@ -1523,6 +1637,7 @@ display:
         - 'config:field.storage.booking.field_sale_date'
         - 'config:field.storage.booking.field_sale_id'
         - 'config:field.storage.booking.field_sale_membership_member'
+        - 'config:field.storage.booking.field_sale_memo'
         - 'config:field.storage.booking.field_sale_payment_date'
         - 'config:field.storage.booking.field_sale_payment_method'
         - 'config:field.storage.booking.field_sale_taxable_amount_12'
@@ -1565,6 +1680,7 @@ display:
         - 'config:field.storage.booking.field_sale_date'
         - 'config:field.storage.booking.field_sale_id'
         - 'config:field.storage.booking.field_sale_membership_member'
+        - 'config:field.storage.booking.field_sale_memo'
         - 'config:field.storage.booking.field_sale_payment_date'
         - 'config:field.storage.booking.field_sale_payment_method'
         - 'config:field.storage.booking.field_sale_taxable_amount_12'

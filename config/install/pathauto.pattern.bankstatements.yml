@@ -3,7 +3,6 @@ status: true
 dependencies:
   module:
     - ctools
-    - simplified_bookkeeping
 id: bankstatements
 label: Bankstatements
 type: 'canonical_entities:booking'
