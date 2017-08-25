@@ -1,7 +1,31 @@
-simplified_bookkeeping.capture_pdf:
-  path: '/pdf'
+simplified_bookkeeping.export_all:
+  path: '/bookkeeping/export'
   defaults:
-    _controller: '\Drupal\simplified_bookkeeping\Controller\PhantomjsPDFController::content'
-    _title: 'Capture PDF'
+    _controller: '\Drupal\simplified_bookkeeping\Controller\ExportAll::content'
+    _title: 'Books Better Be Balanced'
+  requirements:
+    _permission: 'access content'
+
+simplified_bookkeeping.export_journal_in:
+  path: '/bookkeeping/export/in'
+  defaults:
+    _controller: '\Drupal\simplified_bookkeeping\Controller\ExportIn::content'
+    _title: 'Journal in'
+  requirements:
+    _permission: 'access content'
+
+simplified_bookkeeping.export_journal_out:
+  path: '/bookkeeping/export/out'
+  defaults:
+    _controller: '\Drupal\simplified_bookkeeping\Controller\ExportOut::content'
+    _title: 'Journal out'
+  requirements:
+    _permission: 'access content'
+
+simplified_bookkeeping.export_bank:
+  path: '/bookkeeping/export/bank'
+  defaults:
+    _controller: '\Drupal\simplified_bookkeeping\Controller\ExportBank::content'
+    _title: 'Bank'
   requirements:
     _permission: 'access content'
