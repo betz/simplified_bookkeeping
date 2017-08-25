@@ -4,6 +4,7 @@ dependencies:
   config:
     - views.view.expense_note_payments
   module:
+    - system
     - views
   theme:
     - bartik
@@ -21,4 +22,9 @@ settings:
   views_label: ''
   items_per_page: none
   context_mapping: {  }
-visibility: {  }
+visibility:
+  request_path:
+    id: request_path
+    pages: 'booking/*'
+    negate: false
+    context_mapping: {  }
