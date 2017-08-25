@@ -1,0 +1,7 @@
+simplified_bookkeeping.capture_pdf:
+  path: '/pdf'
+  defaults:
+    _controller: '\Drupal\simplified_bookkeeping\Controller\PhantomjsPDFController::content'
+    _title: 'Capture PDF'
+  requirements:
+    _permission: 'access content'

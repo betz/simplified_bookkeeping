@@ -191,3 +191,15 @@ function simplified_bookkeeping_views_data_alter(array &$data) {
     ),
   );
 }
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for node templates.
+ */
+function simplified_bookkeeping_theme_suggestions_page_alter(array &$suggestions, array $variables) {
+  $uri = \Drupal::request()->getRequestUri();
+  $a = 0;
+  if($uri == '/pdf') {
+    $suggestions[] = 'page__pdf';
+  }
+  $a = 0;
+}
