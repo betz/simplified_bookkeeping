@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.booking.sale.field_bankstatement
+    - field.field.booking.sale.field_booking_valid
     - field.field.booking.sale.field_sale_client
     - field.field.booking.sale.field_sale_credit_note_ta
     - field.field.booking.sale.field_sale_date
@@ -20,11 +21,19 @@ dependencies:
     - simplified_bookkeeping.booking_type.sale
   module:
     - datetime
+    - path
 id: booking.sale.default
 targetEntityType: booking
 bundle: sale
 mode: default
 content:
+  field_booking_valid:
+    weight: 31
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
+    region: content
   field_sale_client:
     weight: 0
     settings:
@@ -115,6 +124,12 @@ content:
     third_party_settings: {  }
     type: number
     region: content
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
 hidden:
   field_bankstatement: true
   field_sale_membership_member: true

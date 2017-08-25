@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.booking.purchase.field_bankstatement
+    - field.field.booking.purchase.field_booking_valid
     - field.field.booking.purchase.field_purchase_assets
     - field.field.booking.purchase.field_purchase_commodities
     - field.field.booking.purchase.field_purchase_credit_note_ta
@@ -34,6 +35,16 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_booking_valid:
+    weight: 15
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_purchase_assets:
     weight: 1

@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.booking.purchase.field_bankstatement
+    - field.field.booking.purchase.field_booking_valid
     - field.field.booking.purchase.field_purchase_assets
     - field.field.booking.purchase.field_purchase_commodities
     - field.field.booking.purchase.field_purchase_credit_note_ta
@@ -20,6 +21,7 @@ dependencies:
   module:
     - datetime
     - file
+    - path
     - text
 id: booking.purchase.default
 targetEntityType: booking
@@ -34,6 +36,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_booking_valid:
+    weight: 40
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   field_purchase_assets:
     weight: 26
@@ -134,6 +143,12 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
     third_party_settings: {  }
   user_id:
     type: entity_reference_autocomplete
