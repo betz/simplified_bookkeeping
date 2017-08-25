@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - simplified_bookkeeping
+id: purchases
+label: Purchases
+type: 'canonical_entities:booking'
+pattern: 'bookkeeping/purchases/[booking:name]'
+selection_criteria:
+  137d33d1-4698-4f33-9ae9-3c09ab29b48f:
+    id: 'entity_bundle:booking'
+    bundles:
+      purchase: purchase
+    negate: false
+    context_mapping:
+      booking: booking
+    uuid: 137d33d1-4698-4f33-9ae9-3c09ab29b48f
+selection_logic: and
+weight: -5
+relationships: {  }

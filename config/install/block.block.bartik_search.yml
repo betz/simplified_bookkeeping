@@ -3,7 +3,6 @@ status: true
 dependencies:
   module:
     - search
-    - system
   theme:
     - bartik
 id: bartik_search
@@ -17,9 +16,4 @@ settings:
   label: Search
   provider: search
   label_display: visible
-visibility:
-  request_path:
-    id: request_path
-    pages: '/bookkeeping*'
-    negate: true
-    context_mapping: {  }
+visibility: {  }

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - simplified_bookkeeping
+id: expense_notes
+label: 'Expense notes'
+type: 'canonical_entities:booking'
+pattern: 'bookkeeping/expensenotes/[booking:name]'
+selection_criteria:
+  4cf01be2-bc5f-45e6-b47d-a6c4f8961deb:
+    id: 'entity_bundle:booking'
+    bundles:
+      expense_note: expense_note
+    negate: false
+    context_mapping:
+      booking: booking
+    uuid: 4cf01be2-bc5f-45e6-b47d-a6c4f8961deb
+selection_logic: and
+weight: -5
+relationships: {  }

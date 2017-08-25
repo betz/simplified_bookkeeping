@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - ctools
+    - simplified_bookkeeping
+id: bankstatements
+label: Bankstatements
+type: 'canonical_entities:booking'
+pattern: 'bookkeeping/bankstatements/[booking:name]'
+selection_criteria:
+  4044151d-25c0-4e33-9906-978771647b15:
+    id: 'entity_bundle:booking'
+    bundles:
+      bankstatement: bankstatement
+    negate: false
+    context_mapping:
+      booking: booking
+    uuid: 4044151d-25c0-4e33-9906-978771647b15
+selection_logic: and
+weight: -5
+relationships: {  }

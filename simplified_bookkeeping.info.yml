@@ -6,6 +6,7 @@ dependencies:
   - block
   - cer
   - comment
+  - ctools
   - datetime
   - field
   - field_group
@@ -16,6 +17,7 @@ dependencies:
   - migrate_tools
   - options
   - path
+  - pathauto
   - prepopulate
   - search
   - simplified_bookkeeping
