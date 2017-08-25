@@ -1446,7 +1446,7 @@ display:
           group_type: group
           admin_label: ''
           operator: '='
-          value: '0'
+          value: All
           group: 1
           exposed: true
           expose:
