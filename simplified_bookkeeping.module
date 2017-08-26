@@ -89,7 +89,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         $last_name = $client->get('field_last_name')->getValue()[0]['value'];
         $sale_data['field_sale_membership_member'] = current($entity_ids);
         $sale_data['field_sale_client'] = $first_name . ' ' . $last_name;
-        $sale_data['field_sale_memo'] = 'Membership ' . $first_name . ' ' . $last_name;
+        $sale_data['field_sale_memo'] = 'Membership';
 
         // it is a membership payment, so calculate VAT, which is 21%.
         $sale_data['field_sale_taxable_amount_21'] = 0.21 * $total_amount;
