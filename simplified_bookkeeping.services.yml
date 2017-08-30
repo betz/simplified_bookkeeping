@@ -1,0 +1,3 @@
+services:
+  simplified_bookkeeping.bankstatements:
+    class: Drupal\simplified_bookkeeping\ServiceBankstatements
