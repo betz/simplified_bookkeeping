@@ -44,27 +44,28 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
   // so we can create a purchase or sale booking.
   if($entity->bundle() == 'bankstatement') {
 
-  $total_amount = $entity->get('field_booking_amount')->getValue()[0]['value'];
+    $total_amount = $entity->get('field_booking_amount')->getValue()[0]['value'];
+    $memo = $entity->get('field_bankstatement_memo')->getValue()[0]['value'];
 
     // If the bankstatement is negative, create a purchase booking
     if($total_amount < 0) {
-      $purchase = BookingEntity::create([
+      $purchase_data = [
         'type' => 'purchase',
-        'name' => $entity->get('field_bankstatement_memo')->getValue()[0]['value'],
+        'name' => $memo,
         'field_purchase_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_purchase_total_amount' => $total_amount,
         'field_purchase_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_bankstatement' => $entity->id(),
         'field_purchase_payment_method' => 'banktransfer',
         'uid' => 1
-      ]);
+      ];
+
+      $purchase = BookingEntity::create($purchase_data);
       $purchase->save();
     }
 
     // If the bankstatement is positive, create a sale booking
     if($total_amount > 0) {
-      $memo = $entity->get('field_bankstatement_memo')->getValue()[0]['value'];
-
       $sale_data = [
         'type' => 'sale',
         'name' => $memo,
@@ -75,6 +76,9 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'field_sale_payment_method' => 'banktransfer',
         'uid' => 1
       ];
+
+      $sale = BookingEntity::create($sale_data);
+      $sale->save();
 
       // lets query the users with the structured memo.
       $query = Drupal::service('entity.query')
@@ -105,6 +109,47 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         $sale_data['field_sale_taxable_amount_21'] = 0.21 * $total_amount;
         $sale_data['field_sale_vat'] = 0.21 * $total_amount;
       }
+    }
+  }
+
+
+  // If the bundle is a cashstatement,
+  // we differentiate between purchase and sale,
+  // so we can create a purchase or sale booking.
+  if($entity->bundle() == 'cashstatement') {
+
+    $total_amount = $entity->get('field_booking_amount')->getValue()[0]['value'];
+    $memo = $entity->label();
+
+    // If the bankstatement is negative, create a purchase booking
+    if($total_amount < 0) {
+      $purchase_data = [
+        'type' => 'purchase',
+        'name' => $memo,
+        'field_purchase_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
+        'field_purchase_total_amount' => $total_amount,
+        'field_purchase_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
+        'field_bankstatement' => $entity->id(),
+        'field_purchase_payment_method' => 'cash',
+        'uid' => 1
+      ];
+
+      $purchase = BookingEntity::create($purchase_data);
+      $purchase->save();
+    }
+
+    // If the bankstatement is positive, create a sale booking
+    if($total_amount > 0) {
+      $sale_data = [
+        'type' => 'sale',
+        'name' => $memo,
+        'field_sale_total_amount' => $total_amount,
+        'field_sale_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
+        'field_sale_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
+        'field_bankstatement' => $entity->id(),
+        'field_sale_payment_method' => 'cash',
+        'uid' => 1
+      ];
 
       $sale = BookingEntity::create($sale_data);
       $sale->save();

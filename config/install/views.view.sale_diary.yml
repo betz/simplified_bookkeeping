@@ -1376,11 +1376,11 @@ display:
           relationship: none
           group_type: group
           admin_label: ''
-          label: Bankstatement
+          label: 'Bank/Cash statement'
           exclude: false
           alter:
             alter_text: true
-            text: bankstatement
+            text: 'bank/cash statement'
             make_link: true
             path: 'booking/{{ field_bankstatement__target_id }}'
             absolute: false

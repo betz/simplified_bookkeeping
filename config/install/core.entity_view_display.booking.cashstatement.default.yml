@@ -10,7 +10,6 @@ dependencies:
   module:
     - datetime
     - file
-    - user
 id: booking.cashstatement.default
 targetEntityType: booking
 bundle: cashstatement
@@ -18,7 +17,7 @@ mode: default
 content:
   field_booking:
     weight: 3
-    label: above
+    label: inline
     settings:
       link: true
     third_party_settings: {  }
@@ -26,7 +25,7 @@ content:
     region: content
   field_booking_amount:
     weight: 2
-    label: above
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -37,7 +36,7 @@ content:
     region: content
   field_booking_date:
     weight: 1
-    label: above
+    label: inline
     settings:
       format_type: medium
       timezone_override: ''
@@ -46,24 +45,18 @@ content:
     region: content
   field_cashstatement_attachment:
     weight: 4
-    label: above
+    label: inline
     settings: {  }
     third_party_settings: {  }
     type: file_default
     region: content
   name:
-    label: above
+    label: hidden
     type: string
-    weight: -4
+    weight: 0
     region: content
     settings:
       link_to_entity: false
     third_party_settings: {  }
-  user_id:
-    label: hidden
-    type: author
-    weight: 0
-    region: content
-    settings: {  }
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  user_id: true
