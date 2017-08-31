@@ -5,7 +5,7 @@ id: booking
 label: Booking
 enabled: true
 first_field: field_booking
-second_field: field_bankstatement
+second_field: field_booking
 bundles:
   booking:
     - '*'

@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.booking.sale.field_bankstatement
+    - field.field.booking.sale.field_booking
     - field.field.booking.sale.field_booking_valid
     - field.field.booking.sale.field_sale_client
     - field.field.booking.sale.field_sale_credit_note_ta
@@ -27,6 +28,15 @@ targetEntityType: booking
 bundle: sale
 mode: default
 content:
+  field_booking:
+    weight: 31
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_booking_valid:
     weight: 14
     settings:

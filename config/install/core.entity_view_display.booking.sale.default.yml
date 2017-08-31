@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - field.field.booking.sale.field_bankstatement
+    - field.field.booking.sale.field_booking
     - field.field.booking.sale.field_booking_valid
     - field.field.booking.sale.field_sale_client
     - field.field.booking.sale.field_sale_credit_note_ta
@@ -31,6 +32,14 @@ content:
   field_bankstatement:
     weight: 14
     label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_booking:
+    weight: 18
+    label: above
     settings:
       link: true
     third_party_settings: {  }
