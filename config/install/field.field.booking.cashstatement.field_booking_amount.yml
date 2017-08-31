@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_booking_amount
+    - simplified_bookkeeping.booking_type.cashstatement
+id: booking.cashstatement.field_booking_amount
+field_name: field_booking_amount
+entity_type: booking
+bundle: cashstatement
+label: Amount
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

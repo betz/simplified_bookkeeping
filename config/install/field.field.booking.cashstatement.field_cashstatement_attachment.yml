@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_cashstatement_attachment
+    - simplified_bookkeeping.booking_type.cashstatement
+  module:
+    - file
+id: booking.cashstatement.field_cashstatement_attachment
+field_name: field_cashstatement_attachment
+entity_type: booking
+bundle: cashstatement
+label: Attachment
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'cashstatement_attachments/[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'zip pdf tar.gz'
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

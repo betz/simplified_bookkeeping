@@ -1,0 +1,64 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.booking.cashstatement.field_booking
+    - field.field.booking.cashstatement.field_booking_amount
+    - field.field.booking.cashstatement.field_booking_date
+    - field.field.booking.cashstatement.field_cashstatement_attachment
+    - simplified_bookkeeping.booking_type.cashstatement
+  module:
+    - datetime
+    - file
+id: booking.cashstatement.default
+targetEntityType: booking
+bundle: cashstatement
+mode: default
+content:
+  field_booking:
+    weight: 28
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_booking_amount:
+    weight: 27
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+    type: number
+    region: content
+  field_booking_date:
+    weight: 26
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
+    region: content
+  field_cashstatement_attachment:
+    weight: 29
+    settings:
+      progress_indicator: throbber
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  name:
+    type: string_textfield
+    weight: -4
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 5
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

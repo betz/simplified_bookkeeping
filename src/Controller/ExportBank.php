@@ -29,7 +29,7 @@ class ExportBank extends ControllerBase {
    */
   public function content() {
 
-    $start_date = new DrupalDateTime('1 january 2000 00:00:00');
+    $start_date = new DrupalDateTime('1 january 2017 00:00:00');
     $start_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
     $start_date_storage_format = $start_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
