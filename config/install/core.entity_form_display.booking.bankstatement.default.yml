@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.booking.bankstatement.field_bankstatement_account
-    - field.field.booking.bankstatement.field_bankstatement_amount
     - field.field.booking.bankstatement.field_bankstatement_date
     - field.field.booking.bankstatement.field_bankstatement_memo
     - field.field.booking.bankstatement.field_bankstatement_name
@@ -24,13 +23,6 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: string_textfield
-    region: content
-  field_bankstatement_amount:
-    weight: 26
-    settings:
-      placeholder: ''
-    third_party_settings: {  }
-    type: number
     region: content
   field_bankstatement_date:
     weight: 30
