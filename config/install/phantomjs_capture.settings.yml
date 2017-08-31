@@ -1,3 +1,0 @@
-binary: /home/vagrant/phantomjs-2.1.1-linux-x86_64/bin/phantomjs
-destination: phantomjs
-script: /var/www/drupalvm/web/modules/contrib/phantomjs_capture/js/capture.js
