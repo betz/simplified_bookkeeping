@@ -55,7 +55,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'field_purchase_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_purchase_total_amount' => $total_amount,
         'field_purchase_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
-        'field_bankstatement' => $entity->id(),
+        'field_booking' => $entity->id(),
         'field_purchase_payment_method' => 'banktransfer',
         'uid' => 1
       ];
@@ -72,7 +72,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'field_sale_total_amount' => $total_amount,
         'field_sale_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
         'field_sale_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
-        'field_bankstatement' => $entity->id(),
+        'field_booking' => $entity->id(),
         'field_sale_payment_method' => 'banktransfer',
         'uid' => 1
       ];
@@ -146,7 +146,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'field_sale_total_amount' => $total_amount,
         'field_sale_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
         'field_sale_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
-        'field_bankstatement' => $entity->id(),
+        'field_booking' => $entity->id(),
         'field_sale_payment_method' => 'cash',
         'uid' => 1
       ];

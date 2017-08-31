@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_bankstatement
+    - field.storage.booking.field_booking
     - field.storage.booking.field_booking_valid
     - field.storage.booking.field_sale_client
     - field.storage.booking.field_sale_credit_note_ta
@@ -119,8 +119,7 @@ display:
             field_sale_vat: field_sale_vat
             field_sale_payment_method: field_sale_payment_method
             field_sale_payment_date: field_sale_payment_date
-            name: name
-            field_bankstatement: field_bankstatement
+            field_booking: field_booking
             edit_booking: edit_booking
             purchase_vat_setter: purchase_vat_setter
           info:
@@ -236,14 +235,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            name:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_bankstatement:
+            field_booking:
               sortable: true
               default_sort_order: asc
               align: ''
@@ -1304,15 +1296,15 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        name:
-          id: name
-          table: booking
-          field: name
-          relationship: field_bankstatement
+        field_booking:
+          id: field_booking
+          table: booking__field_booking
+          field: field_booking
+          relationship: none
           group_type: group
           admin_label: ''
-          label: ''
-          exclude: true
+          label: Booking
+          exclude: false
           alter:
             alter_text: false
             text: ''
@@ -1344,71 +1336,6 @@ display:
           element_class: ''
           element_label_type: ''
           element_label_class: ''
-          element_label_colon: false
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: booking
-          entity_field: name
-          plugin_id: field
-        field_bankstatement:
-          id: field_bankstatement
-          table: booking__field_bankstatement
-          field: field_bankstatement
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: 'Bank/Cash statement'
-          exclude: false
-          alter:
-            alter_text: true
-            text: 'bank/cash statement'
-            make_link: true
-            path: 'booking/{{ field_bankstatement__target_id }}'
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: '{{ name }}'
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: _blank
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
           element_label_colon: true
           element_wrapper_type: ''
           element_wrapper_class: ''
@@ -1418,8 +1345,9 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: target_id
-          type: entity_reference_entity_id
-          settings: {  }
+          type: entity_reference_label
+          settings:
+            link: true
           group_column: target_id
           group_columns: {  }
           group_rows: true
@@ -1610,13 +1538,13 @@ display:
             format: basic_html
           plugin_id: text
       relationships:
-        field_bankstatement:
-          id: field_bankstatement
-          table: booking__field_bankstatement
-          field: field_bankstatement
+        field_booking:
+          id: field_booking
+          table: booking__field_booking
+          field: field_booking
           relationship: none
           group_type: group
-          admin_label: 'field_bankstatement: Booking'
+          admin_label: 'field_booking: Booking'
           required: false
           plugin_id: standard
       arguments: {  }
@@ -1630,7 +1558,7 @@ display:
         - url.query_args
         - user.roles
       tags:
-        - 'config:field.storage.booking.field_bankstatement'
+        - 'config:field.storage.booking.field_booking'
         - 'config:field.storage.booking.field_booking_valid'
         - 'config:field.storage.booking.field_sale_client'
         - 'config:field.storage.booking.field_sale_credit_note_ta'
@@ -1673,7 +1601,7 @@ display:
         - url.query_args
         - user.roles
       tags:
-        - 'config:field.storage.booking.field_bankstatement'
+        - 'config:field.storage.booking.field_booking'
         - 'config:field.storage.booking.field_booking_valid'
         - 'config:field.storage.booking.field_sale_client'
         - 'config:field.storage.booking.field_sale_credit_note_ta'

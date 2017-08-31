@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.booking.purchase.field_bankstatement
+    - field.field.booking.purchase.field_booking
     - field.field.booking.purchase.field_booking_valid
     - field.field.booking.purchase.field_purchase_assets
     - field.field.booking.purchase.field_purchase_commodities
@@ -28,8 +28,8 @@ targetEntityType: booking
 bundle: purchase
 mode: default
 content:
-  field_bankstatement:
-    weight: 2
+  field_booking:
+    weight: 16
     label: above
     settings:
       link: true
