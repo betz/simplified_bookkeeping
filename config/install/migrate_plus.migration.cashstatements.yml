@@ -11,24 +11,22 @@ label: 'Import cashstatements'
 source:
   plugin: csv
   path: /home/vagrant/cashstatements.csv
-  delimiter: ,
+  delimiter: ','
   enclosure: ''
   header_row_count: 0
   keys:
-    - date
     - title
   column_names:
     0:
       date: 'Statement date'
     1:
-      title: 'Title'
+      title: Title
     5:
       amount: Amount
 process:
   name: title
   field_booking_amount: amount
-  field_bankstatement_account: account
-  field_bankstatement_date:
+  field_booking_date:
     plugin: format_date
     from_format: d-m-Y
     to_format: Y-m-d

@@ -3,10 +3,10 @@ status: true
 dependencies:
   config:
     - field.storage.booking.field_bankstatement_account
-    - field.storage.booking.field_bankstatement_amount
     - field.storage.booking.field_bankstatement_date
     - field.storage.booking.field_bankstatement_memo
     - field.storage.booking.field_booking
+    - field.storage.booking.field_booking_amount
     - simplified_bookkeeping.booking_type.bankstatement
     - system.menu.bookkeeping
     - user.role.administrator
@@ -197,10 +197,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_bankstatement_amount:
-          id: field_bankstatement_amount
-          table: booking__field_bankstatement_amount
-          field: field_bankstatement_amount
+        field_booking_amount:
+          id: field_booking_amount
+          table: booking__field_booking_amount
+          field: field_booking_amount
           relationship: none
           group_type: group
           admin_label: ''
@@ -553,10 +553,10 @@ display:
         - user.roles
       tags:
         - 'config:field.storage.booking.field_bankstatement_account'
-        - 'config:field.storage.booking.field_bankstatement_amount'
         - 'config:field.storage.booking.field_bankstatement_date'
         - 'config:field.storage.booking.field_bankstatement_memo'
         - 'config:field.storage.booking.field_booking'
+        - 'config:field.storage.booking.field_booking_amount'
   page_1:
     display_plugin: page
     id: page_1
@@ -583,7 +583,7 @@ display:
         - user.roles
       tags:
         - 'config:field.storage.booking.field_bankstatement_account'
-        - 'config:field.storage.booking.field_bankstatement_amount'
         - 'config:field.storage.booking.field_bankstatement_date'
         - 'config:field.storage.booking.field_bankstatement_memo'
         - 'config:field.storage.booking.field_booking'
+        - 'config:field.storage.booking.field_booking_amount'

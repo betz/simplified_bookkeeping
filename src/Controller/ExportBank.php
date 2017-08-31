@@ -66,7 +66,7 @@ class ExportBank extends ControllerBase {
       $booking_date = $booking_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
       $incoming = $outgoing = '';
-      $amount = round($booking->field_bankstatement_amount->value, 2);
+      $amount = round($booking->field_booking_amount->value, 2);
 
       if($amount > 0) {
         $incoming = (empty($amount)) ? '' : $amount . '€';
@@ -75,7 +75,7 @@ class ExportBank extends ControllerBase {
         $outgoing = (empty($amount)) ? '' : $amount . '€';
       }
 
-      $total = round($total, 2) + $booking->field_bankstatement_amount->value;
+      $total = round($total, 2) + $booking->field_booking_amount->value;
 
       $memo = (strpos($booking->field_bankstatement_memo->value, "+++") === 0) ? 'Membership' : $booking->field_bankstatement_memo->value;
       if(empty($memo)) {

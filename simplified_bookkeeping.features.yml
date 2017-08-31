@@ -1,3 +1,1 @@
-excluded:
-  - phantomjs_capture.settings
 required: true
