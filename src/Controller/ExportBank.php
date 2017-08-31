@@ -29,9 +29,13 @@ class ExportBank extends ControllerBase {
    */
   public function content() {
 
-    $date = new DrupalDateTime('1 august 2017');
-    $date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
-    $startdate = $date->format(DATETIME_DATETIME_STORAGE_FORMAT);
+    $start_date = new DrupalDateTime('1 january 2000 00:00:00');
+    $start_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
+    $start_date_storage_format = $start_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
+
+    $end_date = new DrupalDateTime('31 december 2017 23:11:59');
+    $end_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
+    $end_date_storage_format = $end_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
 
     $query = \Drupal::entityQuery('booking');
@@ -42,9 +46,7 @@ class ExportBank extends ControllerBase {
 
     $entity_ids = $query->execute();
     $bookings = entity_load_multiple('booking', $entity_ids);
-    $start_amount = $total = 0; $nr = 1;
-
-    $a = 0;
+    $nr = 1;
 
     $header = [
       'Nr',
@@ -56,22 +58,15 @@ class ExportBank extends ControllerBase {
       'Total'
     ];
 
-    $rows[] = ['0', '', 'Already in bank', '', $start_amount, '', ''];
-
+    $startrow = TRUE;
     foreach ($bookings as $booking) {
+
       $booking_date = new DrupalDateTime($booking->field_bankstatement_date->value);
       $booking_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
       $booking_date = $booking_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
-      $a = 0;
-
-      if($booking_date < $start_date) {break;}
-
-      $entity_id = $booking->getOriginalId();
       $incoming = $outgoing = '';
-      $amount = $booking->field_bankstatement_amount->value;
-
-      $a = 0;
+      $amount = round($booking->field_bankstatement_amount->value, 2);
 
       if($amount > 0) {
         $incoming = (empty($amount)) ? '' : $amount . '€';
@@ -80,12 +75,31 @@ class ExportBank extends ControllerBase {
         $outgoing = (empty($amount)) ? '' : $amount . '€';
       }
 
-      $total = $total + $booking->field_bankstatement_amount->value;
+      $total = round($total, 2) + $booking->field_bankstatement_amount->value;
 
       $memo = (strpos($booking->field_bankstatement_memo->value, "+++") === 0) ? 'Membership' : $booking->field_bankstatement_memo->value;
       if(empty($memo)) {
         $memo = '';
       }
+
+      if($booking_date < $start_date_storage_format) { continue; }
+      if($booking_date > $end_date_storage_format) { continue; }
+
+      // Only one the first loop iteration that is being exported, add the zero line (amount on bank account)
+      if ($startrow === TRUE) {
+        $rows[] = [
+          '0',
+          $booking->field_bankstatement_date->value,
+          'Start amount on bankaccount',
+          '',
+          $total - $amount,
+          '',
+          $total - $amount
+        ];
+        $startrow = FALSE;
+      }
+
+      $a = 0;
 
 
       $rows[] = [
@@ -95,7 +109,7 @@ class ExportBank extends ControllerBase {
         'invoice nr',
         $incoming,
         $outgoing,
-        $total . '€'
+        round($total, 2) . '€'
       ];
 
       $nr++;
