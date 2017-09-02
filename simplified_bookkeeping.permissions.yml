@@ -31,3 +31,6 @@ revert all booking revisions:
 delete all booking revisions:
   title: 'Delete all revisions'
   description: 'Role requires permission to <em>view Booking revisions</em> and <em>delete rights</em> for booking entities in question or <em>administer booking entities</em>.'
+
+access bookkeeping:
+  title: 'Access Bookkeeping'
