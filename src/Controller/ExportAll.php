@@ -36,7 +36,6 @@ class ExportAll extends ControllerBase {
       $bankstatement_nr++;
       $bankstatement_nrs[$bankstatement_id] = $bankstatement_nr;
     }
-
     ksort($bankstatement_nrs);
 
     $query = \Drupal::entityQuery('booking');
@@ -53,6 +52,8 @@ class ExportAll extends ControllerBase {
       $cashstatement_nr++;
       $cashstatement_nrs[$cashstatement_id] = $cashstatement_nr;
     }
+    ksort($cashstatement_nrs);
+    $cash_header = ['nr', 'date', 'description', 'invoice', 'incoming', 'outgoing', 'total'];
 
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
@@ -64,8 +65,6 @@ class ExportAll extends ControllerBase {
     $purchases = entity_load_multiple('booking', $purchase_ids);
     $purchase_header = ['nr', 'date', 'purchase description', 'bank nr', 'bank amount', 'cash nr', 'cash amount', 'total'];
     $purchase_rows = []; $purchase_row_nr = 0;
-
-
 
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
@@ -81,6 +80,32 @@ class ExportAll extends ControllerBase {
 
 
 
+
+    foreach($cashstatements as $key => $cashstatement) {
+      if($cashstatement->field_booking_amount->value < 0) {
+        $incoming = '';
+        $outgoing = $cashstatement->field_booking_amount->value . '€';
+      }
+      if($cashstatement->field_booking_amount->value > 0) {
+        $outgoing = '';
+        $incoming = $cashstatement->field_booking_amount->value . '€';
+      }
+
+      $cash_rows[] = [
+        $cashstatement_nrs[$cashstatement->ID()],
+        $cashstatement->field_booking_date->value,
+        $cashstatement->label(),
+        '',
+        $incoming,
+        $outgoing,
+        round($cashstatement->field_booking_amount->value, 2) . '€'
+      ];
+    }
+
+
+
+
+
     foreach($purchases as $key => $purchase) {
       $statement = current($purchase->get('field_booking')->referencedEntities());
       $statement_bundle = $statement->bundle();
@@ -89,12 +114,16 @@ class ExportAll extends ControllerBase {
         $bank_amount = $statement->field_booking_amount->value . '€';
         $cash_amount = '';
         $bank_total = $bank_total + $statement->field_booking_amount->value;
+        $bankstatement_id = $bankstatement_nrs[$statement->ID()];
+        unset($cashstatement_id);
       }
 
       if($statement_bundle == 'cashstatement') {
         $cash_amount = $statement->field_booking_amount->value . '€';
         $bank_amount = '';
         $cash_total = $cash_total + $statement->field_booking_amount->value;
+        $cashstatement_id = $cashstatement_nrs[$statement->ID()];
+        unset($bankstatement_id);
       }
 
       $purchase_row_nr++;
@@ -103,13 +132,15 @@ class ExportAll extends ControllerBase {
         $purchase_row_nr,
         $purchase->field_purchase_date->value,
         $purchase->label(),
-        '',
+        $bankstatement_id,
         $bank_amount,
-        '',
+        $cashstatement_id,
         $cash_amount,
         round($booking->field_purchase_total_amount->value, 2) . '€'
       ];
     }
+
+
 
 
 
@@ -146,7 +177,7 @@ class ExportAll extends ControllerBase {
       ];
       unset($bankstatement_id); unset($cashstatement_id);
     }
-    
+
 
     $build[] = [
       '#type' => 'table',
@@ -160,6 +191,13 @@ class ExportAll extends ControllerBase {
       '#header' => $sale_header,
       '#caption' => 'Sale diary',
       '#rows' => $sale_rows,
+    ];
+
+    $build[] = [
+      '#type' => 'table',
+      '#header' => $cash_header,
+      '#caption' => 'Cash statements',
+      '#rows' => $cash_rows,
     ];
 
     return $build;
