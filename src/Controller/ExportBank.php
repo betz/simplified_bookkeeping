@@ -4,11 +4,6 @@ namespace Drupal\simplified_bookkeeping\Controller;
 
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Datetime\DrupalDateTime;
-use Drupal\simplified_bookkeeping\ServiceBankstatements;
-
-use Symfony\Component\DependencyInjection\ContainerInterface;
-use Drupal\simplified_bookkeeping\Controller\BookingEntityController;
-use Drupal\simplified_bookkeeping\Entity\BookingEntity;
 
 
 /**
@@ -16,30 +11,21 @@ use Drupal\simplified_bookkeeping\Entity\BookingEntity;
  */
 class ExportBank extends ControllerBase {
 
-  /*public function __construct(ServiceBankstatements $ServiceBankstatements) {
-    $this->ServiceBankstatements = $ServiceBankstatements;
-  }*/
-
-  /*public static function create(ServiceBankstatements $ServiceBankstatements) {
-    return new static($container->get('simplified_bookkeeping.bankstatements'));
-  }*/
-
   /**
    * {@inheritdoc}
    */
   public function content() {
 
-    $start_date = new DrupalDateTime('1 january 2017 00:00:00');
+    $start_date = new DrupalDateTime('1 january 2016 00:00:00');
     $start_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
     $start_date_storage_format = $start_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
-    $end_date = new DrupalDateTime('31 december 2017 23:11:59');
+    $end_date = new DrupalDateTime('31 december 2016 23:11:59');
     $end_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
     $end_date_storage_format = $end_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
 
     $query = \Drupal::entityQuery('booking');
-    //$query->condition('field_bankstatement_date', $startdate, '>=');
     $query->condition('status', 1);
     $query->condition('type', 'bankstatement');
     $query->sort('field_bankstatement_date', 'ASC');
@@ -98,8 +84,6 @@ class ExportBank extends ControllerBase {
         ];
         $startrow = FALSE;
       }
-
-      $a = 0;
 
 
       $rows[] = [
