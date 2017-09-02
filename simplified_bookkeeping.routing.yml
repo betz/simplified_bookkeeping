@@ -4,7 +4,7 @@ simplified_bookkeeping.export_all:
     _controller: '\Drupal\simplified_bookkeeping\Controller\ExportAll::content'
     _title: 'Books Better Be Balanced'
   requirements:
-    _roles: 'administrator', 'bookkeeper'
+    _roles: 'administrator, bookkeeper'
 
 simplified_bookkeeping.export_journal_in:
   path: '/bookkeeping/export/in'
@@ -12,7 +12,7 @@ simplified_bookkeeping.export_journal_in:
     _controller: '\Drupal\simplified_bookkeeping\Controller\ExportIn::content'
     _title: 'Journal in'
   requirements:
-    _roles: 'administrator', 'bookkeeper'
+    _roles: 'administrator, bookkeeper'
 
 simplified_bookkeeping.export_journal_out:
   path: '/bookkeeping/export/out'
@@ -20,7 +20,7 @@ simplified_bookkeeping.export_journal_out:
     _controller: '\Drupal\simplified_bookkeeping\Controller\ExportOut::content'
     _title: 'Journal out'
   requirements:
-    _roles: 'administrator', 'bookkeeper'
+    _roles: 'administrator, bookkeeper'
 
 simplified_bookkeeping.export_bank:
   path: '/bookkeeping/export/bank'
@@ -28,4 +28,4 @@ simplified_bookkeeping.export_bank:
     _controller: '\Drupal\simplified_bookkeeping\Controller\ExportBank::content'
     _title: 'Bank'
   requirements:
-    _roles: 'administrator', 'bookkeeper'
+    _roles: 'administrator, bookkeeper'
