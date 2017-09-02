@@ -37,6 +37,9 @@ class ExportAll extends ControllerBase {
       $bankstatement_nrs[$bankstatement_id] = $bankstatement_nr;
     }
     ksort($bankstatement_nrs);
+    $bank_header = ['nr', 'date', 'description', 'invoice', 'incoming', 'outgoing', 'total'];
+
+
 
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
@@ -104,6 +107,29 @@ class ExportAll extends ControllerBase {
         $incoming,
         $outgoing,
         round($cashstatement->field_booking_amount->value, 2) . '€'
+      ];
+    }
+
+
+
+    foreach($bankstatements as $key => $bankstatement) {
+      if($bankstatement->field_booking_amount->value < 0) {
+        $incoming = '';
+        $outgoing = $bankstatement->field_booking_amount->value . '€';
+      }
+      if($bankstatement->field_booking_amount->value > 0) {
+        $outgoing = '';
+        $incoming = $bankstatement->field_booking_amount->value . '€';
+      }
+
+      $bank_rows[] = [
+        $bankstatement_nrs[$bankstatement->ID()],
+        $bankstatement->field_booking_date->value,
+        $bankstatement->label(),
+        '',
+        $incoming,
+        $outgoing,
+        round($bankstatement->field_booking_amount->value, 2) . '€'
       ];
     }
 
@@ -203,6 +229,13 @@ class ExportAll extends ControllerBase {
       '#header' => $cash_header,
       '#caption' => 'Cash statements',
       '#rows' => $cash_rows,
+    ];
+
+    $build[] = [
+      '#type' => 'table',
+      '#header' => $bank_header,
+      '#caption' => 'Bank statements',
+      '#rows' => $bank_rows,
     ];
 
     return $build;
