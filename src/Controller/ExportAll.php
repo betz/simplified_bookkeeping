@@ -55,16 +55,21 @@ class ExportAll extends ControllerBase {
     ksort($cashstatement_nrs);
     $cash_header = ['nr', 'date', 'description', 'invoice', 'incoming', 'outgoing', 'total'];
 
+
+
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
     $query->condition('type', 'purchase');
     $query->condition('field_purchase_date', $start_date_storage_format, '>=');
     $query->condition('field_purchase_date', $end_date_storage_format, '<=');
-    $query->sort('field_booking_date', 'ASC');
+    $query->sort('field_purchase_date', 'ASC');
     $purchase_ids = $query->execute();
     $purchases = entity_load_multiple('booking', $purchase_ids);
     $purchase_header = ['nr', 'date', 'purchase description', 'bank nr', 'bank amount', 'cash nr', 'cash amount', 'total'];
     $purchase_rows = []; $purchase_row_nr = 0;
+
+
+
 
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
