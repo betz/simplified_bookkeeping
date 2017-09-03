@@ -1,8 +1,9 @@
 simplified_bookkeeping.export_all:
-  path: '/bookkeeping/export'
+  path: '/bookkeeping/export/{year}'
   defaults:
     _controller: '\Drupal\simplified_bookkeeping\Controller\ExportAll::content'
     _title: 'Books Better Be Balanced'
+    year: '2017'
   requirements:
     _permission: 'access bookkeeping'
 

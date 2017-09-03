@@ -204,6 +204,16 @@ function simplified_bookkeeping_theme() {
     'variables' => ['content' => NULL],
     'file' => 'booking.page.inc',
   ];
+  $theme['simplified_booking_pdf_all'] = [
+    'variables' => [
+      'css' => NULL,
+      'title' => NULL,
+      'purchasediary' => NULL,
+      'salediary' => NULL,
+      'cashstatements' => NULL,
+      'bankstatements' => NULL,
+    ],
+  ];
   return $theme;
 }
 
@@ -247,4 +257,21 @@ function simplified_bookkeeping_theme_suggestions_page_alter(array &$suggestions
     $suggestions[] = 'page__pdf';
   }
   $a = 0;
+}
+
+/**
+ * Implements hook_file_download().
+ * @param $uri
+ */
+function simplified_bookkeeping_file_download($uri) {
+  $scheme = file_uri_scheme($uri);
+  $target = file_uri_target($uri);
+
+  if (in_array($scheme, ['private', 'temporary', 'session'])
+  && substr( $target, 0, 22 ) === "booksbetterbebalanced/") {
+
+    return array(
+      'Content-disposition' => 'attachment; filename="' . $target . '"',
+    );
+  }
 }

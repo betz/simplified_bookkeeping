@@ -5,19 +5,29 @@ namespace Drupal\simplified_bookkeeping\Controller;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\Datetime\DrupalDateTime;
 
+use H2P\Converter\PhantomJS;
+use H2P\TempFile;
+use H2P\Request;
+use H2P\Request\Cookie;
+
+use PhantomPdf\PdfGenerator;
+
+use Drupal\file\Entity\File;
+
+
 
 /**
  * An example controller.
  */
 class ExportAll extends ControllerBase {
 
-  public function content() {
+  public function content($year) {
 
-    $start_date = new DrupalDateTime('1 january 2016 00:00:00');
+    $start_date = new DrupalDateTime('1 january ' . $year);
     $start_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
     $start_date_storage_format = $start_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
-    $end_date = new DrupalDateTime('31 december 2016 23:11:59');
+    $end_date = new DrupalDateTime('31 december' . $year);
     $end_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
     $end_date_storage_format = $end_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
@@ -90,6 +100,7 @@ class ExportAll extends ControllerBase {
 
 
     foreach($cashstatements as $key => $cashstatement) {
+      $cashstatements_total = $cashstatements_total + $cashstatement->field_booking_amount->value;
       if($cashstatement->field_booking_amount->value < 0) {
         $incoming = '';
         $outgoing = $cashstatement->field_booking_amount->value . '€';
@@ -109,10 +120,14 @@ class ExportAll extends ControllerBase {
         round($cashstatement->field_booking_amount->value, 2) . '€'
       ];
     }
+    $cash_rows[] = [
+      '', '', '', '', '', '', $cashstatements_total . '€'
+    ];
 
 
 
     foreach($bankstatements as $key => $bankstatement) {
+      $bankstatements_total = $bankstatements_total + $bankstatement->field_booking_amount->value;
       if($bankstatement->field_booking_amount->value < 0) {
         $incoming = '';
         $outgoing = $bankstatement->field_booking_amount->value . '€';
@@ -124,7 +139,7 @@ class ExportAll extends ControllerBase {
 
       $bank_rows[] = [
         $bankstatement_nrs[$bankstatement->ID()],
-        $bankstatement->field_booking_date->value,
+        $bankstatement->field_bankstatement_date->value,
         $bankstatement->label(),
         '',
         $incoming,
@@ -132,12 +147,16 @@ class ExportAll extends ControllerBase {
         round($bankstatement->field_booking_amount->value, 2) . '€'
       ];
     }
+    $bank_rows[] = [
+      '', '', '', '', '', '', $bankstatements_total . '€'
+    ];
 
 
 
 
 
     foreach($purchases as $key => $purchase) {
+      $purchases_total = $purchases_total + $purchase->field_purchase_total_amount->value;
       $statement = current($purchase->get('field_booking')->referencedEntities());
       $statement_bundle = $statement->bundle();
 
@@ -167,15 +186,20 @@ class ExportAll extends ControllerBase {
         $bank_amount,
         $cashstatement_id,
         $cash_amount,
-        round($booking->field_purchase_total_amount->value, 2) . '€'
+        round($purchase->field_purchase_total_amount->value, 2) . '€'
       ];
     }
+    $purchase_rows[] = [
+      '', '', '', '', '', '', '', $purchases_total . '€'
+    ];
+
 
 
 
 
 
     foreach($sales as $key => $sale) {
+      $sales_total = $sales_total + $sale->field_sale_total_amount->value;
       $statement = current($sale->get('field_booking')->referencedEntities());
       $statement_bundle = $statement->bundle();
 
@@ -208,37 +232,85 @@ class ExportAll extends ControllerBase {
       ];
       unset($bankstatement_id); unset($cashstatement_id);
     }
+    $sale_rows[] = [
+      '', '', '', '', '', '', '', $sales_total . '€'
+    ];
 
 
-    $build[] = [
+
+
+
+    $build[] = $build_purchasediary = [
       '#type' => 'table',
       '#header' => $purchase_header,
-      '#caption' => 'Purchase diary',
       '#rows' => $purchase_rows,
+      '#attributes' => [
+        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
+      ],
     ];
 
-    $build[] = [
+    $build[] = $build_salediary = [
       '#type' => 'table',
       '#header' => $sale_header,
-      '#caption' => 'Sale diary',
       '#rows' => $sale_rows,
+      '#attributes' => [
+        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
+      ],
     ];
 
-    $build[] = [
+    $build[] = $build_cashstatements = [
       '#type' => 'table',
       '#header' => $cash_header,
-      '#caption' => 'Cash statements',
       '#rows' => $cash_rows,
+      '#attributes' => [
+        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
+      ],
     ];
 
-    $build[] = [
+    $build[] = $build_bankstatements = [
       '#type' => 'table',
       '#header' => $bank_header,
-      '#caption' => 'Bank statements',
       '#rows' => $bank_rows,
+      '#attributes' => [
+        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
+      ],
     ];
+
+
+    $pdf_purchasediary = \Drupal::service('renderer')->render($build_purchasediary);
+    $pdf_salediary = \Drupal::service('renderer')->render($build_salediary);
+    $pdf_cashstatements = \Drupal::service('renderer')->render($build_cashstatements);
+    $pdf_bankstatements = \Drupal::service('renderer')->render($build_bankstatements);
+
+    $template = [
+      '#theme' => 'simplified_booking_pdf_all',
+      '#title' => 'Books Better Be Balanced: '  . $year,
+      '#purchasediary' => $pdf_purchasediary,
+      '#salediary' => $pdf_salediary,
+      '#cashstatements' => $pdf_cashstatements,
+      '#bankstatements' => $pdf_bankstatements,
+    ];
+
+    $pdf_html = \Drupal::service('renderer')->render($template);
+
+    $pdf = new PdfGenerator();
+    $pdf->setOrientation('landscape');
+    $pdf->setStoragePath('/var/www/drupalvm/pdf');
+    $pdf->setBinaryPath('xvfb-run phantomjs');
+    $pdf->saveFromView($pdf_html, '/var/www/drupalvm/pdf/' . $year . '.pdf');
+
+    $tmp_pdf = file_get_contents('/var/www/drupalvm/pdf/' . $year . '.pdf');
+    $directory = 'private://booksbetterbebalanced';
+    $prepare = file_prepare_directory($directory);
+
+    $file = file_save_data($tmp_pdf, $directory . '/' . $year . '.pdf', FILE_EXISTS_REPLACE);
+
+    $a = 0;
+
+    $path = drupal_realpath($file->getFileUri());
+
+    $a = 0;
 
     return $build;
   }
-
 }
