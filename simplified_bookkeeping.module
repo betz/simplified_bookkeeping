@@ -264,14 +264,22 @@ function simplified_bookkeeping_theme_suggestions_page_alter(array &$suggestions
  * @param $uri
  */
 function simplified_bookkeeping_file_download($uri) {
+  $permission = "access bookkeeping";
+
   $scheme = file_uri_scheme($uri);
   $target = file_uri_target($uri);
 
+  $current_user = \Drupal::currentUser();
+  $account = $current_user->getAccount();
+
   if (in_array($scheme, ['private', 'temporary', 'session'])
-  && substr( $target, 0, 22 ) === "booksbetterbebalanced/") {
+    && substr( $target, 0, 22 ) === "booksbetterbebalanced/"
+    && $account->hasPermission($permission)
+  ) {
 
     return array(
-      'Content-disposition' => 'attachment; filename="' . $target . '"',
+      'Content-Type' => 'application/pdf',
+      'Content-disposition' => 'inline; filename="' . $target . '"',
     );
   }
 }
