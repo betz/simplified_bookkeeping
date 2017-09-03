@@ -1,0 +1,26 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_book_pdf
+    - simplified_bookkeeping.booking_type.book
+  module:
+    - file
+id: booking.book.field_book_pdf
+field_name: field_book_pdf
+entity_type: booking
+bundle: book
+label: PDF
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  file_directory: 'booksbetterbebalanced/[date:custom:Y]-[date:custom:m]'
+  file_extensions: pdf
+  max_filesize: ''
+  description_field: false
+  handler: 'default:file'
+  handler_settings: {  }
+field_type: file

@@ -1,0 +1,46 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.booking.book.field_book_pdf
+    - field.field.booking.book.field_book_year
+    - simplified_bookkeeping.booking_type.book
+  module:
+    - file
+id: booking.book.default
+targetEntityType: booking
+bundle: book
+mode: default
+content:
+  field_book_pdf:
+    weight: 2
+    settings:
+      progress_indicator: bar
+    third_party_settings: {  }
+    type: file_generic
+    region: content
+  field_book_year:
+    weight: 1
+    settings:
+      placeholder: '2017'
+    third_party_settings: {  }
+    type: number
+    region: content
+  name:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  user_id:
+    type: entity_reference_autocomplete
+    weight: 3
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    region: content
+    third_party_settings: {  }
+hidden: {  }

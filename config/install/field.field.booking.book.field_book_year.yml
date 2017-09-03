@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_book_year
+    - simplified_bookkeeping.booking_type.book
+id: booking.book.field_book_year
+field_name: field_book_year
+entity_type: booking
+bundle: book
+label: Year
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer
