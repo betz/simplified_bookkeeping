@@ -9,6 +9,8 @@ use Drupal\Core\Session\AccountInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\file\Entity\File;
 
+use Drupal\payment_form\Entity\Payment;
+
 
 
 /**
@@ -78,6 +80,7 @@ class MembershipPayments extends ControllerBase {
 
     $a = 0;
 
+
     $bank_header = [
       'Date',
       'Method',
@@ -91,6 +94,10 @@ class MembershipPayments extends ControllerBase {
       '#attributes' => [
         'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
       ],
+    ];
+
+    $build[] = [
+      '#markup' =>  \Drupal::formBuilder()->getForm('payment_form_standalone'),
     ];
 
     return $build;

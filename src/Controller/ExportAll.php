@@ -208,7 +208,7 @@ class ExportAll extends ControllerBase {
         $cash_amount = '';
         $bank_total = $bank_total + $statement->field_booking_amount->value;
         $bankstatement_id = $bankstatement_nrs[$statement->ID()];
-        unset($cashstatement_id);
+        $cashstatement_id = '';
       }
 
       if($statement_bundle == 'cashstatement') {
@@ -216,7 +216,7 @@ class ExportAll extends ControllerBase {
         $bank_amount = '';
         $cash_total = $cash_total + $statement->field_booking_amount->value;
         $cashstatement_id = $cashstatement_nrs[$statement->ID()];
-        unset($bankstatement_id);
+        $bankstatement_id = '';
       }
 
       $sale_row_nr++;
@@ -230,7 +230,7 @@ class ExportAll extends ControllerBase {
         $cash_amount,
         round($sale->field_sale_total_amount->value, 2) . '€'
       ];
-      unset($bankstatement_id); unset($cashstatement_id);
+      $bankstatement_id = ''; $cashstatement_id = '';
     }
     $sale_rows[] = [
       '', '', '', '', '', '', '', $sales_total . '€'
@@ -240,41 +240,49 @@ class ExportAll extends ControllerBase {
 
 
 
-    $build[] = $build_purchasediary = [
+    $build['purchases'] = $build_purchasediary = [
       '#type' => 'table',
       '#header' => $purchase_header,
       '#rows' => $purchase_rows,
       '#attributes' => [
-        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
+        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered'],
+        'style' => 'page-break-after: always',
       ],
     ];
+    $build['purchases']['#caption'] = 'Purchase Diary';
 
-    $build[] = $build_salediary = [
+    $build['sales'] = $build_salediary = [
       '#type' => 'table',
       '#header' => $sale_header,
       '#rows' => $sale_rows,
       '#attributes' => [
-        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
+        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered'],
+        'style' => 'page-break-after: always',
       ],
     ];
+    $build['sales']['#caption'] = 'Sales Diary';
 
-    $build[] = $build_cashstatements = [
+    $build['cash'] = $build_cashstatements = [
       '#type' => 'table',
       '#header' => $cash_header,
       '#rows' => $cash_rows,
       '#attributes' => [
-        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
+        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered'],
+        'style' => 'page-break-after: always',
       ],
     ];
+    $build['cash']['#caption'] = 'Cash Statements';
 
-    $build[] = $build_bankstatements = [
+    $build['bank'] = $build_bankstatements = [
       '#type' => 'table',
       '#header' => $bank_header,
       '#rows' => $bank_rows,
       '#attributes' => [
-        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
+        'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered'],
+        'style' => 'page-break-after: always',
       ],
     ];
+    $build['bank']['#caption'] = 'Bank Statements';
 
 
     $pdf_purchasediary = \Drupal::service('renderer')->render($build_purchasediary);
@@ -290,6 +298,8 @@ class ExportAll extends ControllerBase {
       '#cashstatements' => $pdf_cashstatements,
       '#bankstatements' => $pdf_bankstatements,
     ];
+
+    $a = 0;
 
     $pdf_html = \Drupal::service('renderer')->render($template);
 
