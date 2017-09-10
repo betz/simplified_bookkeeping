@@ -255,6 +255,24 @@ function simplified_bookkeeping_views_data_alter(array &$data) {
 }
 
 /**
+ * Implements hook_entity_delete().
+ * Deletes the linked booking from field_booking, if any.
+ *
+ * @param \Drupal\Core\Entity\EntityInterface $entity
+ */
+function simplified_bookkeeping_entity_delete(Drupal\Core\Entity\EntityInterface $entity) {
+
+  // If the bundle is a bankstatement, also delete referenced bookings
+  // like sale and purchase bookings, referenced to the bankstatement.
+  if($entity->bundle() == 'bankstatement') {
+    $booking_entities = $entity->get('field_booking')->referencedEntities();
+    foreach ($booking_entities as $booking_entity) {
+      $booking_entity->delete();
+    }
+  }
+}
+
+/**
  * Implements hook_theme_suggestions_HOOK_alter() for node templates.
  */
 function simplified_bookkeeping_theme_suggestions_page_alter(array &$suggestions, array $variables) {

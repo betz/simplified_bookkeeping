@@ -52,7 +52,7 @@ class MembershipPayments extends ControllerBase {
 
     $sale_ids = $query->execute();
     $sales = entity_load_multiple('booking', $sale_ids);
-    $total = 0;
+    $total = 0; $bank_rows = [];
 
     foreach($sales as $sale) {
       $bank_rows[] = [
