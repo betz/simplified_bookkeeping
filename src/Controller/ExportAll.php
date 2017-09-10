@@ -112,7 +112,7 @@ class ExportAll extends ControllerBase {
 
       $cash_rows[] = [
         $cashstatement_nrs[$cashstatement->ID()],
-        $cashstatement->field_booking_date->value,
+        \Drupal::service('date.formatter')->format(strtotime($cashstatement->field_booking_date->value), 'bookkeeping_date'),
         $cashstatement->label(),
         '',
         $incoming,
@@ -139,7 +139,7 @@ class ExportAll extends ControllerBase {
 
       $bank_rows[] = [
         $bankstatement_nrs[$bankstatement->ID()],
-        $bankstatement->field_bankstatement_date->value,
+        \Drupal::service('date.formatter')->format(strtotime($bankstatement->field_bankstatement_date->value), 'bookkeeping_date'),
         $bankstatement->label(),
         '',
         $incoming,
@@ -180,7 +180,7 @@ class ExportAll extends ControllerBase {
       $purchase_row_nrs[$key] = $purchase_row_nr;
       $purchase_rows[] = [
         $purchase_row_nr,
-        $purchase->field_purchase_date->value,
+        \Drupal::service('date.formatter')->format(strtotime($purchase->field_purchase_date->value), 'bookkeeping_date'),
         $purchase->label(),
         $bankstatement_id,
         $bank_amount,
@@ -219,11 +219,13 @@ class ExportAll extends ControllerBase {
         $bankstatement_id = '';
       }
 
+      $a = 0;
+
       $sale_row_nr++;
       $sale_rows[] = [
         $sale_row_nr,
-        $sale->field_sale_date->value,
-        $sale->label(),
+        \Drupal::service('date.formatter')->format(strtotime($sale->field_sale_date->value), 'bookkeeping_date'),
+        !empty($sale->field_sale_memo->value) ? $sale->field_sale_memo->value : $sale->label,
         $bankstatement_id,
         $bank_amount,
         $cashstatement_id,
