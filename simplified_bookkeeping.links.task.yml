@@ -21,3 +21,9 @@ entity.booking.delete_form:
   title: Delete
   weight: 10
 
+simplified_bookkeeping.membership_payments:
+  route_name: simplified_bookkeeping.membership_payments
+  base_route: entity.user.canonical
+  title: 'Membership payments'
+  weight: 15
+
