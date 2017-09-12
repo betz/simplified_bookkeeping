@@ -4,3 +4,10 @@ simplified_bookkeeping.types:
   route_name: entity.booking_type.collection
   parent: system.admin
   weight: 2
+
+simplified_bookkeeping.config:
+  title: 'Simplified Bookkeeping'
+  parent: system.admin_config_system
+  description: 'Manage simplified bookkeeping settings.'
+  route_name: simplified_bookkeeping.config_form
+  weight: 20

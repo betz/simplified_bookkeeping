@@ -38,6 +38,8 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
  */
 function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
 
+  $config = \Drupal::config('simplified_bookkeeping.settings');
+
   // If the bundle is a bankstatement,
   // we differentiate between purchase and sale,
   // so we can create a purchase or sale booking.
@@ -83,6 +85,8 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         ->condition('field_structured_memo', $memo);
       $entity_ids = $query->execute();
 
+
+
       // We have a user, lets link it.
       if(current($entity_ids) > 0) {
         $client = \Drupal::entityTypeManager()->getStorage('user')->load(current($entity_ids));
@@ -115,6 +119,21 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
       $sale = BookingEntity::create($sale_data);
       $sale->save();
 
+      // send an email to the sender notifying him about his received payment.
+      if(current($entity_ids) > 0 && $config->get('membership_payment_received_email')) {
+        $mailManager = \Drupal::service('plugin.manager.mail');
+        $mailManager->mail(
+          'simplified_bookkeeping', // module
+          'membership_payment_received', // key
+          $client->getEmail(), // to
+          'en', // langcode
+          [
+            'firstname' => $first_name,
+            'lastname' => $last_name,
+            'amount' => $total_amount,
+          ]
+        );
+      }
     }
   }
 
