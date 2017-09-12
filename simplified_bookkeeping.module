@@ -239,6 +239,13 @@ function simplified_bookkeeping_theme() {
       'bankstatements' => NULL,
     ],
   ];
+  $theme['membership-payment-received-mail'] = [
+    'variables' => [
+      'first_name' => 'Foo',
+      'last' => 'Bar',
+      'uid' => NULL,
+    ],
+  ];
   return $theme;
 }
 
@@ -340,10 +347,16 @@ function simplified_bookkeeping_file_download($uri) {
 function simplified_bookkeeping_mail($key, &$message, $params) {
   switch ($key) {
     case 'membership_payment_received':
+
+      $theme_body = array(
+        '#theme' => 'membership-payment-received-mail',
+        '#first_name' => $params['firstname'],
+        '#last_name' => $params['lastname'],
+        '#uid' => $params['uid'],
+      );
+
       $message['subject'] = t('HSBXL Membership Payment');
-      $message['body'][] = 'Hi ' . $params['firstname'] . ', 
-      We have received your first membership payment of HSBXL. 
-      You are welcome to join the other underhackeds.';
+      $message['body'][] = drupal_render($theme_body);
       break;
   }
 }
