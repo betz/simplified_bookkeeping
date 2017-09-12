@@ -27,7 +27,6 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
       (!empty($field_sale_memo))
     ) {
       $entity->set('field_booking_valid', TRUE);
-      $a = 0;
     }
   }
 }
@@ -270,6 +269,15 @@ function simplified_bookkeeping_entity_delete(Drupal\Core\Entity\EntityInterface
       $booking_entity->delete();
     }
   }
+
+  // If the bundle is a cashstatement, also delete referenced bookings
+  // like sale and purchase bookings, referenced to the bankstatement.
+  if($entity->bundle() == 'cashstatement') {
+    $booking_entities = $entity->get('field_booking')->referencedEntities();
+    foreach ($booking_entities as $booking_entity) {
+      $booking_entity->delete();
+    }
+  }
 }
 
 /**
@@ -277,11 +285,9 @@ function simplified_bookkeeping_entity_delete(Drupal\Core\Entity\EntityInterface
  */
 function simplified_bookkeeping_theme_suggestions_page_alter(array &$suggestions, array $variables) {
   $uri = \Drupal::request()->getRequestUri();
-  $a = 0;
   if($uri == '/pdf') {
     $suggestions[] = 'page__pdf';
   }
-  $a = 0;
 }
 
 /**
@@ -306,5 +312,19 @@ function simplified_bookkeeping_file_download($uri) {
       'Content-Type' => 'application/pdf',
       'Content-disposition' => 'inline; filename="' . $target . '"',
     );
+  }
+}
+
+/**
+ * Implements hook_mail().
+ */
+function simplified_bookkeeping_mail($key, &$message, $params) {
+  switch ($key) {
+    case 'membership_payment_received':
+      $message['subject'] = t('HSBXL Membership Payment');
+      $message['body'][] = 'Hi ' . $params['firstname'] . ', 
+      We have received your first membership payment of HSBXL. 
+      You are welcome to join the other underhackeds.';
+      break;
   }
 }

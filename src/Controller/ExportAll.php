@@ -13,6 +13,8 @@ use H2P\Request\Cookie;
 use PhantomPdf\PdfGenerator;
 
 use Drupal\file\Entity\File;
+use Drupal\Core\Url;
+use Drupal\Core\Link;
 
 
 
@@ -156,6 +158,7 @@ class ExportAll extends ControllerBase {
 
 
     foreach($purchases as $key => $purchase) {
+
       $purchases_total = $purchases_total + $purchase->field_purchase_total_amount->value;
       $statement = current($purchase->get('field_booking')->referencedEntities());
       $statement_bundle = $statement->bundle();
@@ -301,7 +304,9 @@ class ExportAll extends ControllerBase {
       '#bankstatements' => $pdf_bankstatements,
     ];
 
-    $a = 0;
+    $build['pdflink'] = [
+      '#markup' => file_create_url('private://booksbetterbebalanced/' . $year . '.pdf'),
+    ];
 
     $pdf_html = \Drupal::service('renderer')->render($template);
 
