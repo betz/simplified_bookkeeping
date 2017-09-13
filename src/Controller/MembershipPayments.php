@@ -96,10 +96,6 @@ class MembershipPayments extends ControllerBase {
       ],
     ];
 
-    $build[] = [
-      '#markup' =>  \Drupal::formBuilder()->getForm('payment_form_standalone'),
-    ];
-
     return $build;
   }
 }
