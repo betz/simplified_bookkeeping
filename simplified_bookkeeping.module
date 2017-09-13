@@ -131,6 +131,8 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
             'firstname' => $first_name,
             'lastname' => $last_name,
             'amount' => $total_amount,
+            'uid' => current($entity_ids),
+            //'host' => \Drupal::request()->getSchemeAndHttpHost(),
           ]
         );
       }
@@ -244,6 +246,8 @@ function simplified_bookkeeping_theme() {
       'first_name' => 'Foo',
       'last' => 'Bar',
       'uid' => NULL,
+      'amount' => '0',
+      'host' => 'http://local.dashboard.hsbxl.be'
     ],
   ];
   return $theme;
@@ -353,6 +357,8 @@ function simplified_bookkeeping_mail($key, &$message, $params) {
         '#first_name' => $params['firstname'],
         '#last_name' => $params['lastname'],
         '#uid' => $params['uid'],
+        '#amount' => $params['amount'],
+        //'#host' => $params['host'],
       );
 
       $message['subject'] = t('HSBXL Membership Payment');
