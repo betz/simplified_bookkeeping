@@ -1,0 +1,34 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.message.membership_payment_received.field_message_sale
+    - field.field.message.membership_payment_received.field_message_user
+    - message.template.membership_payment_received
+id: message.membership_payment_received.default
+targetEntityType: message
+bundle: membership_payment_received
+mode: default
+content:
+  field_message_sale:
+    weight: 1
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_message_user:
+    weight: 0
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  partial_0:
+    weight: 2
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

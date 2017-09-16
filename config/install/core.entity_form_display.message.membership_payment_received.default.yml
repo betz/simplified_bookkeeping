@@ -1,0 +1,28 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.message.membership_payment_received.field_message_sale
+    - field.field.message.membership_payment_received.field_message_user
+    - message.template.membership_payment_received
+id: message.membership_payment_received.default
+targetEntityType: message
+bundle: membership_payment_received
+mode: default
+content:
+  field_message_sale:
+    weight: 1
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
+  field_message_user:
+    weight: 0
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
+    region: content
+hidden: {  }

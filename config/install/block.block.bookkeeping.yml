@@ -24,7 +24,7 @@ settings:
 visibility:
   request_path:
     id: request_path
-    pages: "/bookkeeping/bankstatements\r\n/bookkeeping/expensenotes\r\n/bookkeeping/purchases\r\n/bookkeeping/sales"
+    pages: "/bookkeeping/bankstatements\r\n/bookkeeping/cashstatements\r\n/bookkeeping/expensenotes\r\n/bookkeeping/purchases\r\n/bookkeeping/sales"
     negate: false
     context_mapping: {  }
   user_role:

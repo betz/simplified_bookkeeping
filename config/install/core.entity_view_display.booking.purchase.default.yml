@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.booking.purchase.field_booking
     - field.field.booking.purchase.field_booking_valid
+    - field.field.booking.purchase.field_invoice
     - field.field.booking.purchase.field_purchase_assets
     - field.field.booking.purchase.field_purchase_commodities
     - field.field.booking.purchase.field_purchase_credit_note_ta
@@ -45,6 +46,13 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
+    region: content
+  field_invoice:
+    weight: 17
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: file_default
     region: content
   field_purchase_assets:
     weight: 1

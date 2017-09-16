@@ -13,13 +13,16 @@ dependencies:
   - field_permissions
   - file
   - image
+  - message
   - migrate_plus
   - migrate_tools
   - options
   - path
   - pathauto
+  - payment_form
   - prepopulate
   - search
+  - simplified_bookkeeping
   - system
   - text
   - user
