@@ -12,9 +12,10 @@ source:
   plugin: csv
   path: /home/vagrant/cashstatements.csv
   delimiter: ','
-  enclosure: ''
+  enclosure: '"'
   header_row_count: 0
   keys:
+    - date
     - title
   column_names:
     0:

@@ -2,11 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_bankstatement_account
-    - field.storage.booking.field_bankstatement_date
-    - field.storage.booking.field_bankstatement_memo
     - field.storage.booking.field_booking
     - field.storage.booking.field_booking_amount
+    - field.storage.booking.field_booking_date
+    - field.storage.booking.field_sale_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
     - system.menu.bookkeeping
     - user.role.administrator
@@ -90,21 +89,23 @@ display:
           summary: ''
           description: ''
           columns:
-            field_bankstatement_date: field_bankstatement_date
-            field_bankstatement_amount: field_bankstatement_amount
+            field_booking_date: field_booking_date
+            field_booking_amount: field_booking_amount
             field_bankstatement_account: field_bankstatement_account
             field_bankstatement_memo: field_bankstatement_memo
+            edit_booking: edit_booking
+            field_booking: field_booking
           info:
-            field_bankstatement_date:
+            field_booking_date:
               sortable: true
               default_sort_order: desc
               align: ''
               separator: ''
               empty_column: false
               responsive: ''
-            field_bankstatement_amount:
-              sortable: true
-              default_sort_order: desc
+            field_booking_amount:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
@@ -123,7 +124,21 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-          default: field_bankstatement_date
+            edit_booking:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_booking:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+          default: field_booking_date
           empty_table: false
       row:
         type: fields
@@ -133,10 +148,10 @@ display:
           hide_empty: false
           default_field_elements: true
       fields:
-        field_bankstatement_date:
-          id: field_bankstatement_date
-          table: booking__field_bankstatement_date
-          field: field_bankstatement_date
+        field_booking_date:
+          id: field_booking_date
+          table: booking__field_booking_date
+          field: field_booking_date
           relationship: none
           group_type: group
           admin_label: ''
@@ -263,14 +278,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_bankstatement_account:
-          id: field_bankstatement_account
-          table: booking__field_bankstatement_account
-          field: field_bankstatement_account
+        field_sale_membership_member:
+          id: field_sale_membership_member
+          table: booking__field_sale_membership_member
+          field: field_sale_membership_member
           relationship: none
           group_type: group
           admin_label: ''
-          label: Account
+          label: 'Membership member'
           exclude: false
           alter:
             alter_text: false
@@ -311,74 +326,11 @@ display:
           hide_empty: false
           empty_zero: false
           hide_alter_empty: true
-          click_sort_column: value
-          type: string
+          click_sort_column: target_id
+          type: entity_reference_label
           settings:
-            link_to_entity: false
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          plugin_id: field
-        field_bankstatement_memo:
-          id: field_bankstatement_memo
-          table: booking__field_bankstatement_memo
-          field: field_bankstatement_memo
-          relationship: none
-          group_type: group
-          admin_label: ''
-          label: Memo
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: string
-          settings:
-            link_to_entity: false
-          group_column: value
+            link: true
+          group_column: target_id
           group_columns: {  }
           group_rows: true
           delta_limit: 0
@@ -583,11 +535,10 @@ display:
         - url.query_args
         - user.roles
       tags:
-        - 'config:field.storage.booking.field_bankstatement_account'
-        - 'config:field.storage.booking.field_bankstatement_date'
-        - 'config:field.storage.booking.field_bankstatement_memo'
         - 'config:field.storage.booking.field_booking'
         - 'config:field.storage.booking.field_booking_amount'
+        - 'config:field.storage.booking.field_booking_date'
+        - 'config:field.storage.booking.field_sale_membership_member'
   page_1:
     display_plugin: page
     id: page_1
@@ -613,8 +564,7 @@ display:
         - url.query_args
         - user.roles
       tags:
-        - 'config:field.storage.booking.field_bankstatement_account'
-        - 'config:field.storage.booking.field_bankstatement_date'
-        - 'config:field.storage.booking.field_bankstatement_memo'
         - 'config:field.storage.booking.field_booking'
         - 'config:field.storage.booking.field_booking_amount'
+        - 'config:field.storage.booking.field_booking_date'
+        - 'config:field.storage.booking.field_sale_membership_member'
