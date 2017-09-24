@@ -9,7 +9,7 @@ dependencies:
     - field.field.booking.sale.field_sale_credit_note_ta
     - field.field.booking.sale.field_sale_date
     - field.field.booking.sale.field_sale_id
-    - field.field.booking.sale.field_sale_membership_member
+    - field.field.booking.sale.field_membership_member
     - field.field.booking.sale.field_sale_memo
     - field.field.booking.sale.field_sale_payment_date
     - field.field.booking.sale.field_sale_payment_method
@@ -91,7 +91,7 @@ content:
     third_party_settings: {  }
     type: string
     region: content
-  field_sale_membership_member:
+  field_membership_member:
     weight: 15
     label: inline
     settings:

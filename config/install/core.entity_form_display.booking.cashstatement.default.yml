@@ -6,7 +6,7 @@ dependencies:
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
     - field.field.booking.cashstatement.field_cashstatement_attachment
-    - field.field.booking.cashstatement.field_sale_membership_member
+    - field.field.booking.cashstatement.field_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
   module:
     - datetime
@@ -45,7 +45,7 @@ content:
     third_party_settings: {  }
     type: file_generic
     region: content
-  field_sale_membership_member:
+  field_membership_member:
     weight: 30
     settings:
       match_operator: CONTAINS

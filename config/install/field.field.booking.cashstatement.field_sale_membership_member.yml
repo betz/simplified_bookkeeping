@@ -2,10 +2,10 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_sale_membership_member
+    - field.storage.booking.field_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
-id: booking.cashstatement.field_sale_membership_member
-field_name: field_sale_membership_member
+id: booking.cashstatement.field_membership_member
+field_name: field_membership_member
 entity_type: booking
 bundle: cashstatement
 label: 'Membership member'

@@ -7,7 +7,7 @@ dependencies:
     - field.storage.booking.field_sale_client
     - field.storage.booking.field_sale_date
     - field.storage.booking.field_sale_id
-    - field.storage.booking.field_sale_membership_member
+    - field.storage.booking.field_membership_member
     - field.storage.booking.field_sale_memo
     - field.storage.booking.field_sale_payment_method
     - field.storage.booking.field_sale_total_amount
@@ -98,7 +98,7 @@ display:
             field_booking_valid: field_booking_valid
             field_sale_date: field_sale_date
             field_sale_id: field_sale_id
-            field_sale_membership_member: field_sale_membership_member
+            field_membership_member: field_membership_member
             field_sale_client: field_sale_client
             field_sale_memo: field_sale_memo
             field_sale_total_amount: field_sale_total_amount
@@ -136,7 +136,7 @@ display:
               separator: ''
               empty_column: true
               responsive: ''
-            field_sale_membership_member:
+            field_membership_member:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -445,10 +445,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_sale_membership_member:
-          id: field_sale_membership_member
-          table: booking__field_sale_membership_member
-          field: field_sale_membership_member
+        field_membership_member:
+          id: field_membership_member
+          table: booking__field_membership_member
+          field: field_membership_member
           relationship: none
           group_type: group
           admin_label: ''
@@ -456,7 +456,7 @@ display:
           exclude: true
           alter:
             alter_text: true
-            text: '<a href="/user/{{ field_sale_membership_member__target_id }}">[M]</a>'
+            text: '<a href="/user/{{ field_membership_member__target_id }}">[M]</a>'
             make_link: false
             path: ''
             absolute: false
@@ -519,7 +519,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: '{{ field_sale_client__value }} {{ field_sale_membership_member }}'
+            text: '{{ field_sale_client__value }} {{ field_membership_member }}'
             make_link: false
             path: ''
             absolute: false
@@ -1063,7 +1063,7 @@ display:
         - 'config:field.storage.booking.field_sale_client'
         - 'config:field.storage.booking.field_sale_date'
         - 'config:field.storage.booking.field_sale_id'
-        - 'config:field.storage.booking.field_sale_membership_member'
+        - 'config:field.storage.booking.field_membership_member'
         - 'config:field.storage.booking.field_sale_memo'
         - 'config:field.storage.booking.field_sale_payment_method'
         - 'config:field.storage.booking.field_sale_total_amount'
@@ -1098,7 +1098,7 @@ display:
         - 'config:field.storage.booking.field_sale_client'
         - 'config:field.storage.booking.field_sale_date'
         - 'config:field.storage.booking.field_sale_id'
-        - 'config:field.storage.booking.field_sale_membership_member'
+        - 'config:field.storage.booking.field_membership_member'
         - 'config:field.storage.booking.field_sale_memo'
         - 'config:field.storage.booking.field_sale_payment_method'
         - 'config:field.storage.booking.field_sale_total_amount'

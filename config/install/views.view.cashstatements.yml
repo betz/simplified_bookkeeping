@@ -5,7 +5,7 @@ dependencies:
     - field.storage.booking.field_booking
     - field.storage.booking.field_booking_amount
     - field.storage.booking.field_booking_date
-    - field.storage.booking.field_sale_membership_member
+    - field.storage.booking.field_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
     - system.menu.bookkeeping
     - user.role.administrator
@@ -278,10 +278,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_sale_membership_member:
-          id: field_sale_membership_member
-          table: booking__field_sale_membership_member
-          field: field_sale_membership_member
+        field_membership_member:
+          id: field_membership_member
+          table: booking__field_membership_member
+          field: field_membership_member
           relationship: none
           group_type: group
           admin_label: ''
@@ -538,7 +538,7 @@ display:
         - 'config:field.storage.booking.field_booking'
         - 'config:field.storage.booking.field_booking_amount'
         - 'config:field.storage.booking.field_booking_date'
-        - 'config:field.storage.booking.field_sale_membership_member'
+        - 'config:field.storage.booking.field_membership_member'
   page_1:
     display_plugin: page
     id: page_1
@@ -567,4 +567,4 @@ display:
         - 'config:field.storage.booking.field_booking'
         - 'config:field.storage.booking.field_booking_amount'
         - 'config:field.storage.booking.field_booking_date'
-        - 'config:field.storage.booking.field_sale_membership_member'
+        - 'config:field.storage.booking.field_membership_member'

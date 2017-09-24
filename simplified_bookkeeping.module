@@ -5,6 +5,24 @@ use \Drupal\Core\Form\FormStateInterface;
 
 
 /**
+ * Implements hook_entity_update().
+ */
+function simplified_bookkeeping_entity_update(Drupal\Core\Entity\EntityInterface $entity) {
+
+  // Always sync the field_membership_member field.
+  // This way, when a membership_member field of a
+  // bank or cashstatement is updated, the sale is also.
+  if($entity->bundle() == 'cashstatement'
+    || $entity->bundle() == 'bankstatement'
+    || $entity->bundle() == 'sale') {
+
+    $booking = $entity->field_booking->entity;
+    $booking->set('field_membership_member', $entity->field_membership_member->entity);
+    $booking->save();
+  }
+}
+
+/**
  * Implements hook_entity_presave().
  */
 function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
@@ -95,7 +113,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
 
         drush_print_r(current($entity_ids) . ' ' . $first_name . ' ' . $last_name);
 
-        $sale_data['field_sale_membership_member'] = current($entity_ids);
+        $sale_data['field_membership_member'] = current($entity_ids);
         $sale_data['user_id'] = current($entity_ids);
 
         $sale_data['field_sale_client'] = $first_name . ' ' . $last_name;
