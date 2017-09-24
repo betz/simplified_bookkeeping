@@ -2,7 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_membership_member
+    #- field.storage.booking.field_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
 id: booking.cashstatement.field_membership_member
 field_name: field_membership_member

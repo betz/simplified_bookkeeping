@@ -5,7 +5,7 @@ dependencies:
     - field.storage.booking.field_booking
     - field.storage.booking.field_booking_amount
     - field.storage.booking.field_booking_date
-    - field.storage.booking.field_membership_member
+    #- field.storage.booking.field_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
     - system.menu.bookkeeping
     - user.role.administrator

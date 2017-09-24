@@ -6,7 +6,7 @@ dependencies:
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
     - field.field.booking.cashstatement.field_cashstatement_attachment
-    - field.field.booking.cashstatement.field_membership_member
+    #- field.field.booking.cashstatement.field_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
   module:
     - datetime

@@ -7,7 +7,7 @@ dependencies:
     - field.storage.booking.field_sale_client
     - field.storage.booking.field_sale_date
     - field.storage.booking.field_sale_id
-    - field.storage.booking.field_membership_member
+    #- field.storage.booking.field_membership_member
     - field.storage.booking.field_sale_memo
     - field.storage.booking.field_sale_payment_method
     - field.storage.booking.field_sale_total_amount
