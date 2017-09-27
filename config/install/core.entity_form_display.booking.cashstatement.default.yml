@@ -6,7 +6,6 @@ dependencies:
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
     - field.field.booking.cashstatement.field_cashstatement_attachment
-    #- field.field.booking.cashstatement.field_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
   module:
     - datetime
@@ -44,15 +43,6 @@ content:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
-    region: content
-  field_membership_member:
-    weight: 30
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
     region: content
   name:
     type: string_textfield

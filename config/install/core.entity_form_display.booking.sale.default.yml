@@ -9,7 +9,6 @@ dependencies:
     - field.field.booking.sale.field_sale_credit_note_ta
     - field.field.booking.sale.field_sale_date
     - field.field.booking.sale.field_sale_id
-    - field.field.booking.sale.field_membership_member
     - field.field.booking.sale.field_sale_memo
     - field.field.booking.sale.field_sale_payment_date
     - field.field.booking.sale.field_sale_payment_method
@@ -58,15 +57,6 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
-  field_membership_member:
-    type: entity_reference_autocomplete
-    weight: 7
-    region: content
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
   field_sale_memo:
     weight: 5
     settings:

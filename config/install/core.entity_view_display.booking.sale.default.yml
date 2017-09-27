@@ -9,7 +9,6 @@ dependencies:
     - field.field.booking.sale.field_sale_credit_note_ta
     - field.field.booking.sale.field_sale_date
     - field.field.booking.sale.field_sale_id
-    #- field.field.booking.sale.field_membership_member
     - field.field.booking.sale.field_sale_memo
     - field.field.booking.sale.field_sale_payment_date
     - field.field.booking.sale.field_sale_payment_method
@@ -90,14 +89,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  field_membership_member:
-    weight: 15
-    label: inline
-    settings:
-      link: true
-    third_party_settings: {  }
-    type: entity_reference_label
     region: content
   field_sale_memo:
     weight: 17
