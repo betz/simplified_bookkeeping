@@ -17,8 +17,8 @@ function simplified_bookkeeping_entity_update(Drupal\Core\Entity\EntityInterface
     || $entity->bundle() == 'sale') {
 
     $booking = $entity->field_booking->entity;
-    $booking->set('field_membership_member', $entity->field_membership_member->entity);
-    $booking->save();
+    //$booking->set('field_membership_member', $entity->field_membership_member->entity);
+    //$booking->save();
   }
 }
 
