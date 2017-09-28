@@ -1,0 +1,59 @@
+langcode: en
+status: true
+dependencies: {  }
+id: bankstatements
+class: null
+field_plugin_method: null
+cck_plugin_method: null
+migration_tags: null
+migration_group: simplified_bookkeeping
+label: 'Import bankstatements from Argenta CSV'
+source:
+  plugin: csv
+  path: /home/vagrant/bankstatements.csv
+  delimiter: ;
+  enclosure: ''
+  header_row_count: 0
+  keys:
+    - transferkey
+  column_names:
+    0:
+      date: 'Transfer date'
+    1:
+      transferkey: 'Transfer key Argenta'
+    3:
+      amount: Amount
+    6:
+      account: Bankaccount
+    7:
+      name: Name
+    8:
+      memo: Memo
+process:
+  name:
+    plugin: concat
+    source:
+      - memo
+    delimiter: /
+  field_booking_amount:
+    -
+      plugin: str_replace
+      source: amount
+      search: .
+      replace: ''
+    -
+      plugin: str_replace
+      search: ','
+      replace: .
+  field_bankstatement_account: account
+  field_bankstatement_name: name
+  field_bankstatement_memo: memo
+  field_bankstatement_date:
+    plugin: format_date
+    from_format: d-m-Y
+    to_format: Y-m-d
+    source: date
+destination:
+  plugin: 'entity:booking'
+  default_bundle: bankstatement
+migration_dependencies: null
