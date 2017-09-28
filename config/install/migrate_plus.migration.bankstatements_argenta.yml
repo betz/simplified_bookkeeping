@@ -1,6 +1,11 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - simplified_bookkeeping
+  enforced:
+    module:
+      - simplified_bookkeeping
 id: bankstatements
 class: null
 field_plugin_method: null

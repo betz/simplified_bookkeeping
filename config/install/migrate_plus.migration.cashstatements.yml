@@ -1,6 +1,11 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  module:
+    - simplified_bookkeeping
+  enforced:
+    module:
+      - simplified_bookkeeping
 id: cashstatements
 class: null
 field_plugin_method: null
@@ -17,6 +22,7 @@ source:
   keys:
     - date
     - title
+    - amount
   column_names:
     0:
       date: 'Statement date'
