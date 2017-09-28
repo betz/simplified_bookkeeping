@@ -502,4 +502,3 @@ display:
         - 'config:field.storage.booking.field_booking'
         - 'config:field.storage.booking.field_booking_amount'
         - 'config:field.storage.booking.field_booking_date'
-        - 'config:field.storage.booking.field_membership_member'

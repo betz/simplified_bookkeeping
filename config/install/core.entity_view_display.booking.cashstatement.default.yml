@@ -6,6 +6,7 @@ dependencies:
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
     - field.field.booking.cashstatement.field_cashstatement_attachment
+    - field.field.booking.cashstatement.field_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
   module:
     - datetime
@@ -49,6 +50,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: file_default
+    region: content
+  field_membership_member:
+    weight: 5
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   name:
     label: hidden
