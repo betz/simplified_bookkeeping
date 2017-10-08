@@ -47,3 +47,11 @@ simplified_bookkeeping.config_form:
   requirements:
     _access: 'TRUE'
   
+
+simplified_bookkeeping.simplified_bookkeeping_graphs_graph:
+  path: '/bookkeeping/sales/graph'
+  defaults:
+    _controller: '\Drupal\simplified_bookkeeping\Controller\SimplifiedBookkeepingGraphs::graph'
+    _title: 'sales'
+  requirements:
+    _permission: 'access content'
