@@ -2,6 +2,7 @@
 
 use \Drupal\simplified_bookkeeping\entity\BookingEntity;
 use \Drupal\Core\Form\FormStateInterface;
+use \Drupal\taxonomy\Entity\Term;
 
 
 /**
@@ -20,7 +21,7 @@ function simplified_bookkeeping_entity_update(Drupal\Core\Entity\EntityInterface
     // Update the membership_member field on the referenced bookings. Keep em synced.
     if($entity->field_membership_member->entity != $booking->field_membership_member->entity) {
       $booking->set('field_membership_member', $entity->field_membership_member->entity);
-      $booking->save();
+      //$booking->save();
     }
   }
 }
@@ -106,10 +107,20 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         ->condition('field_structured_memo', $memo);
       $entity_ids = $query->execute();
 
-
-
       // We have a user, lets link it.
       if(current($entity_ids) > 0) {
+
+        // check if we have a membership tag.
+        $tag = current(taxonomy_term_load_multiple_by_name('membership', 'bookkeeping_tags'));
+        if(!$tag) {
+          $tag = Term::create(array(
+            'parent' => array(),
+            'name' => 'membership',
+            'vid' => 'bookkeeping_tags',
+          ))->save();
+        }
+        $sale_data['field_bookkeeping_tag'] = $tag;
+
         $client = \Drupal::entityTypeManager()->getStorage('user')->load(current($entity_ids));
         $first_name = $client->get('field_first_name')->getValue()[0]['value'];
         $last_name = $client->get('field_last_name')->getValue()[0]['value'];
