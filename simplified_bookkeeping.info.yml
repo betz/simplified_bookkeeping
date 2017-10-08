@@ -21,7 +21,9 @@ dependencies:
   - pathauto
   - payment_form
   - prepopulate
+  - rest
   - search
+  - serialization
   - simplified_bookkeeping
   - system
   - taxonomy
