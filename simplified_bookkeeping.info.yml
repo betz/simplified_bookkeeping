@@ -24,6 +24,7 @@ dependencies:
   - search
   - simplified_bookkeeping
   - system
+  - taxonomy
   - text
   - user
   - views

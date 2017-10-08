@@ -1,0 +1,27 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_bookkeeping_tag
+    - simplified_bookkeeping.booking_type.sale
+    - taxonomy.vocabulary.bookkeeping_tags
+id: booking.sale.field_bookkeeping_tag
+field_name: field_bookkeeping_tag
+entity_type: booking
+bundle: sale
+label: 'Bookkeeping tag'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      bookkeeping_tags: bookkeeping_tags
+    sort:
+      field: _none
+    auto_create: true
+    auto_create_bundle: ''
+field_type: entity_reference

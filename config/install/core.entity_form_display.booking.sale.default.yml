@@ -5,6 +5,7 @@ dependencies:
     - field.field.booking.sale.field_bankstatement
     - field.field.booking.sale.field_booking
     - field.field.booking.sale.field_booking_valid
+    - field.field.booking.sale.field_bookkeeping_tag
     - field.field.booking.sale.field_membership_member
     - field.field.booking.sale.field_sale_client
     - field.field.booking.sale.field_sale_credit_note_ta
@@ -43,6 +44,15 @@ content:
       display_label: true
     third_party_settings: {  }
     type: boolean_checkbox
+    region: content
+  field_bookkeeping_tag:
+    weight: 32
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
     region: content
   field_membership_member:
     weight: 31
