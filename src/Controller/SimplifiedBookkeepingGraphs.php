@@ -40,7 +40,7 @@ class SimplifiedBookkeepingGraphs extends ControllerBase implements ContainerInj
     $bankstatement_ids = $query->execute();
     $bankstatements = entity_load_multiple('booking', $bankstatement_ids);
 
-    $banktotal = 1000;
+    $banktotal = 0;
     foreach($bankstatements as $key => $bankstatement) {
       $bankheaders[] = \Drupal::service('date.formatter')->format(strtotime($bankstatement->field_bankstatement_date->value), 'bookkeeping_date');
 
