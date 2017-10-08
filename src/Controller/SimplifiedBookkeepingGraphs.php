@@ -16,18 +16,18 @@ class SimplifiedBookkeepingGraphs extends ControllerBase implements ContainerInj
     $this->chartSettings = $chartSettings->getChartsSettings();
   }
 
-  public function graph() {
+  public function graph($start, $end) {
 
     $library = $this->chartSettings['library'];
     if (!isset($library)) {
       drupal_set_message(t('You need to first configure Charts default settings'));
     }
 
-    $start_date = new DrupalDateTime('1 january ' . $year);
+    $start_date = new DrupalDateTime('1 january ' . $start);
     $start_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
     $start_date_storage_format = $start_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
-    $end_date = new DrupalDateTime('31 december' . $year);
+    $end_date = new DrupalDateTime('31 december' . $end);
     $end_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
     $end_date_storage_format = $end_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
