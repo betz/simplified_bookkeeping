@@ -7,6 +7,7 @@ use Drupal\charts\Services\ChartsSettingsService;
 use Drupal\Core\Controller\ControllerBase;
 use Drupal\Core\DependencyInjection\ContainerInjectionInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\Core\Datetime\DrupalDateTime;
 
 class SimplifiedBookkeepingGraphs extends ControllerBase implements ContainerInjectionInterface {
   private $chartSettings;
@@ -22,20 +23,42 @@ class SimplifiedBookkeepingGraphs extends ControllerBase implements ContainerInj
       drupal_set_message(t('You need to first configure Charts default settings'));
     }
 
+    $start_date = new DrupalDateTime('1 january ' . $year);
+    $start_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
+    $start_date_storage_format = $start_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
+
+    $end_date = new DrupalDateTime('31 december' . $year);
+    $end_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
+    $end_date_storage_format = $end_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
+
+    $query = \Drupal::entityQuery('booking');
+    $query->condition('status', 1);
+    $query->condition('type', 'bankstatement');
+    $query->condition('field_bankstatement_date', $start_date_storage_format, '>=');
+    $query->condition('field_bankstatement_date', $end_date_storage_format, '<=');
+    $query->sort('field_bankstatement_date', 'ASC');
+    $bankstatement_ids = $query->execute();
+    $bankstatements = entity_load_multiple('booking', $bankstatement_ids);
+
+    $banktotal = 1000;
+    foreach($bankstatements as $key => $bankstatement) {
+      $bankheaders[] = \Drupal::service('date.formatter')->format(strtotime($bankstatement->field_bankstatement_date->value), 'bookkeeping_date');
+
+      $bankdata[] = $banktotal = $banktotal + (int)$bankstatement->field_booking_amount->value;
+    }
+
     $options = [];
     $options['type'] = $this->chartSettings['type'];
-    $options['title'] = $this->t('Chart title');
-    $options['yaxis_title'] = $this->t('Y-Axis');
+    $options['title'] = $this->t('Bankaccount');
+    $options['yaxis_title'] = $this->t('Euro');
     $options['yaxis_min'] = '';
     $options['yaxis_max'] = '';
     $options['xaxis_title'] = $this->t('X-Axis');
 
     // Sample data format.
-    $categories = ["Category 1", "Category 2", "Category 3", "Category 4"];
+    $categories = $bankheaders;
     $seriesData = [
-      ["name" => "Series 1", "color" => "#0d233a", "type" => null, "data" => [250, 350, 400, 200]],
-      ["name" => "Series 2", "color" => "#8bbc21", "type" => "column", "data" => [150, 450, 500, 300]],
-      ["name" => "Series 3", "color" => "#910000", "type" => "area", "data" => [0, 0, 60, 90]]
+      ["name" => "Argenta", "color" => "#0d233a", "type" => null, "data" => $bankdata]
     ];
 
     $element = [
