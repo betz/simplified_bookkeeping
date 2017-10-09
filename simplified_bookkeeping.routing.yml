@@ -49,7 +49,7 @@ simplified_bookkeeping.config_form:
   
 
 simplified_bookkeeping.simplified_bookkeeping_graphs_graph:
-  path: '/bookkeeping/sales/graph/{start}/{end}'
+  path: '/bookkeeping/bankaccounts/graph/{start}/{end}'
   defaults:
     _controller: '\Drupal\simplified_bookkeeping\Controller\SimplifiedBookkeepingGraphs::graph'
     _title: 'Bankaccounts'

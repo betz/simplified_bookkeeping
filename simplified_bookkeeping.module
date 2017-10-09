@@ -3,6 +3,7 @@
 use \Drupal\simplified_bookkeeping\entity\BookingEntity;
 use \Drupal\Core\Form\FormStateInterface;
 use \Drupal\taxonomy\Entity\Term;
+use \Drupal\charts\Charts\ModuleSelector;
 
 
 /**
@@ -279,10 +280,29 @@ function simplified_bookkeeping_theme() {
       'last' => 'Bar',
       'uid' => NULL,
       'amount' => '0',
-      'host' => 'http://local.dashboard.hsbxl.be'
+      'host' => 'http://lcl.dashboard.hsbxl.be'
     ],
   ];
+  $theme['simplified_bookkeeping_charts'] = [
+    'template' => 'simplified_bookkeeping_charts',
+    'variables' => [
+      'library' => '',
+      'categories' => '',
+      'seriesData' => '',
+      'options' => '',
+    ],
+  ];
+
   return $theme;
+}
+
+/**
+ * Implements template_preprocess_page
+ *
+ * @param $variables
+ */
+function template_preprocess_simplified_bookkeeping_charts(&$variables) {
+  $moduleSelector = new ModuleSelector($variables['library'], $variables['categories'], $variables['seriesData'], $variables['options'], [], $variables, 'xyz');
 }
 
 /**

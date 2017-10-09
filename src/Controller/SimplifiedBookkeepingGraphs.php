@@ -41,6 +41,7 @@ class SimplifiedBookkeepingGraphs extends ControllerBase implements ContainerInj
     $bankstatements = entity_load_multiple('booking', $bankstatement_ids);
 
     $banktotal = 0;
+    $bankheaders = [];
     foreach($bankstatements as $key => $bankstatement) {
       $bankheaders[] = \Drupal::service('date.formatter')->format(strtotime($bankstatement->field_bankstatement_date->value), 'bookkeeping_date');
 
@@ -53,7 +54,7 @@ class SimplifiedBookkeepingGraphs extends ControllerBase implements ContainerInj
     $options['yaxis_title'] = $this->t('Euro');
     $options['yaxis_min'] = '';
     $options['yaxis_max'] = '';
-    $options['xaxis_title'] = $this->t('X-Axis');
+    $options['xaxis_title'] = $this->t('Date');
 
     // Sample data format.
     $categories = $bankheaders;
@@ -61,8 +62,10 @@ class SimplifiedBookkeepingGraphs extends ControllerBase implements ContainerInj
       ["name" => "Argenta", "color" => "#0d233a", "type" => null, "data" => $bankdata]
     ];
 
+    //print_r($options);
+
     $element = [
-      '#theme' => 'charts_api_example',
+      '#theme' => 'simplified_bookkeeping_charts',
       '#library' => $this->t($library),
       '#categories' => $categories,
       '#seriesData' => $seriesData,
