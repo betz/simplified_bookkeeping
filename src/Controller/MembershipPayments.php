@@ -36,7 +36,7 @@ class MembershipPayments extends ControllerBase {
   }
 
 
-  public function content(UserInterface $user = NULL) {
+  public function user_payments(UserInterface $user = NULL) {
 
     //$user = \Drupal::currentUser();
 

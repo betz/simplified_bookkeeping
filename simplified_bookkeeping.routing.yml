@@ -34,7 +34,7 @@ simplified_bookkeeping.export_bank:
 simplified_bookkeeping.membership_payments:
   path: '/user/{user}/membership_payments'
   defaults:
-    _controller: '\Drupal\simplified_bookkeeping\Controller\MembershipPayments::content'
+    _controller: '\Drupal\simplified_bookkeeping\Controller\MembershipPayments::user_payments'
     _title: 'Membership Payments'
   requirements:
     _custom_access: '\Drupal\simplified_bookkeeping\Controller\MembershipPayments::access'
