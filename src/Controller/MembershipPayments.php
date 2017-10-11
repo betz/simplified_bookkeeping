@@ -31,12 +31,6 @@ class MembershipPayments extends ControllerBase {
       return AccessResult::allowedIf(TRUE);
     }
 
-    // Check if the logged in member is the same as the visited member page.
-    // If so, grant access.
-    if($account->id() == $user->id()) {
-      return AccessResult::allowedIf(TRUE);
-    }
-
     // Deny access for all others requests.
     return AccessResult::allowedIf(FALSE);
   }
