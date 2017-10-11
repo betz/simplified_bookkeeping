@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_year
+    - simplified_bookkeeping.booking_type.monthbook
+id: booking.monthbook.field_year
+field_name: field_year
+entity_type: booking
+bundle: monthbook
+label: Year
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: 2009
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

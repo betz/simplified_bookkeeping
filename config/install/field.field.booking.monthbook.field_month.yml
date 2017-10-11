@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_month
+    - simplified_bookkeeping.booking_type.monthbook
+  module:
+    - options
+id: booking.monthbook.field_month
+field_name: field_month
+entity_type: booking
+bundle: monthbook
+label: Month
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_integer

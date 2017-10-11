@@ -1,0 +1,130 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.booking.yearbook.field_amount_of_happenings
+    - field.field.booking.yearbook.field_amount_on_bank_bottom
+    - field.field.booking.yearbook.field_amount_on_bank_top
+    - field.field.booking.yearbook.field_bank_account_data_argenta
+    - field.field.booking.yearbook.field_bank_account_data_kbc
+    - field.field.booking.yearbook.field_income_food_drinks
+    - field.field.booking.yearbook.field_income_membership_payments
+    - field.field.booking.yearbook.field_new_members
+    - field.field.booking.yearbook.field_paying_members
+    - field.field.booking.yearbook.field_year
+    - simplified_bookkeeping.booking_type.yearbook
+  module:
+    - user
+id: booking.yearbook.default
+targetEntityType: booking
+bundle: yearbook
+mode: default
+content:
+  field_amount_of_happenings:
+    weight: 7
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  field_amount_on_bank_bottom:
+    weight: 2
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_amount_on_bank_top:
+    weight: 1
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_bank_account_data_argenta:
+    weight: 8
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_bank_account_data_kbc:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: basic_string
+    region: content
+  field_income_food_drinks:
+    weight: 6
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_income_membership_payments:
+    weight: 5
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_new_members:
+    weight: 4
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_paying_members:
+    weight: 3
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_year:
+    weight: 10
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_amount_on_bank_bottom
+    - simplified_bookkeeping.booking_type.yearbook
+id: booking.yearbook.field_amount_on_bank_bottom
+field_name: field_amount_on_bank_bottom
+entity_type: booking
+bundle: yearbook
+label: 'Amount on bank: bottom'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: €
+  suffix: ''
+field_type: decimal

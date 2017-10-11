@@ -1,0 +1,89 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.booking.monthbook.field_income_food_drinks
+    - field.field.booking.monthbook.field_income_membership_payments
+    - field.field.booking.monthbook.field_month
+    - field.field.booking.monthbook.field_new_members
+    - field.field.booking.monthbook.field_paying_members
+    - field.field.booking.monthbook.field_year
+    - simplified_bookkeeping.booking_type.monthbook
+  module:
+    - options
+    - user
+id: booking.monthbook.default
+targetEntityType: booking
+bundle: monthbook
+mode: default
+content:
+  field_income_food_drinks:
+    weight: 4
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_income_membership_payments:
+    weight: 3
+    label: above
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_decimal
+    region: content
+  field_month:
+    weight: 6
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
+    region: content
+  field_new_members:
+    weight: 2
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_paying_members:
+    weight: 1
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
+    region: content
+  field_year:
+    weight: 5
+    label: above
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    type: number_integer
+    region: content
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+  user_id:
+    label: hidden
+    type: author
+    weight: 0
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+hidden: {  }

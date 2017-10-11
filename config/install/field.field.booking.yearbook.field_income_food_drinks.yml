@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_income_food_drinks
+    - simplified_bookkeeping.booking_type.yearbook
+id: booking.yearbook.field_income_food_drinks
+field_name: field_income_food_drinks
+entity_type: booking
+bundle: yearbook
+label: 'Income: Food & drinks'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: €
+  suffix: ''
+field_type: decimal

@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_bank_account_data_argenta
+    - simplified_bookkeeping.booking_type.yearbook
+id: booking.yearbook.field_bank_account_data_argenta
+field_name: field_bank_account_data_argenta
+entity_type: booking
+bundle: yearbook
+label: 'Bank account data: Argenta'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long
