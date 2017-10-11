@@ -24,7 +24,7 @@ class MembershipPayments extends ControllerBase {
    * @param \Drupal\Core\Session\AccountInterface $account
    *   Run access checks for this account.
    */
-  public function access(AccountInterface $account, AccountInterface $user = NULL) {
+  public function bookkeeper_access(AccountInterface $account, AccountInterface $user = NULL) {
 
     // If a member has 'access bookkeeping' permission, always grant access.
     if($account->hasPermission('access bookkeeping')) {
@@ -35,21 +35,24 @@ class MembershipPayments extends ControllerBase {
     return AccessResult::allowedIf(FALSE);
   }
 
-
-  public function user_payments_block(UserInterface $user = NULL) {
-
-    //$user = \Drupal::currentUser();
-
+  function user_payments(AccountInterface $user = NULL) {
+    //kint($user);
     $query = \Drupal::entityQuery('booking');
-    $query->condition('status', 1);
     $query->condition('type', 'sale');
     $query->condition('field_membership_member', $user->id(), '=');
+    $query->condition('status', 1);
     $query->sort('field_sale_date', 'DESC');
+    $paymentids = $query->execute();
+    kint($paymentids);
+    return entity_load_multiple('booking', $paymentids);
+  }
 
-    $sale_ids = $query->execute();
-    $sales = entity_load_multiple('booking', $sale_ids);
+  public function user_payments_table(UserInterface $user = NULL) {
+    $sales = $this->user_payments($user);
+    //kint($sales);
     $total = 0; $bank_rows = [];
 
+    // go over and create the table rows.
     foreach($sales as $sale) {
       $bank_rows[] = [
         $sale->get('field_sale_date')->getValue()[0]['value'],
@@ -59,6 +62,8 @@ class MembershipPayments extends ControllerBase {
       $total = $total + $sale->get('field_sale_total_amount')->getValue()[0]['value'];
     }
 
+    // Check if the total is above zero
+    // if not, create an empty message row.
     if($total > 0) {
       $bank_rows[] = [
         'TOTAL',
@@ -72,18 +77,14 @@ class MembershipPayments extends ControllerBase {
       ];
     }
 
-    $a = 0;
-
-
-    $bank_header = [
-      'Date',
-      'Method',
-      'Amount',
-    ];
-
+    // Define the table render array
     $build[] = [
       '#type' => 'table',
-      '#header' => $bank_header,
+      '#header' => [
+        'Date',
+        'Method',
+        'Amount',
+      ],
       '#rows' => $bank_rows,
       '#attributes' => [
         'class' => ['table', 'table-striped', 'table-condensed', 'table-bordered']
