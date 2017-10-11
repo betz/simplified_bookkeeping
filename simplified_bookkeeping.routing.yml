@@ -45,7 +45,7 @@ simplified_bookkeeping.config_form:
     _form: '\Drupal\simplified_bookkeeping\Form\ConfigForm'
     _title: 'Config Simplified Bookkeeping'
   requirements:
-    _access: 'TRUE'
+    _permission: 'access bookkeeping'
   
 
 simplified_bookkeeping.simplified_bookkeeping_graphs_graph:
