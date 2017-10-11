@@ -36,7 +36,6 @@ class MembershipPayments extends ControllerBase {
   }
 
   function user_payments(AccountInterface $user = NULL) {
-    //kint($user);
     $query = \Drupal::entityQuery('booking');
     $query->condition('type', 'sale');
     $query->condition('field_membership_member', $user->id(), '=');
@@ -48,18 +47,17 @@ class MembershipPayments extends ControllerBase {
   }
 
   public function user_payments_table(UserInterface $user = NULL) {
-    $sales = $this->user_payments($user);
-    //kint($sales);
+    $payments = $this->user_payments($user);
     $total = 0; $bank_rows = [];
 
     // go over and create the table rows.
-    foreach($sales as $sale) {
+    foreach($payments as $payment) {
       $bank_rows[] = [
-        $sale->get('field_sale_date')->getValue()[0]['value'],
-        $sale->get('field_sale_payment_method')->getValue()[0]['value'],
-        $sale->get('field_sale_total_amount')->getValue()[0]['value'] . '€',
+        $payment->get('field_sale_date')->getValue()[0]['value'],
+        $payment->get('field_sale_payment_method')->getValue()[0]['value'],
+        $payment->get('field_sale_total_amount')->getValue()[0]['value'] . '€',
       ];
-      $total = $total + $sale->get('field_sale_total_amount')->getValue()[0]['value'];
+      $total = $total + $payment->get('field_sale_total_amount')->getValue()[0]['value'];
     }
 
     // Check if the total is above zero
