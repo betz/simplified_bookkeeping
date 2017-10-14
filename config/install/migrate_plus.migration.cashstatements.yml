@@ -13,7 +13,7 @@ migration_group: simplified_bookkeeping
 label: 'Import cashstatements'
 source:
   plugin: csv
-  path: /home/vagrant/cashstatements.csv
+  path: /var/www/drupalvm/csv/cashstatements.csv
   delimiter: ','
   enclosure: '"'
   header_row_count: 0

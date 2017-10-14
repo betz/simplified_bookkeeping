@@ -13,7 +13,7 @@ migration_group: simplified_bookkeeping
 label: 'Import bankstatements from Argenta CSV'
 source:
   plugin: csv
-  path: /home/vagrant/bankstatements.csv
+  path: /var/www/drupalvm/csv/bankstatements.csv
   delimiter: ;
   enclosure: ''
   header_row_count: 0
