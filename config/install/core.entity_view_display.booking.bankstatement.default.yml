@@ -3,7 +3,6 @@ status: true
 dependencies:
   config:
     - field.field.booking.bankstatement.field_bankstatement_account
-    - field.field.booking.bankstatement.field_bankstatement_date
     - field.field.booking.bankstatement.field_bankstatement_memo
     - field.field.booking.bankstatement.field_bankstatement_name
     - field.field.booking.bankstatement.field_booking
@@ -25,15 +24,6 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
-  field_bankstatement_date:
-    weight: 1
-    label: inline
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
     region: content
   field_bankstatement_memo:
     weight: 3

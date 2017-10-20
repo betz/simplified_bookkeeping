@@ -25,7 +25,7 @@ class BookkeepingService {
     $query = $this->entity_query->get('booking');
     $query->condition('status', 1);
     $query->condition('type', ['bankstatement', 'cashstatement'], 'IN');
-    $query->sort('field_date' , 'ASC');
+    $query->sort('field_booking_date' , 'ASC');
     //$query->sort('field_month' , 'ASC');
 
     foreach ($query->execute() as $bid) {
