@@ -4,6 +4,7 @@ dependencies:
   config:
     - field.field.booking.sale.field_bankstatement
     - field.field.booking.sale.field_booking
+    - field.field.booking.sale.field_booking_date
     - field.field.booking.sale.field_booking_valid
     - field.field.booking.sale.field_bookkeeping_tag
     - field.field.booking.sale.field_membership_member
@@ -14,9 +15,7 @@ dependencies:
     - field.field.booking.sale.field_sale_memo
     - field.field.booking.sale.field_sale_payment_date
     - field.field.booking.sale.field_sale_payment_method
-    - field.field.booking.sale.field_sale_taxable_amount_12
     - field.field.booking.sale.field_sale_taxable_amount_21
-    - field.field.booking.sale.field_sale_taxable_amount_6
     - field.field.booking.sale.field_sale_total_amount
     - field.field.booking.sale.field_sale_vat
     - field.field.booking.sale.field_sale_vat_credit_note
@@ -37,6 +36,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_booking_date:
+    weight: 33
+    settings: {  }
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_booking_valid:
     weight: 0
@@ -114,9 +119,7 @@ hidden:
   field_bankstatement: true
   field_sale_credit_note_ta: true
   field_sale_id: true
-  field_sale_taxable_amount_12: true
   field_sale_taxable_amount_21: true
-  field_sale_taxable_amount_6: true
   field_sale_vat: true
   field_sale_vat_credit_note: true
   field_ta_assets: true

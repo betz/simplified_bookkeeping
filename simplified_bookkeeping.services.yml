@@ -1,3 +1,4 @@
 services:
-  simplified_bookkeeping.bankstatements:
-    class: Drupal\simplified_bookkeeping\ServiceBankstatements
+  simplified_bookkeeping.bookkeeping:
+    class: Drupal\simplified_bookkeeping\BookkeepingService
+    arguments: ['@entity.query', '@entity.manager']

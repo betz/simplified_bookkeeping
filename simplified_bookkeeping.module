@@ -76,16 +76,16 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
       $purchase_data = [
         'type' => 'purchase',
         'name' => $memo,
-        'field_purchase_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
+        'field_purchase_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
         'field_purchase_total_amount' => $total_amount,
-        'field_purchase_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
+        'field_purchase_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
         'field_booking' => $entity->id(),
         'field_purchase_payment_method' => 'banktransfer',
         'uid' => 1
       ];
 
       $purchase = BookingEntity::create($purchase_data);
-      $purchase->save();
+      //$purchase->save();
     }
 
     // If the bankstatement is positive, create a sale booking
@@ -95,8 +95,8 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'type' => 'sale',
         'name' => $memo,
         'field_sale_total_amount' => $total_amount,
-        'field_sale_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
-        'field_sale_payment_date' => $entity->get('field_bankstatement_date')->getValue()[0]['value'],
+        'field_sale_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
+        'field_sale_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
         'field_booking' => $entity->id(),
         'field_sale_payment_method' => 'banktransfer',
         'uid' => 1
@@ -142,7 +142,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
       }
 
       $sale = BookingEntity::create($sale_data);
-      $sale->save();
+      //$sale->save();
 
       // send an email to the sender notifying him about his received payment.
       if(current($entity_ids) > 0 && $config->get('membership_payment_received_email')) {
@@ -187,7 +187,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
       ];
 
       $purchase = BookingEntity::create($purchase_data);
-      $purchase->save();
+      //$purchase->save();
     }
 
     // If the bankstatement is positive, create a sale booking
@@ -204,7 +204,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
       ];
 
       $sale = BookingEntity::create($sale_data);
-      $sale->save();
+      //$sale->save();
     }
   }
 }

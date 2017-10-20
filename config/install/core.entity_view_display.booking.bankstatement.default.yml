@@ -8,6 +8,7 @@ dependencies:
     - field.field.booking.bankstatement.field_bankstatement_name
     - field.field.booking.bankstatement.field_booking
     - field.field.booking.bankstatement.field_booking_amount
+    - field.field.booking.bankstatement.field_booking_date
     - field.field.booking.bankstatement.field_membership_member
     - simplified_bookkeeping.booking_type.bankstatement
   module:
@@ -68,6 +69,15 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
+    region: content
+  field_booking_date:
+    weight: 8
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_membership_member:
     weight: 7

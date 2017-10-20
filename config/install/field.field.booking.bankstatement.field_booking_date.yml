@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_booking_date
+    - simplified_bookkeeping.booking_type.bankstatement
+  module:
+    - datetime
+id: booking.bankstatement.field_booking_date
+field_name: field_booking_date
+entity_type: booking
+bundle: bankstatement
+label: Date
+description: ''
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
