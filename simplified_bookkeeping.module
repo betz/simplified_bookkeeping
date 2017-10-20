@@ -133,20 +133,12 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
 
         $sale_data['field_sale_client'] = $first_name . ' ' . $last_name;
         $sale_data['field_sale_memo'] = 'Membership';
-
-        // it is a membership payment, so calculate VAT, which is 21%.
-        $sale_data['field_sale_taxable_amount_21'] = 0.21 * $total_amount;
-        $sale_data['field_sale_vat'] = 0.21 * $total_amount;
       }
 
       // Find Bitkassa payments, set as fridge sales.
       if(strpos($memo, 'BitKassa') === 0) {
         $sale_data['field_sale_client'] = 'Drinks';
         $sale_data['field_sale_memo'] = 'Drinks';
-
-        // it is a drink payment, calculate VAT, which is 21%.
-        $sale_data['field_sale_taxable_amount_21'] = 0.21 * $total_amount;
-        $sale_data['field_sale_vat'] = 0.21 * $total_amount;
       }
 
       $sale = BookingEntity::create($sale_data);
