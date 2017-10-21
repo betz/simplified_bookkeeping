@@ -6,8 +6,8 @@ dependencies:
     - field.storage.booking.field_booking_date
     - field.storage.booking.field_booking_valid
     - field.storage.booking.field_bookkeeping_tag
+    - field.storage.booking.field_payment_method
     - field.storage.booking.field_sale_id
-    - field.storage.booking.field_sale_payment_method
     - field.storage.booking.field_sale_total_amount
     - simplified_bookkeeping.booking_type.sale
     - system.menu.bookkeeping
@@ -485,10 +485,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_sale_payment_method:
-          id: field_sale_payment_method
-          table: booking__field_sale_payment_method
-          field: field_sale_payment_method
+        field_payment_method:
+          id: field_payment_method
+          table: booking__field_payment_method
+          field: field_payment_method
           relationship: none
           group_type: group
           admin_label: ''
@@ -816,8 +816,8 @@ display:
         - 'config:field.storage.booking.field_booking_date'
         - 'config:field.storage.booking.field_booking_valid'
         - 'config:field.storage.booking.field_bookkeeping_tag'
+        - 'config:field.storage.booking.field_payment_method'
         - 'config:field.storage.booking.field_sale_id'
-        - 'config:field.storage.booking.field_sale_payment_method'
         - 'config:field.storage.booking.field_sale_total_amount'
   page_1:
     display_plugin: page
@@ -848,6 +848,6 @@ display:
         - 'config:field.storage.booking.field_booking_date'
         - 'config:field.storage.booking.field_booking_valid'
         - 'config:field.storage.booking.field_bookkeeping_tag'
+        - 'config:field.storage.booking.field_payment_method'
         - 'config:field.storage.booking.field_sale_id'
-        - 'config:field.storage.booking.field_sale_payment_method'
         - 'config:field.storage.booking.field_sale_total_amount'

@@ -43,7 +43,7 @@ class BookkeepingService {
           'field_sale_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
           'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
           'field_booking' => $booking->id(),
-          'field_sale_payment_method' => $booking->bundle(),
+          'field_payment_method' => $booking->bundle(),
           'uid' => 1
         ];
 
