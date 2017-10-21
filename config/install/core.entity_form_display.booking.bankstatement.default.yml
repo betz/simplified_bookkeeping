@@ -9,6 +9,7 @@ dependencies:
     - field.field.booking.bankstatement.field_booking_amount
     - field.field.booking.bankstatement.field_booking_date
     - field.field.booking.bankstatement.field_membership_member
+    - field.field.booking.bankstatement.field_processed
     - simplified_bookkeeping.booking_type.bankstatement
   module:
     - datetime
@@ -71,6 +72,13 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_processed:
+    weight: 35
+    settings:
+      display_label: true
+    third_party_settings: {  }
+    type: boolean_checkbox
     region: content
   name:
     type: string_textfield
