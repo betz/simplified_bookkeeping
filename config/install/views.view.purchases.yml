@@ -5,9 +5,9 @@ dependencies:
     - field.storage.booking.field_booking
     - field.storage.booking.field_booking_date
     - field.storage.booking.field_booking_valid
+    - field.storage.booking.field_payment_method
     - field.storage.booking.field_purchase_commodities
     - field.storage.booking.field_purchase_id
-    - field.storage.booking.field_purchase_payment_method
     - field.storage.booking.field_purchase_services_various
     - field.storage.booking.field_purchase_supplier
     - field.storage.booking.field_purchase_total_amount
@@ -17,8 +17,8 @@ dependencies:
     - user.role.bookkeeper
   module:
     - datetime
+    - options
     - simplified_bookkeeping
-    - text
     - user
 id: purchases
 label: Purchases
@@ -674,10 +674,10 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_purchase_payment_method:
-          id: field_purchase_payment_method
-          table: booking__field_purchase_payment_method
-          field: field_purchase_payment_method
+        field_payment_method:
+          id: field_payment_method
+          table: booking__field_payment_method
+          field: field_payment_method
           relationship: none
           group_type: group
           admin_label: ''
@@ -723,7 +723,7 @@ display:
           empty_zero: false
           hide_alter_empty: true
           click_sort_column: value
-          type: text_default
+          type: list_default
           settings: {  }
           group_column: value
           group_columns: {  }
@@ -1006,9 +1006,9 @@ display:
         - 'config:field.storage.booking.field_booking'
         - 'config:field.storage.booking.field_booking_date'
         - 'config:field.storage.booking.field_booking_valid'
+        - 'config:field.storage.booking.field_payment_method'
         - 'config:field.storage.booking.field_purchase_commodities'
         - 'config:field.storage.booking.field_purchase_id'
-        - 'config:field.storage.booking.field_purchase_payment_method'
         - 'config:field.storage.booking.field_purchase_services_various'
         - 'config:field.storage.booking.field_purchase_supplier'
         - 'config:field.storage.booking.field_purchase_total_amount'
@@ -1041,9 +1041,9 @@ display:
         - 'config:field.storage.booking.field_booking'
         - 'config:field.storage.booking.field_booking_date'
         - 'config:field.storage.booking.field_booking_valid'
+        - 'config:field.storage.booking.field_payment_method'
         - 'config:field.storage.booking.field_purchase_commodities'
         - 'config:field.storage.booking.field_purchase_id'
-        - 'config:field.storage.booking.field_purchase_payment_method'
         - 'config:field.storage.booking.field_purchase_services_various'
         - 'config:field.storage.booking.field_purchase_supplier'
         - 'config:field.storage.booking.field_purchase_total_amount'
