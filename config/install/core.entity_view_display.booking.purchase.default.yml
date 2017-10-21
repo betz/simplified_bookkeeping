@@ -3,8 +3,10 @@ status: true
 dependencies:
   config:
     - field.field.booking.purchase.field_booking
+    - field.field.booking.purchase.field_booking_date
     - field.field.booking.purchase.field_booking_valid
     - field.field.booking.purchase.field_invoice
+    - field.field.booking.purchase.field_payment_method
     - field.field.booking.purchase.field_purchase_assets
     - field.field.booking.purchase.field_purchase_commodities
     - field.field.booking.purchase.field_purchase_credit_note_ta
@@ -22,6 +24,7 @@ dependencies:
   module:
     - datetime
     - file
+    - options
     - text
     - user
 id: booking.purchase.default
@@ -36,6 +39,15 @@ content:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
+    region: content
+  field_booking_date:
+    weight: 19
+    label: above
+    settings:
+      format_type: medium
+      timezone_override: ''
+    third_party_settings: {  }
+    type: datetime_default
     region: content
   field_booking_valid:
     weight: 15
@@ -53,6 +65,13 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: file_default
+    region: content
+  field_payment_method:
+    weight: 18
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_purchase_assets:
     weight: 1

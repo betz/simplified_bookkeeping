@@ -3,9 +3,9 @@ status: true
 dependencies:
   config:
     - field.storage.booking.field_booking
+    - field.storage.booking.field_booking_date
     - field.storage.booking.field_booking_valid
     - field.storage.booking.field_bookkeeping_tag
-    - field.storage.booking.field_sale_date
     - field.storage.booking.field_sale_id
     - field.storage.booking.field_sale_payment_method
     - field.storage.booking.field_sale_total_amount
@@ -16,7 +16,6 @@ dependencies:
     - options
     - simplified_bookkeeping
     - taxonomy
-    - user
 id: sale_diary
 label: 'Sale diary'
 module: views
@@ -90,7 +89,6 @@ display:
           description: ''
           columns:
             field_booking_valid: field_booking_valid
-            field_sale_date: field_sale_date
             field_sale_id: field_sale_id
             field_sale_total_amount: field_sale_total_amount
             field_bookkeeping_tag: field_bookkeeping_tag
@@ -98,15 +96,9 @@ display:
             field_sale_payment_method: field_sale_payment_method
             field_booking: field_booking
             edit_booking: edit_booking
+            field_booking_date: field_booking_date
           info:
             field_booking_valid:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_sale_date:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -154,6 +146,13 @@ display:
               empty_column: false
               responsive: ''
             edit_booking:
+              sortable: false
+              default_sort_order: asc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_booking_date:
               sortable: false
               default_sort_order: asc
               align: ''
@@ -230,14 +229,14 @@ display:
           separator: ', '
           field_api_classes: false
           plugin_id: field
-        field_sale_date:
-          id: field_sale_date
-          table: booking__field_sale_date
-          field: field_sale_date
+        field_booking_date:
+          id: field_booking_date
+          table: booking__field_booking_date
+          field: field_booking_date
           relationship: none
           group_type: group
           admin_label: ''
-          label: 'Sale date'
+          label: Date
           exclude: false
           alter:
             alter_text: false
@@ -485,71 +484,6 @@ display:
           multi_type: separator
           separator: ', '
           field_api_classes: false
-          plugin_id: field
-        name:
-          id: name
-          table: users_field_data
-          field: name
-          relationship: field_membership_member
-          group_type: group
-          admin_label: ''
-          label: Member
-          exclude: false
-          alter:
-            alter_text: false
-            text: ''
-            make_link: false
-            path: ''
-            absolute: false
-            external: false
-            replace_spaces: false
-            path_case: none
-            trim_whitespace: false
-            alt: ''
-            rel: ''
-            link_class: ''
-            prefix: ''
-            suffix: ''
-            target: ''
-            nl2br: false
-            max_length: 0
-            word_boundary: true
-            ellipsis: true
-            more_link: false
-            more_link_text: ''
-            more_link_path: ''
-            strip_tags: false
-            trim: false
-            preserve_tags: ''
-            html: false
-          element_type: ''
-          element_class: ''
-          element_label_type: ''
-          element_label_class: ''
-          element_label_colon: true
-          element_wrapper_type: ''
-          element_wrapper_class: ''
-          element_default_classes: true
-          empty: ''
-          hide_empty: false
-          empty_zero: false
-          hide_alter_empty: true
-          click_sort_column: value
-          type: user_name
-          settings:
-            link_to_entity: true
-          group_column: value
-          group_columns: {  }
-          group_rows: true
-          delta_limit: 0
-          delta_offset: 0
-          delta_reversed: false
-          delta_first_last: false
-          multi_type: separator
-          separator: ', '
-          field_api_classes: false
-          entity_type: user
-          entity_field: name
           plugin_id: field
         field_sale_payment_method:
           id: field_sale_payment_method
@@ -817,54 +751,11 @@ display:
             group_items: {  }
           reduce_duplicates: false
           plugin_id: list_field
-        field_sale_date_value:
-          id: field_sale_date_value
-          table: booking__field_sale_date
-          field: field_sale_date_value
-          relationship: none
-          group_type: group
-          admin_label: ''
-          operator: '='
-          value:
-            min: ''
-            max: ''
-            value: ''
-            type: date
-          group: 1
-          exposed: true
-          expose:
-            operator_id: field_sale_date_value_op
-            label: 'Filter on booking date'
-            description: ''
-            use_operator: false
-            operator: field_sale_date_value_op
-            identifier: date
-            required: false
-            remember: false
-            multiple: false
-            remember_roles:
-              authenticated: authenticated
-              anonymous: '0'
-              administrator: '0'
-              bookkeeper: '0'
-          is_grouped: false
-          group_info:
-            label: ''
-            description: ''
-            identifier: ''
-            optional: true
-            widget: select
-            multiple: false
-            remember: false
-            default_group: All
-            default_group_multiple: {  }
-            group_items: {  }
-          plugin_id: datetime
       sorts:
-        field_sale_date_value:
-          id: field_sale_date_value
-          table: booking__field_sale_date
-          field: field_sale_date_value
+        field_booking_date_value:
+          id: field_booking_date_value
+          table: booking__field_booking_date
+          field: field_booking_date_value
           relationship: none
           group_type: group
           admin_label: ''
@@ -902,15 +793,6 @@ display:
             format: basic_html
           plugin_id: text
       relationships:
-        field_membership_member:
-          id: field_membership_member
-          table: booking__field_membership_member
-          field: field_membership_member
-          relationship: none
-          group_type: group
-          admin_label: 'field_membership_member: User'
-          required: false
-          plugin_id: standard
         field_bookkeeping_tag:
           id: field_bookkeeping_tag
           table: booking__field_bookkeeping_tag
@@ -931,9 +813,9 @@ display:
         - url.query_args
       tags:
         - 'config:field.storage.booking.field_booking'
+        - 'config:field.storage.booking.field_booking_date'
         - 'config:field.storage.booking.field_booking_valid'
         - 'config:field.storage.booking.field_bookkeeping_tag'
-        - 'config:field.storage.booking.field_sale_date'
         - 'config:field.storage.booking.field_sale_id'
         - 'config:field.storage.booking.field_sale_payment_method'
         - 'config:field.storage.booking.field_sale_total_amount'
@@ -963,9 +845,9 @@ display:
         - url.query_args
       tags:
         - 'config:field.storage.booking.field_booking'
+        - 'config:field.storage.booking.field_booking_date'
         - 'config:field.storage.booking.field_booking_valid'
         - 'config:field.storage.booking.field_bookkeeping_tag'
-        - 'config:field.storage.booking.field_sale_date'
         - 'config:field.storage.booking.field_sale_id'
         - 'config:field.storage.booking.field_sale_payment_method'
         - 'config:field.storage.booking.field_sale_total_amount'

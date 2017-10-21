@@ -8,6 +8,7 @@ dependencies:
     - field.field.booking.sale.field_booking_valid
     - field.field.booking.sale.field_bookkeeping_tag
     - field.field.booking.sale.field_membership_member
+    - field.field.booking.sale.field_payment_method
     - field.field.booking.sale.field_sale_client
     - field.field.booking.sale.field_sale_credit_note_ta
     - field.field.booking.sale.field_sale_date
@@ -67,6 +68,12 @@ content:
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
+    region: content
+  field_payment_method:
+    weight: 34
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_sale_client:
     weight: 4
