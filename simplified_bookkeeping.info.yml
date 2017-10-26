@@ -28,6 +28,7 @@ dependencies:
   - system
   - taxonomy
   - text
+  - ultimate_cron
   - user
   - views
 version: 8.x-1.0-alpha1

@@ -1,0 +1,16 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - simplified_bookkeeping
+title: 'Add to queue: bank/cash statements for sale/purchase generation'
+id: sales_queue_worker
+weight: 0
+module: simplified_bookkeeping
+callback: simplified_bookkeeping_cronjob_queuestatements
+scheduler:
+  id: simple
+launcher:
+  id: serial
+logger:
+  id: database

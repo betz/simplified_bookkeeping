@@ -1,4 +1,4 @@
 services:
   simplified_bookkeeping.bookkeeping:
     class: Drupal\simplified_bookkeeping\BookkeepingService
-    arguments: ['@entity.query', '@entity.manager']
+    arguments: ['@entity.query', '@entity.manager', '@queue']

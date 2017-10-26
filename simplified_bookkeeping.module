@@ -6,6 +6,16 @@ use \Drupal\taxonomy\Entity\Term;
 use \Drupal\charts\Charts\ModuleSelector;
 
 
+
+/**
+ * Cronjob callback.
+ */
+function simplified_bookkeeping_cronjob_queuestatements() {
+  $bookkeeping = \Drupal::service('simplified_bookkeeping.bookkeeping');
+  $bookkeeping->queueStatements();
+}
+
+
 /**
  * Implements hook_entity_update().
  */

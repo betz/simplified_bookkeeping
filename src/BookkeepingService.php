@@ -8,7 +8,8 @@ use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\simplified_bookkeeping\Entity\BookingEntity;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\hsbxl_members\Entity\Membership;
-use Drupal\core\Queue;
+use Drupal\Core\Queue\QueueFactory;
+use Drupal\Core\Queue\QueueInterface;
 
 
 /**
@@ -23,38 +24,60 @@ class BookkeepingService {
     $this->entityManager = $entityManager;
   }
 
-  public function genSales() {
-    $query = $this->entity_query->get('booking');
-    $query->condition('status', 1);
-    $query->condition('field_processed', FALSE);
-    $query->condition('type', ['bankstatement', 'cashstatement'], 'IN');
-    $query->sort('field_booking_date' , 'ASC');
-
+  public function genSalePurchase($bid) {
     $booking_storage = $this
       ->entityManager
       ->getStorage('booking');
 
-    foreach ($query->execute() as $bid) {
-      $output[] = $bid;
-      $booking = $booking_storage->load($bid);
+    $booking = $booking_storage->load($bid);
 
-      if($booking->get('field_booking_amount')->getValue()[0]['value'] > 0) {
-        $sale_data = [
-          'type' => 'sale',
-          'name' => $booking->get('name')->getValue()[0]['value'],
-          'field_sale_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
-          'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
-          'field_booking' => $booking->id(),
-          'field_payment_method' => $booking->bundle(),
-          'uid' => 1
-        ];
+    if($booking->get('field_booking_amount')->getValue()[0]['value'] > 0) {
+      $sale_data = [
+        'type' => 'sale',
+        'name' => $booking->get('name')->getValue()[0]['value'],
+        'field_sale_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
+        'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
+        'field_booking' => $bid,
+        'field_payment_method' => $booking->bundle(),
+        'uid' => 1
+      ];
 
-        //$sale = BookingEntity::create($sale_data);
-        //$sale->save();
-      }
+      $sale = BookingEntity::create($sale_data);
+      $sale->save();
     }
 
-    return $output;
+    if($booking->get('field_booking_amount')->getValue()[0]['value'] < 0) {
+      $purchase_data = [
+        'type' => 'purchase',
+        'name' => $booking->get('name')->getValue()[0]['value'],
+        'field_purchase_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
+        'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
+        'field_booking' => $bid,
+        'field_payment_method' => $booking->bundle(),
+        'uid' => 1
+      ];
+
+      $purchase = BookingEntity::create($purchase_data);
+      $purchase->save();
+    }
+
+  }
+
+  public function queueStatements() {
+    $query = $this->entity_query->get('booking');
+    $query->condition('status', 1);
+    //$query->condition('field_processed', FALSE);
+    $query->condition('type', ['bankstatement', 'cashstatement'], 'IN');
+    $query->sort('field_booking_date' , 'ASC');
+
+    $queue_factory = \Drupal::service('queue');
+    $queue = $queue_factory->get('statements_queue_processor');
+
+    foreach ($query->execute() as $bid) {
+      $queue->createItem($bid);
+    }
+
+    return;
   }
 
   public function genPurchases() {
