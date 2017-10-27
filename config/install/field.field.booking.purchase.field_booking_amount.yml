@@ -2,21 +2,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_purchase_credit_note_ta
+    - field.storage.booking.field_booking_amount
     - simplified_bookkeeping.booking_type.purchase
-id: booking.purchase.field_purchase_credit_note_ta
-field_name: field_purchase_credit_note_ta
+id: booking.purchase.field_booking_amount
+field_name: field_booking_amount
 entity_type: booking
 bundle: purchase
-label: 'Credit note TA'
+label: Amount
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
   min: null
   max: null
-  prefix: ''
+  prefix: €
   suffix: ''
 field_type: decimal

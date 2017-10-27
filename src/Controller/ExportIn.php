@@ -24,7 +24,7 @@ class ExportIn extends ControllerBase {
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
     $query->condition('type', 'sale');
-    $query->condition('field_sale_date', $start_date_storage_format, '>=');
+    //$query->condition('field_sale_date', $start_date_storage_format, '>=');
     $query->sort('field_bankstatement_date', 'ASC');
 
     $entity_ids = $query->execute();
@@ -60,15 +60,15 @@ class ExportIn extends ControllerBase {
       }
 
 
-      $booking_date = new DrupalDateTime($booking->field_sale_date->value);
-      $booking_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
+      //$booking_date = new DrupalDateTime($booking->field_sale_date->value);
+      //$booking_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
       $booking_date = $booking_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
       $amount = round($booking->field_sale_total_amount->value, 2);
 
       $rows[] = [
         $nr,
-        $booking->field_sale_date->value,
+        //$booking->field_sale_date->value,
         $booking->label(),
         '',
         $bank_amount,

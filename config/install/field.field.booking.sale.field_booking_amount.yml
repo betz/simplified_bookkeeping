@@ -2,19 +2,21 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_payment_method
+    - field.storage.booking.field_booking_amount
     - simplified_bookkeeping.booking_type.sale
-  module:
-    - options
-id: booking.sale.field_payment_method
-field_name: field_payment_method
+id: booking.sale.field_booking_amount
+field_name: field_booking_amount
 entity_type: booking
 bundle: sale
-label: 'Payment method'
+label: Amount
 description: ''
 required: false
 translatable: true
 default_value: {  }
 default_value_callback: ''
-settings: {  }
-field_type: list_string
+settings:
+  min: null
+  max: null
+  prefix: €
+  suffix: ''
+field_type: decimal

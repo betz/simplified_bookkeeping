@@ -40,7 +40,7 @@ class MembershipPayments extends ControllerBase {
     $query->condition('type', 'sale');
     //$query->condition('field_membership_member', $user->id(), '=');
     $query->condition('status', 1);
-    $query->sort('field_sale_date', 'DESC');
+    //$query->sort('field_sale_date', 'DESC');
     $paymentids = $query->execute();
     kint($paymentids);
     return entity_load_multiple('booking', $paymentids);
@@ -53,8 +53,8 @@ class MembershipPayments extends ControllerBase {
     // go over and create the table rows.
     foreach($payments as $payment) {
       $bank_rows[] = [
-        $payment->get('field_sale_date')->getValue()[0]['value'],
-        $payment->get('field_sale_payment_method')->getValue()[0]['value'],
+        //$payment->get('field_sale_date')->getValue()[0]['value'],
+        //$payment->get('field_sale_payment_method')->getValue()[0]['value'],
         $payment->get('field_sale_total_amount')->getValue()[0]['value'] . '€',
       ];
       $total = $total + $payment->get('field_sale_total_amount')->getValue()[0]['value'];

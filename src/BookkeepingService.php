@@ -53,7 +53,7 @@ class BookkeepingService {
         'field_sale_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
         'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
         'field_booking' => $booking_id,
-        'field_payment_method' => $booking->bundle(),
+        //'field_payment_method' => $booking->bundle(),
         'uid' => 1
       ];
 
@@ -72,7 +72,7 @@ class BookkeepingService {
         'field_purchase_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
         'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
         'field_booking' => $booking_id,
-        'field_payment_method' => $booking->bundle(),
+        //'field_payment_method' => $booking->bundle(),
         'uid' => 1
       ];
 
@@ -125,7 +125,7 @@ class BookkeepingService {
           'field_purchase_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
           'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
           'field_booking' => $booking->id(),
-          'field_payment_method' => $booking->bundle(),
+          //'field_payment_method' => $booking->bundle(),
           'uid' => 1
         ];
 

@@ -2,12 +2,12 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_invoice
+    - field.storage.booking.field_booking_invoice
     - simplified_bookkeeping.booking_type.purchase
   module:
     - file
-id: booking.purchase.field_invoice
-field_name: field_invoice
+id: booking.purchase.field_booking_invoice
+field_name: field_booking_invoice
 entity_type: booking
 bundle: purchase
 label: Invoice
@@ -17,7 +17,7 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  file_directory: 'sale_invoices/[date:custom:Y]-[date:custom:m]'
+  file_directory: '[date:custom:Y]-[date:custom:m]'
   file_extensions: pdf
   max_filesize: ''
   description_field: false

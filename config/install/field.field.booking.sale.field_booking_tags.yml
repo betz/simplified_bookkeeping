@@ -2,24 +2,24 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_bankstatement
-    - simplified_bookkeeping.booking_type.bankstatement
+    - field.storage.booking.field_booking_tags
     - simplified_bookkeeping.booking_type.sale
-id: booking.sale.field_bankstatement
-field_name: field_bankstatement
+    - taxonomy.vocabulary.bookkeeping_tags
+id: booking.sale.field_booking_tags
+field_name: field_booking_tags
 entity_type: booking
 bundle: sale
-label: Bankstatement
+label: Tags
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  handler: 'default:booking'
+  handler: 'default:taxonomy_term'
   handler_settings:
     target_bundles:
-      bankstatement: bankstatement
+      bookkeeping_tags: bookkeeping_tags
     sort:
       field: _none
     auto_create: false

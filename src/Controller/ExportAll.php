@@ -89,9 +89,9 @@ class ExportAll extends ControllerBase {
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
     $query->condition('type', 'sale');
-    $query->condition('field_sale_date', $start_date_storage_format, '>=');
-    $query->condition('field_sale_date', $end_date_storage_format, '<=');
-    $query->sort('field_sale_date', 'ASC');
+    //$query->condition('field_sale_date', $start_date_storage_format, '>=');
+    //$query->condition('field_sale_date', $end_date_storage_format, '<=');
+    //$query->sort('field_sale_date', 'ASC');
     $sale_ids = $query->execute();
     $sales = entity_load_multiple('booking', $sale_ids);
     $sale_header = ['nr', 'date', 'sale description', 'bank nr', 'bank amount', 'cash nr', 'cash amount', 'total'];
@@ -227,7 +227,7 @@ class ExportAll extends ControllerBase {
       $sale_row_nr++;
       $sale_rows[] = [
         $sale_row_nr,
-        \Drupal::service('date.formatter')->format(strtotime($sale->field_sale_date->value), 'bookkeeping_date'),
+        //\Drupal::service('date.formatter')->format(strtotime($sale->field_sale_date->value), 'bookkeeping_date'),
         !empty($sale->field_sale_memo->value) ? $sale->field_sale_memo->value : $sale->label,
         $bankstatement_id,
         $bank_amount,

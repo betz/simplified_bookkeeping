@@ -25,8 +25,8 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
     $entity->set('field_booking_valid', FALSE);
 
     $field_sale_client = $entity->get('field_sale_client')->getValue()[0]['value'];
-    $field_sale_payment_date = $entity->get('field_sale_payment_date')->getValue()[0]['value'];
-    $field_sale_date = $entity->get('field_sale_date')->getValue()[0]['value'];
+    //$field_sale_payment_date = $entity->get('field_sale_payment_date')->getValue()[0]['value'];
+    //$field_sale_date = $entity->get('field_sale_date')->getValue()[0]['value'];
     $field_sale_total_amount = $entity->get('field_sale_total_amount')->getValue()[0]['value'];
     $field_sale_memo = $entity->get('field_sale_memo')->getValue()[0]['value'];
 
@@ -67,7 +67,6 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'field_purchase_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
         'field_purchase_total_amount' => $total_amount,
         'field_purchase_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
-        'field_booking' => $entity->id(),
         'field_purchase_payment_method' => 'banktransfer',
         'uid' => 1
       ];
@@ -83,9 +82,8 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'type' => 'sale',
         'name' => $memo,
         'field_sale_total_amount' => $total_amount,
-        'field_sale_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
-        'field_sale_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
-        'field_booking' => $entity->id(),
+        //'field_sale_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
+        //'field_sale_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
         'field_sale_payment_method' => 'banktransfer',
         'uid' => 1
       ];
@@ -169,7 +167,6 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'field_purchase_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
         'field_purchase_total_amount' => $total_amount,
         'field_purchase_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
-        'field_booking' => $entity->id(),
         'field_purchase_payment_method' => 'cash',
         'uid' => 1
       ];
@@ -184,9 +181,8 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
         'type' => 'sale',
         'name' => $memo,
         'field_sale_total_amount' => $total_amount,
-        'field_sale_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
-        'field_sale_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
-        'field_booking' => $entity->id(),
+        //'field_sale_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
+        //'field_sale_payment_date' => $entity->get('field_booking_date')->getValue()[0]['value'],
         'field_sale_payment_method' => 'cash',
         'uid' => 1
       ];
@@ -326,19 +322,19 @@ function simplified_bookkeeping_entity_delete(Drupal\Core\Entity\EntityInterface
   // If the bundle is a bankstatement, also delete referenced bookings
   // like sale and purchase bookings, referenced to the bankstatement.
   if($entity->bundle() == 'bankstatement') {
-    $booking_entities = $entity->get('field_booking')->referencedEntities();
-    foreach ($booking_entities as $booking_entity) {
-      $booking_entity->delete();
-    }
+    //$booking_entities = $entity->get('field_booking')->referencedEntities();
+    //foreach ($booking_entities as $booking_entity) {
+      //$booking_entity->delete();
+    //}
   }
 
   // If the bundle is a cashstatement, also delete referenced bookings
   // like sale and purchase bookings, referenced to the bankstatement.
   if($entity->bundle() == 'cashstatement') {
-    $booking_entities = $entity->get('field_booking')->referencedEntities();
-    foreach ($booking_entities as $booking_entity) {
-      $booking_entity->delete();
-    }
+    //$booking_entities = $entity->get('field_booking')->referencedEntities();
+    //foreach ($booking_entities as $booking_entity) {
+      //$booking_entity->delete();
+    //}
   }
 }
 

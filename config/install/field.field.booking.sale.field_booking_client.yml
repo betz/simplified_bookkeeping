@@ -2,19 +2,17 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_sale_payment_date
+    - field.storage.booking.field_booking_client
     - simplified_bookkeeping.booking_type.sale
-  module:
-    - datetime
-id: booking.sale.field_sale_payment_date
-field_name: field_sale_payment_date
+id: booking.sale.field_booking_client
+field_name: field_booking_client
 entity_type: booking
 bundle: sale
-label: 'Payment date'
+label: Client
 description: ''
 required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
-field_type: datetime
+field_type: string

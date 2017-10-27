@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_purchase_id
-    - simplified_bookkeeping.booking_type.purchase
-id: booking.purchase.field_purchase_id
-field_name: field_purchase_id
+    - field.storage.booking.field_booking_memo
+    - simplified_bookkeeping.booking_type.sale
+id: booking.sale.field_booking_memo
+field_name: field_booking_memo
 entity_type: booking
-bundle: purchase
-label: ID
+bundle: sale
+label: Memo
 description: ''
 required: false
 translatable: false

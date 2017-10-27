@@ -3,18 +3,21 @@ status: true
 dependencies:
   module:
     - field_permissions
+    - file
     - simplified_bookkeeping
 third_party_settings:
   field_permissions:
     permission_type: public
-id: booking.field_sale_taxable_amount_21
-field_name: field_sale_taxable_amount_21
+id: booking.field_booking_invoice
+field_name: field_booking_invoice
 entity_type: booking
-type: decimal
+type: file
 settings:
-  precision: 10
-  scale: 2
-module: core
+  display_field: false
+  display_default: false
+  uri_scheme: public
+  target_type: file
+module: file
 locked: false
 cardinality: 1
 translatable: true
