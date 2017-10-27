@@ -29,8 +29,17 @@ targetEntityType: booking
 bundle: sale
 mode: default
 content:
+  field_bankstatement:
+    type: entity_reference_autocomplete
+    weight: 12
+    region: content
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_booking:
-    weight: 8
+    weight: 7
     settings:
       match_operator: CONTAINS
       size: 60
@@ -39,7 +48,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_booking_date:
-    weight: 33
+    weight: 10
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
@@ -52,7 +61,7 @@ content:
     type: boolean_checkbox
     region: content
   field_bookkeeping_tag:
-    weight: 32
+    weight: 9
     settings:
       match_operator: CONTAINS
       size: 60
@@ -61,7 +70,7 @@ content:
     type: entity_reference_autocomplete_tags
     region: content
   field_membership_member:
-    weight: 31
+    weight: 8
     settings:
       match_operator: CONTAINS
       size: 60
@@ -70,7 +79,7 @@ content:
     type: entity_reference_autocomplete
     region: content
   field_payment_method:
-    weight: 34
+    weight: 11
     settings: {  }
     third_party_settings: {  }
     type: options_select
@@ -89,6 +98,14 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
+  field_sale_id:
+    type: string_textfield
+    weight: 13
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
   field_sale_memo:
     weight: 5
     settings:
@@ -123,9 +140,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
-  field_bankstatement: true
   field_sale_credit_note_ta: true
-  field_sale_id: true
   field_sale_taxable_amount_21: true
   field_sale_vat: true
   field_sale_vat_credit_note: true

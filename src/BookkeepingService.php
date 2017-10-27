@@ -18,10 +18,22 @@ use Drupal\Core\Queue\QueueInterface;
 class BookkeepingService {
   protected $entity_query;
   protected $entityManager;
+  protected $statement;
+
 
   public function __construct(QueryFactory $entity_query, EntityManagerInterface $entityManager) {
     $this->entity_query = $entity_query;
     $this->entityManager = $entityManager;
+  }
+
+
+  public function setStatement($statement) {
+    $this->statement = $statement;
+  }
+
+
+  public function genSale() {
+
   }
 
   public function genSalePurchaseFull($booking_id) {
@@ -94,7 +106,7 @@ class BookkeepingService {
   public function genPurchases() {
     $query = $this->entity_query->get('booking');
     $query->condition('status', 1);
-    $query->condition('field_processed', FALSE);
+    //$query->condition('field_processed', FALSE);
     $query->condition('type', ['bankstatement', 'cashstatement'], 'IN');
     $query->sort('field_booking_date' , 'ASC');
 

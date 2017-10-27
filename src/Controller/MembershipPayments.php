@@ -38,7 +38,7 @@ class MembershipPayments extends ControllerBase {
   function user_payments(AccountInterface $user = NULL) {
     $query = \Drupal::entityQuery('booking');
     $query->condition('type', 'sale');
-    $query->condition('field_membership_member', $user->id(), '=');
+    //$query->condition('field_membership_member', $user->id(), '=');
     $query->condition('status', 1);
     $query->sort('field_sale_date', 'DESC');
     $paymentids = $query->execute();
