@@ -24,12 +24,15 @@ class BookkeepingService {
     $this->entityManager = $entityManager;
   }
 
-  public function genSalePurchase($bid) {
+  public function genSalePurchaseFull($booking_id) {
     $booking_storage = $this
       ->entityManager
       ->getStorage('booking');
 
-    $booking = $booking_storage->load($bid);
+    $booking = $booking_storage->load($booking_id);
+    if($booking->field_completed->value == TRUE) {
+      return;
+    }
 
     if($booking->get('field_booking_amount')->getValue()[0]['value'] > 0) {
       $sale_data = [
@@ -37,13 +40,17 @@ class BookkeepingService {
         'name' => $booking->get('name')->getValue()[0]['value'],
         'field_sale_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
         'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
-        'field_booking' => $bid,
+        'field_booking' => $booking_id,
         'field_payment_method' => $booking->bundle(),
         'uid' => 1
       ];
 
       $sale = BookingEntity::create($sale_data);
       $sale->save();
+
+      $booking->field_booking->value = $sale->id();
+      $booking->field_completed->value = TRUE;
+      $booking->save();
     }
 
     if($booking->get('field_booking_amount')->getValue()[0]['value'] < 0) {
@@ -52,13 +59,17 @@ class BookkeepingService {
         'name' => $booking->get('name')->getValue()[0]['value'],
         'field_purchase_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
         'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
-        'field_booking' => $bid,
+        'field_booking' => $booking_id,
         'field_payment_method' => $booking->bundle(),
         'uid' => 1
       ];
 
       $purchase = BookingEntity::create($purchase_data);
       $purchase->save();
+
+      $booking->field_booking->value = $purchase->id();
+      $booking->field_completed->value = TRUE;
+      $booking->save();
     }
 
   }
@@ -66,7 +77,7 @@ class BookkeepingService {
   public function queueStatements() {
     $query = $this->entity_query->get('booking');
     $query->condition('status', 1);
-    //$query->condition('field_processed', FALSE);
+    $query->condition('field_completed', FALSE);
     $query->condition('type', ['bankstatement', 'cashstatement'], 'IN');
     $query->sort('field_booking_date' , 'ASC');
 

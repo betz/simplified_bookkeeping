@@ -6,6 +6,7 @@ dependencies:
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
     - field.field.booking.cashstatement.field_cashstatement_attachment
+    - field.field.booking.cashstatement.field_completed
     - field.field.booking.cashstatement.field_membership_member
     - simplified_bookkeeping.booking_type.cashstatement
   module:
@@ -50,6 +51,16 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: file_default
+    region: content
+  field_completed:
+    weight: 6
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    type: boolean
     region: content
   field_membership_member:
     weight: 5
