@@ -432,6 +432,45 @@ display:
           entity_type: booking
           entity_field: type
           plugin_id: bundle
+        field_completed_value:
+          id: field_completed_value
+          table: booking__field_completed
+          field: field_completed_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '='
+          value: All
+          group: 1
+          exposed: true
+          expose:
+            operator_id: ''
+            label: Completed
+            description: ''
+            use_operator: false
+            operator: field_completed_value_op
+            identifier: completed
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              bookkeeper: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: boolean
       sorts: {  }
       header:
         result:
@@ -468,6 +507,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
         - user.roles
       tags:
@@ -496,6 +536,7 @@ display:
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
+        - url
         - url.query_args
         - user.roles
       tags:
