@@ -3,7 +3,7 @@
 namespace Drupal\simplified_bookkeeping;
 
 use Drupal\Core\Entity\Query\QueryFactory;
-use Drupal\Core\Entity\EntityManagerInterface;
+use Drupal\Core\Entity\EntityTypeManagerInterface;
 use Drupal\Core\Datetime\DrupalDateTime;
 use Drupal\simplified_bookkeeping\Entity\BookingEntity;
 use Symfony\Component\DependencyInjection\ContainerInterface;
@@ -17,28 +17,92 @@ use Drupal\Core\Queue\QueueInterface;
  */
 class BookkeepingService {
   protected $entity_query;
-  protected $entityManager;
+  protected $entityTypeManager;
   protected $statement;
+  protected $amount;
+  protected $name;
+  protected $date;
 
 
-  public function __construct(QueryFactory $entity_query, EntityManagerInterface $entityManager) {
+  public function __construct(QueryFactory $entity_query, EntityTypeManagerInterface $entityTypeManager) {
     $this->entity_query = $entity_query;
-    $this->entityManager = $entityManager;
+    $this->entityTypeManager = $entityTypeManager;
+    $this->bookingStorage = $this->entityTypeManager->getStorage('booking');
   }
 
 
   public function setStatement($statement) {
-    $this->statement = $statement;
+    if(is_object($statement)) {
+      $this->statement = $statement;
+    }
+    if(is_int($statement)) {
+      $this->statement = $this->bookingStorage->load($statement);
+    }
+    return FALSE;
+  }
+
+  public function getStatement() {
+    return $this->statement;
+  }
+
+  public function setAmount($amount) {
+    $this->amount = $amount;
+  }
+
+  public function getAmount() {
+    return $this->amount;
+  }
+
+  public function setName($name) {
+    $this->name = $name;
+  }
+
+  public function getName() {
+    return $this->name;
+  }
+
+  public function setDate($date) {
+    $this->date = $date;
+  }
+
+  public function getDate() {
+    return $this->date;
+  }
+
+
+  public function isCompleted() {
+    $total_amount = $this->statement->field_booking_amount->value;
+    // TODO: get all sale amounts and compare to the parent statement amount.
+
+    if($this->statement->field_completed->value == TRUE) {
+      return TRUE;
+    }
+
+    return FALSE;
   }
 
 
   public function genSale() {
+    if($this->isCompleted()) {
+      return;
+    }
 
+    $sale_data = [
+      'type' => 'sale',
+      'name' => $this->name,
+      'field_booking_amount' => $this->amount,
+      'field_booking_date' => $this->date,
+      'field_booking' => $this->statement->id(),
+      'uid' => 1
+    ];
+
+    $sale = BookingEntity::create($sale_data);
+    $sale->save();
   }
 
   public function genSalePurchaseFull($booking_id) {
     $booking_storage = $this
-      ->entityManager
+      ->entityTypeManager
       ->getStorage('booking');
 
     $booking = $booking_storage->load($booking_id);

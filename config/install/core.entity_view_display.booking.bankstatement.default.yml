@@ -12,13 +12,44 @@ dependencies:
     - simplified_bookkeeping.booking_type.bankstatement
   module:
     - datetime
+    - field_group
+third_party_settings:
+  field_group:
+    group_statement:
+      children:
+        - field_booking_date
+        - field_booking_amount
+        - field_bankstatement_name
+        - field_bankstatement_memo
+        - field_bankstatement_account
+        - field_completed
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        label: 'Bank statement'
+        description: ''
+        id: bankstatement
+        classes: ''
+      label: 'Bank statement'
+    group_sales_purchases:
+      children:
+        - field_booking
+      parent_name: ''
+      weight: 20
+      format_type: fieldset
+      format_settings:
+        id: sales_purchases
+        classes: ''
+        description: ''
+      label: 'Sales & Purchases'
 id: booking.bankstatement.default
 targetEntityType: booking
 bundle: bankstatement
 mode: default
 content:
   field_bankstatement_account:
-    weight: 4
+    weight: 9
     label: inline
     settings:
       link_to_entity: false
@@ -26,7 +57,7 @@ content:
     type: string
     region: content
   field_bankstatement_memo:
-    weight: 3
+    weight: 8
     label: inline
     settings:
       link_to_entity: false
@@ -34,7 +65,7 @@ content:
     type: string
     region: content
   field_bankstatement_name:
-    weight: 0
+    weight: 7
     label: inline
     settings:
       link_to_entity: false
@@ -42,18 +73,19 @@ content:
     type: string
     region: content
   field_booking:
-    weight: 5
-    label: above
+    weight: 4
+    label: hidden
     settings:
-      link: true
+      view_mode: preview
+      link: false
     third_party_settings: {  }
-    type: entity_reference_label
+    type: entity_reference_entity_view
     region: content
   field_booking_amount:
     weight: 6
-    label: above
+    label: inline
     settings:
-      thousand_separator: ''
+      thousand_separator: .
       decimal_separator: .
       scale: 2
       prefix_suffix: true
@@ -61,17 +93,17 @@ content:
     type: number_decimal
     region: content
   field_booking_date:
-    weight: 8
-    label: above
+    weight: 5
+    label: inline
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: bookkeeping_date
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_completed:
     weight: 10
-    label: above
+    label: inline
     settings:
       format: default
       format_custom_false: ''
