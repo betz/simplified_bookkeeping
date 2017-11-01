@@ -10,11 +10,14 @@ id: booking.purchase.field_booking_date
 field_name: field_booking_date
 entity_type: booking
 bundle: purchase
-label: 'Booking Date'
+label: 'Sale date'
 description: ''
 required: false
 translatable: true
-default_value: {  }
+default_value:
+  -
+    default_date_type: now
+    default_date: now
 default_value_callback: ''
 settings: {  }
 field_type: datetime

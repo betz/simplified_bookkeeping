@@ -5,7 +5,10 @@ use \Drupal\Core\Form\FormStateInterface;
 use \Drupal\taxonomy\Entity\Term;
 use \Drupal\charts\Charts\ModuleSelector;
 
-
+function simplified_bookkeeping_booking_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+  //kint($entity);
+  //kint('hhe');
+}
 
 /**
  * Cronjob callback.
@@ -24,11 +27,11 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
 
     $entity->set('field_booking_valid', FALSE);
 
-    $field_sale_client = $entity->get('field_sale_client')->getValue()[0]['value'];
+    //$field_sale_client = $entity->get('field_sale_client')->getValue()[0]['value'];
     //$field_sale_payment_date = $entity->get('field_sale_payment_date')->getValue()[0]['value'];
     //$field_sale_date = $entity->get('field_sale_date')->getValue()[0]['value'];
-    $field_sale_total_amount = $entity->get('field_sale_total_amount')->getValue()[0]['value'];
-    $field_sale_memo = $entity->get('field_sale_memo')->getValue()[0]['value'];
+    //$field_sale_total_amount = $entity->get('field_sale_total_amount')->getValue()[0]['value'];
+    //$field_sale_memo = $entity->get('field_sale_memo')->getValue()[0]['value'];
 
     if(
       (!empty($field_sale_client)) &&
@@ -198,17 +201,59 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
  * Add a button 'Save and close expense note to expense not payment forms.
  */
 function simplified_bookkeeping_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
-  if($form_id == 'booking_expense_note_payment_add_form') {
-    $form['actions']['submit_close_expenseenote'] = array(
-      '#type' => 'submit',
-      '#value' => 'Save and close expense note',
-      '#weight' => 7,
-      '#submit' => [
-        '::submitForm',
-        '::save',
-        'simplified_bookkeeping_close_expensenote',
-      ],
-    );
+  switch($form_id) {
+    case 'booking_cashstatement_add_form':
+    case 'booking_cashstatement_edit_form':
+      $form['actions']['submit']['#value'] = 'Save cash statement';
+      unset($form['name']);
+      unset($form['revision_log_message']);
+      break;
+
+    case 'booking_bankstatement_add_form':
+    case 'booking_bankstatement_edit_form':
+      $form['actions']['submit']['#value'] = 'Save bank statement';
+      unset($form['name']);
+      unset($form['revision_log_message']);
+      break;
+
+    case 'booking_purchase_add_form':
+    case 'booking_purchase_edit_form':
+      unset($form['name']);
+      unset($form['revision_log_message']);
+      break;
+
+    case 'booking_expense_note_payment_add_form':
+    case 'booking_expense_note_payment_edit_form':
+      $form['actions']['submit_close_expenseenote'] = array(
+        '#type' => 'submit',
+        '#value' => 'Save and close expense note',
+        '#weight' => 7,
+        '#submit' => [
+          '::submitForm',
+          '::save',
+          'simplified_bookkeeping_close_expensenote',
+        ],
+      );
+      break;
+  }
+}
+
+function simplified_bookkeeping_inline_entity_form_entity_form_alter(&$entity_form, &$form_state) {
+  if ($entity_form['#entity_type'] == 'booking' && $entity_form['#bundle'] == 'purchase') {
+    unset($entity_form['name']);
+    unset($entity_form['revision_log_message']);
+  }
+}
+
+function simplified_bookkeeping_inline_entity_form_table_fields_alter(&$fields, $context) {
+  dsm($context);
+  kint($fields);
+  if ($context['entity_type'] == 'booking' && $entity_form['#bundle'] == 'purchase') {
+    $fields['field_category'] = [
+      'type' => 'field',
+      'label' => t('Category'),
+      'weight' => 101,
+    ];
   }
 }
 

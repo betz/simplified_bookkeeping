@@ -17,28 +17,20 @@ bundle: sale
 mode: default
 content:
   field_booking_amount:
-    weight: 31
+    weight: 0
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
-  field_booking_client:
-    weight: 32
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
-    region: content
   field_booking_date:
-    weight: 10
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_booking_memo:
-    weight: 34
+    weight: 3
     settings:
       size: 60
       placeholder: ''
@@ -46,20 +38,13 @@ content:
     type: string_textfield
     region: content
   field_booking_tags:
-    weight: 33
+    weight: 2
     settings:
       match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
     type: entity_reference_autocomplete
-    region: content
-  field_booking_valid:
-    weight: 0
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
     region: content
   path:
     type: path
@@ -68,5 +53,7 @@ content:
     settings: {  }
     third_party_settings: {  }
 hidden:
+  field_booking_client: true
+  field_booking_valid: true
   name: true
   user_id: true

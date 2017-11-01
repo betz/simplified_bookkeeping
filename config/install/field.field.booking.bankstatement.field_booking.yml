@@ -11,7 +11,7 @@ field_name: field_booking
 entity_type: booking
 bundle: bankstatement
 label: Booking
-description: 'Reference to purchase/sale booking.'
+description: 'Purchase/sale booking.'
 required: false
 translatable: false
 default_value: {  }

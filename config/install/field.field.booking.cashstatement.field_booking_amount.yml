@@ -12,11 +12,13 @@ label: Amount
 description: ''
 required: false
 translatable: false
-default_value: {  }
+default_value:
+  -
+    value: !!float 0
 default_value_callback: ''
 settings:
   min: null
   max: null
-  prefix: ''
+  prefix: €
   suffix: ''
 field_type: decimal

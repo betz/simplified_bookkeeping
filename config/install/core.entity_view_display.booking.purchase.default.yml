@@ -6,6 +6,7 @@ dependencies:
     - field.field.booking.purchase.field_booking_amount
     - field.field.booking.purchase.field_booking_date
     - field.field.booking.purchase.field_booking_invoice
+    - field.field.booking.purchase.field_booking_tags
     - field.field.booking.purchase.field_booking_valid
     - field.field.booking.purchase.field_purchase_date
     - simplified_bookkeeping.booking_type.purchase
@@ -52,6 +53,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: file_default
+    region: content
+  field_booking_tags:
+    weight: 22
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    type: entity_reference_label
     region: content
   field_booking_valid:
     weight: 15

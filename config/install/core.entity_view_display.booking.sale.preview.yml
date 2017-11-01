@@ -12,14 +12,58 @@ dependencies:
     - simplified_bookkeeping.booking_type.sale
   module:
     - datetime
+    - ds
+third_party_settings:
+  ds:
+    layout:
+      id: ds_4col
+      library: ds/ds_4col
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          first: div
+          second: div
+          third: div
+          fourth: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: ''
+        link_custom: ''
+        classes:
+          layout_class: {  }
+    regions:
+      first:
+        - edit_booking
+        - 'dynamic_copy_field:booking-booking_bundle_ds'
+        - field_booking_amount
+      second:
+        - field_booking_date
+      third:
+        - field_booking_tags
+      fourth:
+        - field_booking_memo
+    fields:
+      'dynamic_copy_field:booking-booking_bundle_ds':
+        plugin_id: 'dynamic_copy_field:booking-booking_bundle_ds'
+        weight: 1
+        label: hidden
+        formatter: default
+      edit_booking:
+        plugin_id: edit_booking
+        weight: 0
+        label: hidden
+        formatter: unlinked
+        settings:
+          vocabulary: bookkeeping_tags
 id: booking.sale.preview
 targetEntityType: booking
 bundle: sale
 mode: preview
 content:
   field_booking_amount:
-    weight: 1
-    label: inline
+    weight: 2
+    label: hidden
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -27,32 +71,32 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
-    region: content
+    region: first
   field_booking_date:
-    weight: 0
-    label: inline
-    settings:
-      format_type: medium
-      timezone_override: ''
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  field_booking_memo:
     weight: 3
-    label: inline
+    label: above
+    settings:
+      timezone_override: ''
+      date_format: d-m-Y
+    third_party_settings: {  }
+    type: datetime_custom
+    region: second
+  field_booking_memo:
+    type: string
+    weight: 5
+    region: fourth
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
-    region: content
   field_booking_tags:
-    weight: 2
-    label: inline
+    weight: 4
+    label: above
     settings:
       link: true
     third_party_settings: {  }
     type: entity_reference_label
-    region: content
+    region: third
 hidden:
   field_booking_client: true
   field_booking_valid: true

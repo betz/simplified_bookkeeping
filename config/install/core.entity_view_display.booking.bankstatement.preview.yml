@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - core.entity_view_mode.booking.preview
     - field.field.booking.bankstatement.field_bankstatement_account
     - field.field.booking.bankstatement.field_bankstatement_memo
     - field.field.booking.bankstatement.field_bankstatement_name
@@ -12,7 +13,6 @@ dependencies:
     - simplified_bookkeeping.booking_type.bankstatement
   module:
     - datetime
-    - ds
     - field_group
 third_party_settings:
   field_group:
@@ -37,75 +37,42 @@ third_party_settings:
       children:
         - field_booking
       parent_name: ''
-      weight: 2
+      weight: 1
       format_type: fieldset
       format_settings:
         id: sales_purchases
         classes: ''
         description: ''
       label: 'Sales & Purchases'
-  ds:
-    layout:
-      id: ds_1col
-      library: null
-      disable_css: false
-      entity_classes: all_classes
-      settings:
-        wrappers:
-          ds_content: div
-        outer_wrapper: div
-        attributes: ''
-        link_attribute: ''
-        link_custom: ''
-        classes:
-          layout_class: {  }
-    regions:
-      ds_content:
-        - group_statement
-        - field_booking_amount
-        - field_booking_date
-        - create_sale_link
-        - field_bankstatement_name
-        - group_sales_purchases
-        - field_bankstatement_memo
-        - field_bankstatement_account
-        - field_booking
-        - field_completed
-    fields:
-      create_sale_link:
-        plugin_id: create_sale_link
-        weight: 1
-        label: hidden
-        formatter: linked
-id: booking.bankstatement.default
+id: booking.bankstatement.preview
 targetEntityType: booking
 bundle: bankstatement
-mode: default
+mode: preview
 content:
   field_bankstatement_account:
-    weight: 4
+    weight: 10
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: ds_content
+    region: content
   field_bankstatement_memo:
-    weight: 3
+    weight: 9
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: ds_content
+    region: content
   field_bankstatement_name:
-    type: string
-    weight: 2
-    region: ds_content
+    weight: 8
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
+    type: string
+    region: content
   field_booking:
     weight: 4
     label: hidden
@@ -114,9 +81,9 @@ content:
       link: false
     third_party_settings: {  }
     type: entity_reference_entity_view
-    region: ds_content
+    region: content
   field_booking_amount:
-    weight: 0
+    weight: 6
     label: inline
     settings:
       thousand_separator: .
@@ -125,18 +92,18 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
-    region: ds_content
+    region: content
   field_booking_date:
-    weight: 1
+    weight: 7
     label: inline
     settings:
       timezone_override: ''
-      date_format: d-m-Y
+      format_type: bookkeeping_date
     third_party_settings: {  }
-    type: datetime_custom
-    region: ds_content
+    type: datetime_default
+    region: content
   field_completed:
-    weight: 5
+    weight: 11
     label: inline
     settings:
       format: default
@@ -144,7 +111,7 @@ content:
       format_custom_true: ''
     third_party_settings: {  }
     type: boolean
-    region: ds_content
+    region: content
 hidden:
   name: true
   user_id: true

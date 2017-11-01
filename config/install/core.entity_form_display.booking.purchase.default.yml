@@ -6,6 +6,7 @@ dependencies:
     - field.field.booking.purchase.field_booking_amount
     - field.field.booking.purchase.field_booking_date
     - field.field.booking.purchase.field_booking_invoice
+    - field.field.booking.purchase.field_booking_tags
     - field.field.booking.purchase.field_booking_valid
     - field.field.booking.purchase.field_purchase_date
     - simplified_bookkeeping.booking_type.purchase
@@ -17,69 +18,44 @@ targetEntityType: booking
 bundle: purchase
 mode: default
 content:
-  field_booking:
-    weight: 41
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: entity_reference_autocomplete
-    region: content
   field_booking_amount:
-    weight: 45
+    weight: 1
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_booking_date:
-    weight: 44
+    weight: 0
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_booking_invoice:
-    weight: 46
+    weight: 3
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
-  field_booking_valid:
-    weight: 40
+  field_booking_tags:
+    weight: 2
     settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
-  field_purchase_date:
-    weight: 28
-    settings: {  }
-    third_party_settings: {  }
-    type: datetime_default
-    region: content
-  name:
-    type: string_textfield
-    weight: -4
-    region: content
-    settings:
+      match_operator: CONTAINS
       size: 60
       placeholder: ''
     third_party_settings: {  }
+    type: entity_reference_autocomplete_tags
+    region: content
   path:
     type: path
     weight: 30
     region: content
     settings: {  }
     third_party_settings: {  }
-  user_id:
-    type: entity_reference_autocomplete
-    weight: 5
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    region: content
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_booking: true
+  field_booking_valid: true
+  field_purchase_date: true
+  name: true
+  user_id: true

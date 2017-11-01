@@ -41,6 +41,7 @@ class BookkeepingService {
     return FALSE;
   }
 
+
   public function getStatement() {
     return $this->statement;
   }
@@ -81,6 +82,17 @@ class BookkeepingService {
     return FALSE;
   }
 
+  public function getStatements() {
+    $query = $this->entity_query
+      ->get('booking')
+      ->condition('type', ['bankstatement', 'cashstatement'], 'IN')
+      ->condition('field_completed', FALSE);
+      return $query->execute();
+  }
+
+
+
+
 
   public function genSale() {
     if($this->isCompleted()) {
@@ -100,6 +112,8 @@ class BookkeepingService {
     $sale->save();
   }
 
+
+
   public function genSalePurchaseFull($booking_id) {
     $booking_storage = $this
       ->entityTypeManager
@@ -114,10 +128,9 @@ class BookkeepingService {
       $sale_data = [
         'type' => 'sale',
         'name' => $booking->get('name')->getValue()[0]['value'],
-        'field_sale_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
+        'field_booking_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
         'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
         'field_booking' => $booking_id,
-        //'field_payment_method' => $booking->bundle(),
         'uid' => 1
       ];
 
@@ -133,10 +146,9 @@ class BookkeepingService {
       $purchase_data = [
         'type' => 'purchase',
         'name' => $booking->get('name')->getValue()[0]['value'],
-        'field_purchase_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
+        'field_booking_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
         'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
         'field_booking' => $booking_id,
-        //'field_payment_method' => $booking->bundle(),
         'uid' => 1
       ];
 

@@ -3,16 +3,16 @@ status: true
 dependencies:
   config:
     - field.storage.booking.field_booking_tags
-    - simplified_bookkeeping.booking_type.sale
+    - simplified_bookkeeping.booking_type.purchase
     - taxonomy.vocabulary.bookkeeping_tags
-id: booking.sale.field_booking_tags
+id: booking.purchase.field_booking_tags
 field_name: field_booking_tags
 entity_type: booking
-bundle: sale
+bundle: purchase
 label: Tags
 description: ''
 required: false
-translatable: false
+translatable: true
 default_value: {  }
 default_value_callback: ''
 settings:
@@ -22,6 +22,6 @@ settings:
       bookkeeping_tags: bookkeeping_tags
     sort:
       field: _none
-    auto_create: true
+    auto_create: false
     auto_create_bundle: ''
 field_type: entity_reference

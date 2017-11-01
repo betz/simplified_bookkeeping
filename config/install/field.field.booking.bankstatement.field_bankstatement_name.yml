@@ -8,8 +8,8 @@ id: booking.bankstatement.field_bankstatement_name
 field_name: field_bankstatement_name
 entity_type: booking
 bundle: bankstatement
-label: Name
-description: ''
+label: 'Bankaccount owner name'
+description: 'Payers'' account owner'
 required: false
 translatable: false
 default_value: {  }

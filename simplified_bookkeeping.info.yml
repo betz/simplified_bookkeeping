@@ -8,6 +8,7 @@ dependencies:
   - comment
   - ctools
   - datetime
+  - ds
   - field
   - field_group
   - field_permissions
@@ -22,6 +23,7 @@ dependencies:
   - pathauto
   - payment_form
   - prepopulate
+  - reference_table_formatter
   - rest
   - search
   - serialization

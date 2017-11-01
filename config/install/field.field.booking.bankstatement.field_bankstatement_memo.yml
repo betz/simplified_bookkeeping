@@ -9,7 +9,7 @@ field_name: field_bankstatement_memo
 entity_type: booking
 bundle: bankstatement
 label: Memo
-description: ''
+description: 'Bankstatement memo'
 required: false
 translatable: false
 default_value: {  }

@@ -8,8 +8,8 @@ id: booking.bankstatement.field_bankstatement_account
 field_name: field_bankstatement_account
 entity_type: booking
 bundle: bankstatement
-label: Account
-description: ''
+label: 'Bank account number'
+description: 'payers'' bankaccount number'
 required: false
 translatable: false
 default_value: {  }

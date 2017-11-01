@@ -11,62 +11,53 @@ dependencies:
   module:
     - datetime
     - file
+    - inline_entity_form
 id: booking.cashstatement.default
 targetEntityType: booking
 bundle: cashstatement
 mode: default
 content:
   field_booking:
-    weight: 28
+    weight: 4
     settings:
+      form_mode: default
+      label_singular: ''
+      label_plural: ''
+      allow_new: true
       match_operator: CONTAINS
-      size: 60
-      placeholder: ''
+      override_labels: false
+      allow_existing: false
     third_party_settings: {  }
-    type: entity_reference_autocomplete
+    type: inline_entity_form_complex
     region: content
   field_booking_amount:
-    weight: 27
+    weight: 2
     settings:
       placeholder: ''
     third_party_settings: {  }
     type: number
     region: content
   field_booking_date:
-    weight: 26
+    weight: 1
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
     region: content
   field_cashstatement_attachment:
-    weight: 29
+    weight: 3
     settings:
       progress_indicator: throbber
     third_party_settings: {  }
     type: file_generic
     region: content
-  field_completed:
-    weight: 31
-    settings:
-      display_label: true
-    third_party_settings: {  }
-    type: boolean_checkbox
-    region: content
   name:
     type: string_textfield
-    weight: -4
+    weight: 0
     region: content
     settings:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  user_id:
-    type: entity_reference_autocomplete
-    weight: 5
-    settings:
-      match_operator: CONTAINS
-      size: 60
-      placeholder: ''
-    region: content
-    third_party_settings: {  }
-hidden: {  }
+hidden:
+  field_completed: true
+  user_id: true

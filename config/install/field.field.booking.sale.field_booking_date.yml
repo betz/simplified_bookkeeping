@@ -10,7 +10,7 @@ id: booking.sale.field_booking_date
 field_name: field_booking_date
 entity_type: booking
 bundle: sale
-label: Date
+label: 'Sale date'
 description: ''
 required: false
 translatable: true
