@@ -1,0 +1,7 @@
+simplified_bookkeeping:
+  version: VERSION
+  js:
+    js/simplified_bookkeeping.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal

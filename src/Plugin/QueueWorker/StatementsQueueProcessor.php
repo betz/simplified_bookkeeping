@@ -42,9 +42,9 @@ class StatementsQueueProcessor extends QueueWorkerBase implements ContainerFacto
       ->entityTypeManager
       ->getStorage('booking');
 
-    $statement = $booking_storage->load($sid);
+    //$statement = $booking_storage->load($sid);
 
-    $bookkeepingservice = \Drupal::service('simplified_bookkeeping.bookkeeping');
-    $bookkeepingservice->genSalePurchaseFull($sid);
+    //$bookkeepingservice = \Drupal::service('simplified_bookkeeping.bookkeeping');
+    //$bookkeepingservice->genSalePurchaseFull($sid);
   }
 }

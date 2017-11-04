@@ -57,3 +57,11 @@ simplified_bookkeeping.simplified_bookkeeping_graphs_graph:
     end: 2017
   requirements:
     _permission: 'access content'
+
+simplified_bookkeeping.dashboard:
+  path: '/books'
+  defaults:
+    _controller: '\Drupal\simplified_bookkeeping\Controller\dashboard::page'
+    _title: 'Books'
+  requirements:
+    _permission: 'access bookkeeping'

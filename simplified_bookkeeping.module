@@ -204,6 +204,7 @@ function simplified_bookkeeping_form_alter(&$form, \Drupal\Core\Form\FormStateIn
   switch($form_id) {
     case 'booking_cashstatement_add_form':
     case 'booking_cashstatement_edit_form':
+      $form['#attached']['library'][] = 'simplified_bookkeeping/simplified_bookkeeping';
       $form['actions']['submit']['#value'] = 'Save cash statement';
       unset($form['name']);
       unset($form['revision_log_message']);
@@ -211,6 +212,7 @@ function simplified_bookkeeping_form_alter(&$form, \Drupal\Core\Form\FormStateIn
 
     case 'booking_bankstatement_add_form':
     case 'booking_bankstatement_edit_form':
+      $form['#attached']['library'][] = 'simplified_bookkeeping/simplified_bookkeeping';
       $form['actions']['submit']['#value'] = 'Save bank statement';
       unset($form['name']);
       unset($form['revision_log_message']);
@@ -246,16 +248,57 @@ function simplified_bookkeeping_inline_entity_form_entity_form_alter(&$entity_fo
 }
 
 function simplified_bookkeeping_inline_entity_form_table_fields_alter(&$fields, $context) {
-  dsm($context);
-  kint($fields);
-  if ($context['entity_type'] == 'booking' && $entity_form['#bundle'] == 'purchase') {
-    $fields['field_category'] = [
-      'type' => 'field',
-      'label' => t('Category'),
+  if ($context['entity_type'] == 'booking') {
+    unset($fields['label']);
+    unset($fields['type']);
+    $fields['bundle'] = [
+      'type' => 'callback',
+      'label' => t('Type'),
+      'callback' => 'simplified_bookkeeping_ift_booking_bundle',
+      'weight' => 100,
+    ];
+    $fields['date'] = [
+      'type' => 'callback',
+      'label' => t('Date'),
+      'callback' => 'simplified_bookkeeping_ift_booking_date',
+      'weight' => 101,
+    ];
+    $fields['amount'] = [
+      'type' => 'callback',
+      'label' => t('Amount'),
+      'callback' => 'simplified_bookkeeping_ift_booking_amount',
+      'weight' => 101,
+    ];
+    $fields['tags'] = [
+      'type' => 'callback',
+      'label' => t('Tags'),
+      'callback' => 'simplified_bookkeeping_ift_booking_tags',
       'weight' => 101,
     ];
   }
 }
+
+
+function simplified_bookkeeping_ift_booking_bundle($entity, $theme) {
+  return $entity->bundle();
+}
+
+function simplified_bookkeeping_ift_booking_amount($entity, $theme) {
+  return $entity->field_booking_amount->value;
+}
+
+function simplified_bookkeeping_ift_booking_date($entity, $theme) {
+  return $entity->field_booking_date->value;
+}
+
+function simplified_bookkeeping_ift_booking_tags($entity, $theme) {
+  $terms = $entity->field_booking_tags->referencedEntities();
+  foreach($terms as $term) {
+    $output[$term->id()] = $term->label();
+  }
+  return implode(', ', $output);
+}
+
 
 /**
  * Custom submit function for closing an expense note.
