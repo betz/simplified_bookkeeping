@@ -34,36 +34,21 @@ third_party_settings:
           layout_class: {  }
     regions:
       first:
-        - edit_booking
-        - 'dynamic_copy_field:booking-booking_bundle_ds'
         - field_booking_amount
       second:
-        - field_booking_date
-      third:
         - field_booking_tags
+      third:
+        - field_booking_date
       fourth:
         - field_booking_memo
-    fields:
-      'dynamic_copy_field:booking-booking_bundle_ds':
-        plugin_id: 'dynamic_copy_field:booking-booking_bundle_ds'
-        weight: 1
-        label: hidden
-        formatter: default
-      edit_booking:
-        plugin_id: edit_booking
-        weight: 0
-        label: hidden
-        formatter: unlinked
-        settings:
-          vocabulary: bookkeeping_tags
 id: booking.sale.preview
 targetEntityType: booking
 bundle: sale
 mode: preview
 content:
   field_booking_amount:
-    weight: 2
-    label: hidden
+    weight: 0
+    label: inline
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -73,30 +58,32 @@ content:
     type: number_decimal
     region: first
   field_booking_date:
-    weight: 3
-    label: above
+    weight: 2
+    label: inline
     settings:
       timezone_override: ''
       date_format: d-m-Y
     third_party_settings: {  }
     type: datetime_custom
-    region: second
+    region: third
   field_booking_memo:
     type: string
-    weight: 5
+    weight: 3
     region: fourth
     label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
   field_booking_tags:
-    weight: 4
-    label: above
+    weight: 1
+    label: inline
     settings:
-      link: true
-    third_party_settings: {  }
+      link: false
+    third_party_settings:
+      ds:
+        ds_limit: ''
     type: entity_reference_label
-    region: third
+    region: second
 hidden:
   field_booking_client: true
   field_booking_valid: true
