@@ -9,6 +9,7 @@ dependencies:
     - field.field.booking.bankstatement.field_booking_amount
     - field.field.booking.bankstatement.field_booking_date
     - field.field.booking.bankstatement.field_booking_status
+    - field.field.booking.bankstatement.field_booking_structured_memo
     - field.field.booking.bankstatement.field_completed
     - simplified_bookkeeping.booking_type.bankstatement
   module:
@@ -74,6 +75,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
+    region: content
+  field_booking_structured_memo:
+    weight: 27
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
     region: content
 hidden:
   field_completed: true

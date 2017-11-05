@@ -6,6 +6,7 @@ dependencies:
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
     - field.field.booking.cashstatement.field_booking_status
+    - field.field.booking.cashstatement.field_booking_structured_memo
     - field.field.booking.cashstatement.field_cashstatement_attachment
     - field.field.booking.cashstatement.field_completed
     - simplified_bookkeeping.booking_type.cashstatement
@@ -52,6 +53,14 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: list_default
+    region: content
+  field_booking_structured_memo:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
     region: content
   field_cashstatement_attachment:
     weight: 4
