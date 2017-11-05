@@ -5,6 +5,7 @@ dependencies:
     - field.field.booking.cashstatement.field_booking
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
+    - field.field.booking.cashstatement.field_booking_repeat_membership
     - field.field.booking.cashstatement.field_booking_status
     - field.field.booking.cashstatement.field_booking_structured_memo
     - field.field.booking.cashstatement.field_cashstatement_attachment
@@ -46,6 +47,13 @@ content:
       timezone_override: ''
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_booking_repeat_membership:
+    weight: 9
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: content
   field_booking_status:
     weight: 7

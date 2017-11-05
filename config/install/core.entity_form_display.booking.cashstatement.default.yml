@@ -5,6 +5,7 @@ dependencies:
     - field.field.booking.cashstatement.field_booking
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
+    - field.field.booking.cashstatement.field_booking_repeat_membership
     - field.field.booking.cashstatement.field_booking_status
     - field.field.booking.cashstatement.field_booking_structured_memo
     - field.field.booking.cashstatement.field_cashstatement_attachment
@@ -44,6 +45,12 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: datetime_default
+    region: content
+  field_booking_repeat_membership:
+    weight: 28
+    settings: {  }
+    third_party_settings: {  }
+    type: options_select
     region: content
   field_booking_status:
     weight: 26

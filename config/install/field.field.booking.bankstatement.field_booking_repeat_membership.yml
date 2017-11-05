@@ -1,0 +1,22 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_booking_repeat_membership
+    - simplified_bookkeeping.booking_type.bankstatement
+  module:
+    - options
+id: booking.bankstatement.field_booking_repeat_membership
+field_name: field_booking_repeat_membership
+entity_type: booking
+bundle: bankstatement
+label: 'Repeat membership'
+description: ''
+required: true
+translatable: false
+default_value:
+  -
+    value: Donate
+default_value_callback: ''
+settings: {  }
+field_type: list_string
