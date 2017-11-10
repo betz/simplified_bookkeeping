@@ -10,5 +10,6 @@
     "issues": "https://github.com/betz/simplified_bookkeeping/issues",
     "source": "https://github.com/betz/simplified_bookkeeping"
   },
-  "require": { }
+  "require": {
+  }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use \Drupal\simplified_bookkeeping\entity\BookingEntity;
+use \Drupal\Core\Url;
+use \Drupal\Core\Link;
 use \Drupal\Core\Form\FormStateInterface;
 use \Drupal\taxonomy\Entity\Term;
 use \Drupal\charts\Charts\ModuleSelector;
@@ -216,6 +218,7 @@ function simplified_bookkeeping_form_alter(&$form, \Drupal\Core\Form\FormStateIn
       $form['actions']['submit']['#value'] = 'Save bank statement';
       unset($form['name']);
       unset($form['revision_log_message']);
+      unset($form['new_revision']);
       break;
 
     case 'booking_purchase_add_form':
@@ -274,6 +277,7 @@ function simplified_bookkeeping_inline_entity_form_table_fields_alter(&$fields, 
       'label' => t('Tags'),
       'callback' => 'simplified_bookkeeping_ift_booking_tags',
       'weight' => 101,
+      'sanitized' => FALSE,
     ];
   }
 }
@@ -294,9 +298,27 @@ function simplified_bookkeeping_ift_booking_date($entity, $theme) {
 function simplified_bookkeeping_ift_booking_tags($entity, $theme) {
   $terms = $entity->field_booking_tags->referencedEntities();
   foreach($terms as $term) {
-    $output[$term->id()] = $term->label();
+    if($term->label() == 'membership') {
+      $query = \Drupal::entityQuery('membership');
+      $query->condition('status', 1);
+      $query->condition('field_booking', $entity->id());
+      $membershipID = $query->execute();
+      $membership = \Drupal\hsbxl_members\Entity\Membership::load(current($membershipID));
+
+      $url = Url::fromRoute('entity.membership.canonical', ['membership' => current($membershipID)]);
+      $link = Link::fromTextAndUrl($term->label(), $url);
+      $link = $link->toRenderable();
+      $link['#attributes'] = ['title' => $membership->label()];
+      $output[$term->id()] = render($link);
+    }
+    else {
+      $output[$term->id()] = $term->label();
+    }
   }
-  return implode(', ', $output);
+  return [
+    '#type' => 'markup',
+    '#markup' => implode(', ', $output),
+  ];
 }
 
 

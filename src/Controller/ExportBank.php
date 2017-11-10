@@ -63,7 +63,7 @@ class ExportBank extends ControllerBase {
 
       $total = round($total, 2) + $booking->field_booking_amount->value;
 
-      $memo = (strpos($booking->field_bankstatement_memo->value, "+++") === 0) ? 'Membership' : $booking->field_bankstatement_memo->value;
+      $memo = (strpos($booking->field_booking_structured_memo->value, "+++") === 0) ? 'Membership' : $booking->field_booking_structured_memo->value;
       if(empty($memo)) {
         $memo = '';
       }

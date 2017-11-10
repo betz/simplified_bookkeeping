@@ -21,6 +21,8 @@ class BookingEntityAccessControlHandler extends EntityAccessControlHandler {
     /** @var \Drupal\simplified_bookkeeping\Entity\BookingEntityInterface $entity */
     switch ($operation) {
       case 'view':
+        //return AccessResult::allowedIfHasPermission($account, 'access content');
+
         if (!$entity->isPublished()) {
           return AccessResult::allowedIfHasPermission($account, 'view unpublished booking entities');
         }
