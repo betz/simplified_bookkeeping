@@ -91,7 +91,7 @@ display:
             field_booking_date: field_booking_date
             field_booking_amount: field_booking_amount
             field_bankstatement_account: field_bankstatement_account
-            field_bankstatement_memo: field_bankstatement_memo
+            field_booking_structured_memo: field_booking_structured_memo
             edit_booking: edit_booking
             field_booking: field_booking
           info:
@@ -116,7 +116,7 @@ display:
               separator: ''
               empty_column: false
               responsive: ''
-            field_bankstatement_memo:
+            field_booking_structured_memo:
               sortable: true
               default_sort_order: asc
               align: ''

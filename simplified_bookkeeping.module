@@ -62,7 +62,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
   if($entity->bundle() == 'bankstatement') {
 
     $total_amount = $entity->get('field_booking_amount')->getValue()[0]['value'];
-    $memo = $entity->get('field_bankstatement_memo')->getValue()[0]['value'];
+    $memo = $entity->get('field_booking_structured_memo')->getValue()[0]['value'];
 
     // If the bankstatement is negative, create a purchase booking
     if($total_amount < 0) {

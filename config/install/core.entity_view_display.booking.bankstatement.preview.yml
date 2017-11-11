@@ -23,7 +23,7 @@ third_party_settings:
         - field_booking_amount
         - field_booking_date
         - field_bankstatement_name
-        - field_bankstatement_memo
+        - field_booking_structured_memo
         - field_bankstatement_account
         - field_completed
       parent_name: ''
