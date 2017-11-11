@@ -1,3 +1,1 @@
-excluded:
-  - views.view.sales
 required: true

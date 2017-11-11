@@ -4,7 +4,6 @@ dependencies:
   config:
     - core.entity_view_mode.booking.preview
     - field.field.booking.bankstatement.field_bankstatement_account
-    - field.field.booking.bankstatement.field_bankstatement_memo
     - field.field.booking.bankstatement.field_bankstatement_name
     - field.field.booking.bankstatement.field_booking
     - field.field.booking.bankstatement.field_booking_amount
@@ -54,14 +53,6 @@ mode: preview
 content:
   field_bankstatement_account:
     weight: 10
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: content
-  field_bankstatement_memo:
-    weight: 9
     label: inline
     settings:
       link_to_entity: false
