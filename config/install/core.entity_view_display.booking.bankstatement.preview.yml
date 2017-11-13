@@ -11,7 +11,6 @@ dependencies:
     - field.field.booking.bankstatement.field_booking_repeat_membership
     - field.field.booking.bankstatement.field_booking_status
     - field.field.booking.bankstatement.field_booking_structured_memo
-    - field.field.booking.bankstatement.field_completed
     - simplified_bookkeeping.booking_type.bankstatement
   module:
     - datetime
@@ -95,16 +94,6 @@ content:
       format_type: bookkeeping_date
     third_party_settings: {  }
     type: datetime_default
-    region: content
-  field_completed:
-    weight: 11
-    label: inline
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
     region: content
 hidden:
   field_booking_repeat_membership: true

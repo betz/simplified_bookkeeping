@@ -75,7 +75,7 @@ class BookkeepingService {
     $total_amount = $this->statement->field_booking_amount->value;
     // TODO: get all sale amounts and compare to the parent statement amount.
 
-    if($this->statement->field_completed->value == TRUE) {
+    if($this->statement->field_booking_status->value == 'completed') {
       return TRUE;
     }
 
@@ -86,7 +86,7 @@ class BookkeepingService {
     $query = $this->entity_query
       ->get('booking')
       ->condition('type', ['bankstatement', 'cashstatement'], 'IN')
-      ->condition('field_completed', FALSE);
+      ->condition('field_booking_status', 'unprocessed');
       return $query->execute();
   }
 
@@ -120,7 +120,8 @@ class BookkeepingService {
       ->getStorage('booking');
 
     $booking = $booking_storage->load($booking_id);
-    if($booking->field_completed->value == TRUE) {
+    if($booking->field_booking_status->value == 'completed' ||
+      $booking->field_booking_status->value == 'unfinished') {
       return;
     }
 
@@ -138,7 +139,7 @@ class BookkeepingService {
       $sale->save();
 
       $booking->field_booking->value = $sale->id();
-      $booking->field_completed->value = TRUE;
+      $booking->field_booking_status->value = 'completed';
       $booking->save();
     }
 
@@ -156,7 +157,7 @@ class BookkeepingService {
       $purchase->save();
 
       $booking->field_booking->value = $purchase->id();
-      $booking->field_completed->value = TRUE;
+      $booking->field_booking_status->value = 'completed';
       $booking->save();
     }
 

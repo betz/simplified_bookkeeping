@@ -9,7 +9,6 @@ dependencies:
     - field.field.booking.cashstatement.field_booking_status
     - field.field.booking.cashstatement.field_booking_structured_memo
     - field.field.booking.cashstatement.field_cashstatement_attachment
-    - field.field.booking.cashstatement.field_completed
     - simplified_bookkeeping.booking_type.cashstatement
   module:
     - datetime
@@ -76,16 +75,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: file_default
-    region: content
-  field_completed:
-    weight: 6
-    label: above
-    settings:
-      format: default
-      format_custom_false: ''
-      format_custom_true: ''
-    third_party_settings: {  }
-    type: boolean
     region: content
   name:
     label: hidden

@@ -16,13 +16,16 @@ settings:
   allowed_values:
     -
       value: unprocessed
-      label: Unprocessed
+      label: 'To process'
     -
       value: queued
-      label: Queued
+      label: 'Queued for processing'
+    -
+      value: unfinished
+      label: 'Manual work needed'
     -
       value: completed
-      label: Completed
+      label: 'Completed, processed'
   allowed_values_function: ''
 module: options
 locked: false

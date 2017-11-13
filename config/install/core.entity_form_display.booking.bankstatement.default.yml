@@ -10,7 +10,6 @@ dependencies:
     - field.field.booking.bankstatement.field_booking_repeat_membership
     - field.field.booking.bankstatement.field_booking_status
     - field.field.booking.bankstatement.field_booking_structured_memo
-    - field.field.booking.bankstatement.field_completed
     - simplified_bookkeeping.booking_type.bankstatement
   module:
     - datetime
@@ -83,6 +82,5 @@ content:
     type: string_textfield
     region: content
 hidden:
-  field_completed: true
   name: true
   user_id: true
