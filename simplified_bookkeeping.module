@@ -53,7 +53,7 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
       strpos($memo, 'bytenight') !== FALSE ||
       strpos($memo, '(bytenight)') !== FALSE ||
       strpos($memo, 'ByteNight') !== FALSE ||
-      strpos($memo, 'CASH FROM KASSA') !== FALSE ||
+      strpos($memo, 'CASH FROM KASSA') !== FALSE
     ) {
       $sale_data = [
         'type' => 'sale',
