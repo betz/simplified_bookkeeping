@@ -12,21 +12,68 @@ dependencies:
     - simplified_bookkeeping.booking_type.cashstatement
   module:
     - datetime
+    - ds
+    - field_group
     - file
     - options
+third_party_settings:
+  ds:
+    layout:
+      id: ds_1col
+      library: null
+      disable_css: false
+      entity_classes: all_classes
+      settings:
+        wrappers:
+          ds_content: div
+        outer_wrapper: div
+        attributes: ''
+        link_attribute: tokens
+        link_custom: 'booking/[booking:id]/edit?destination=[current-page:url:path]'
+        classes:
+          layout_class: {  }
+    regions:
+      ds_content:
+        - group_cashstatement
+        - field_booking_amount
+        - field_booking_date
+        - field_booking_structured_memo
+        - field_booking_status
+        - field_booking_repeat_membership
+        - field_cashstatement_attachment
+        - field_booking
+  field_group:
+    group_cashstatement:
+      children:
+        - field_booking_amount
+        - field_booking_date
+        - field_booking_structured_memo
+        - field_booking_status
+        - field_booking_repeat_membership
+        - field_cashstatement_attachment
+        - field_booking
+      parent_name: ''
+      weight: 0
+      format_type: fieldset
+      format_settings:
+        id: cashstatement
+        classes: ''
+        description: ''
+      label: Cashstatement
 id: booking.cashstatement.default
 targetEntityType: booking
 bundle: cashstatement
 mode: default
 content:
   field_booking:
-    weight: 3
+    weight: 9
     label: inline
     settings:
       link: true
+      view_mode: default
     third_party_settings: {  }
-    type: entity_reference_label
-    region: content
+    type: entity_reference_entity_view
+    region: ds_content
   field_booking_amount:
     weight: 2
     label: inline
@@ -37,52 +84,45 @@ content:
       prefix_suffix: true
     third_party_settings: {  }
     type: number_decimal
-    region: content
+    region: ds_content
   field_booking_date:
-    weight: 1
+    weight: 3
     label: inline
     settings:
-      format_type: medium
       timezone_override: ''
+      format_type: bookkeeping_date
     third_party_settings: {  }
     type: datetime_default
-    region: content
+    region: ds_content
   field_booking_repeat_membership:
-    weight: 9
-    label: above
+    weight: 6
+    label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
-    region: content
+    region: ds_content
   field_booking_status:
-    weight: 7
-    label: above
+    weight: 5
+    label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
-    region: content
+    region: ds_content
   field_booking_structured_memo:
-    weight: 8
-    label: above
+    weight: 4
+    label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
-    region: content
+    region: ds_content
   field_cashstatement_attachment:
-    weight: 4
+    weight: 7
     label: inline
     settings: {  }
     third_party_settings: {  }
     type: file_default
-    region: content
-  name:
-    label: hidden
-    type: string
-    weight: 0
-    region: content
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
+    region: ds_content
 hidden:
+  name: true
   user_id: true

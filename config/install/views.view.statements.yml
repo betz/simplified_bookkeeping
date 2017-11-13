@@ -5,16 +5,18 @@ dependencies:
     - field.storage.booking.field_booking
     - field.storage.booking.field_booking_amount
     - field.storage.booking.field_booking_date
+    - simplified_bookkeeping.booking_type.bankstatement
     - simplified_bookkeeping.booking_type.cashstatement
     - system.menu.bookkeeping
     - user.role.administrator
     - user.role.bookkeeper
   module:
     - datetime
+    - ds
     - simplified_bookkeeping
     - user
-id: cashstatements
-label: Cashstatements
+id: statements
+label: Statements
 module: views
 description: ''
 tag: ''
@@ -58,7 +60,7 @@ display:
       pager:
         type: full
         options:
-          items_per_page: 100
+          items_per_page: 20
           offset: 0
           id: 0
           total_pages: null
@@ -77,75 +79,23 @@ display:
             offset_label: Offset
           quantity: 9
       style:
-        type: table
+        type: default
         options:
           grouping: {  }
           row_class: ''
           default_row_class: true
-          override: true
-          sticky: false
-          caption: ''
-          summary: ''
-          description: ''
-          columns:
-            field_booking_date: field_booking_date
-            field_booking_amount: field_booking_amount
-            field_bankstatement_account: field_bankstatement_account
-            field_booking_structured_memo: field_booking_structured_memo
-            edit_booking: edit_booking
-            field_booking: field_booking
-          info:
-            field_booking_date:
-              sortable: true
-              default_sort_order: desc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_booking_amount:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_bankstatement_account:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_booking_structured_memo:
-              sortable: true
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            edit_booking:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-            field_booking:
-              sortable: false
-              default_sort_order: asc
-              align: ''
-              separator: ''
-              empty_column: false
-              responsive: ''
-          default: field_booking_date
-          empty_table: false
       row:
-        type: fields
+        type: 'ds_entity:booking'
         options:
-          inline: {  }
-          separator: ''
-          hide_empty: false
-          default_field_elements: true
+          relationship: none
+          view_mode: default
+          alternating_fieldset:
+            alternating: false
+            allpages: false
+          grouping_fieldset:
+            group: false
+          advanced_fieldset:
+            advanced: false
       fields:
         field_booking_date:
           id: field_booking_date
@@ -401,21 +351,25 @@ display:
           admin_label: ''
           operator: in
           value:
+            bankstatement: bankstatement
             cashstatement: cashstatement
           group: 1
           exposed: false
           expose:
-            operator_id: ''
-            label: ''
+            operator_id: type_op
+            label: 'Booking type'
             description: ''
             use_operator: false
-            operator: ''
-            identifier: ''
+            operator: type_op
+            identifier: type_first
             required: false
             remember: false
             multiple: false
             remember_roles:
               authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              bookkeeper: '0'
             reduce: false
           is_grouped: false
           group_info:
@@ -432,24 +386,26 @@ display:
           entity_type: booking
           entity_field: type
           plugin_id: bundle
-        field_completed_value:
-          id: field_completed_value
-          table: booking__field_completed
-          field: field_completed_value
+        type_1:
+          id: type_1
+          table: booking
+          field: type
           relationship: none
           group_type: group
           admin_label: ''
-          operator: '='
-          value: All
+          operator: in
+          value:
+            bankstatement: bankstatement
+            cashstatement: cashstatement
           group: 1
           exposed: true
           expose:
-            operator_id: ''
-            label: Completed
+            operator_id: type_1_op
+            label: 'Filter on type'
             description: ''
             use_operator: false
-            operator: field_completed_value_op
-            identifier: completed
+            operator: type_1_op
+            identifier: type
             required: false
             remember: false
             multiple: false
@@ -458,6 +414,7 @@ display:
               anonymous: '0'
               administrator: '0'
               bookkeeper: '0'
+            reduce: true
           is_grouped: false
           group_info:
             label: ''
@@ -470,8 +427,23 @@ display:
             default_group: All
             default_group_multiple: {  }
             group_items: {  }
-          plugin_id: boolean
-      sorts: {  }
+          entity_type: booking
+          entity_field: type
+          plugin_id: bundle
+      sorts:
+        field_booking_date_value:
+          id: field_booking_date_value
+          table: booking__field_booking_date
+          field: field_booking_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: false
+          expose:
+            label: 'Sale date (field_booking_date)'
+          granularity: second
+          plugin_id: datetime
       header:
         result:
           id: result
@@ -495,15 +467,15 @@ display:
           empty: true
           tokenize: false
           content:
-            value: 'No bankstatements found.'
+            value: 'No statements found.'
             format: basic_html
           plugin_id: text
       relationships: {  }
       arguments: {  }
       display_extenders: {  }
-      title: Cashstatements
+      title: Statements
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -521,10 +493,10 @@ display:
     position: 1
     display_options:
       display_extenders: {  }
-      path: bookkeeping/cashstatements
+      path: bookkeeping/statements
       menu:
         type: normal
-        title: Cashstatements
+        title: Statements
         description: ''
         expanded: false
         parent: ''
@@ -532,7 +504,7 @@ display:
         context: '0'
         menu_name: bookkeeping
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
