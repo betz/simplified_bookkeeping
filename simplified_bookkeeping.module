@@ -7,10 +7,6 @@ use \Drupal\Core\Form\FormStateInterface;
 use \Drupal\taxonomy\Entity\Term;
 use \Drupal\charts\Charts\ModuleSelector;
 
-function simplified_bookkeeping_booking_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
-  //kint($entity);
-  //kint('hhe');
-}
 
 /**
  * Cronjob callback.
@@ -20,30 +16,63 @@ function simplified_bookkeeping_cronjob_queuestatements() {
   $bookkeeping->queueStatements();
 }
 
+
 /**
- * Implements hook_entity_presave().
+ * Implements hook_entity_insert().
  */
-function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
+function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+  $bookkeeping = \Drupal::service('simplified_bookkeeping.bookkeeping');
 
-  if($entity->bundle() == 'sale') {
-
-    $entity->set('field_booking_valid', FALSE);
-
-    //$field_sale_client = $entity->get('field_sale_client')->getValue()[0]['value'];
-    //$field_sale_payment_date = $entity->get('field_sale_payment_date')->getValue()[0]['value'];
-    //$field_sale_date = $entity->get('field_sale_date')->getValue()[0]['value'];
-    //$field_sale_total_amount = $entity->get('field_sale_total_amount')->getValue()[0]['value'];
-    //$field_sale_memo = $entity->get('field_sale_memo')->getValue()[0]['value'];
+  if($entity->bundle() == 'bankstatement') {
+    $memo = $entity->field_booking_structured_memo->value;
+    $owner_name = $entity->field_bankstatement_name->value;
 
     if(
-      (!empty($field_sale_client)) &&
-      (!empty($field_sale_payment_date)) &&
-      (!empty($field_sale_date)) &&
-      ($field_sale_total_amount > 0) &&
-      (!empty($field_sale_memo))
+      strpos($owner_name, 'Falisse') !== FALSE ||
+      strpos($owner_name, 'Apelbaum') !== FALSE ||
+      strpos($owner_name, 'Electrabel') !== FALSE
     ) {
-      $entity->set('field_booking_valid', TRUE);
+      $purchase_data = [
+        'type' => 'purchase',
+        'name' => 'Fixed Costs',
+        'field_booking_amount' => $entity->field_booking_amount->value,
+        'field_booking_date' => $entity->field_booking_date->value,
+        'field_booking_tags' => $bookkeeping->getFixedCostsTag(),
+        'field_sale_payment_method' => 'banktransfer',
+        'uid' => 1
+      ];
+      $purchase = BookingEntity::create($purchase_data);
+      $purchase->save();
+
+      $entity->field_booking[] = $purchase;
+      $entity->field_booking_status = 'completed';
     }
+
+    if(
+      strpos($memo, 'mate') !== FALSE ||
+      strpos($memo, 'Mate') !== FALSE ||
+      strpos($memo, 'Bytenight') !== FALSE ||
+      strpos($memo, 'bytenight') !== FALSE ||
+      strpos($memo, '(bytenight)') !== FALSE ||
+      strpos($memo, 'ByteNight') !== FALSE
+    ) {
+      $sale_data = [
+        'type' => 'sale',
+        'name' => 'Food & Drinks',
+        'field_booking_amount' => $entity->field_booking_amount->value,
+        'field_booking_date' => $entity->field_booking_date->value,
+        'field_booking_tags' => $bookkeeping->getFoodDrinksTag(),
+        'field_sale_payment_method' => 'banktransfer',
+        'uid' => 1
+      ];
+      $sale = BookingEntity::create($sale_data);
+      $sale->save();
+
+      $entity->field_booking[] = $sale;
+      $entity->field_booking_status = 'completed';
+    }
+
+
   }
 }
 
@@ -52,7 +81,7 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
  *
  * @param \Drupal\Core\Entity\EntityInterface $entity
  */
-function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+function simplified_bookkeeping_entity_tmp(Drupal\Core\Entity\EntityInterface $entity) {
 
   $config = \Drupal::config('simplified_bookkeeping.settings');
 

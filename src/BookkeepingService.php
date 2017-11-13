@@ -10,6 +10,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\hsbxl_members\Entity\Membership;
 use Drupal\Core\Queue\QueueFactory;
 use Drupal\Core\Queue\QueueInterface;
+use Drupal\taxonomy\Entity\Term;
 
 
 /**
@@ -218,6 +219,54 @@ class BookkeepingService {
     }
 
     return $output;
+  }
+
+  public function getMembershipTag() {
+    $tag = current(taxonomy_term_load_multiple_by_name('membership', 'bookkeeping_tags'));
+    if(!$tag) {
+      $tag = Term::create(array(
+        'parent' => array(),
+        'name' => 'membership',
+        'vid' => 'bookkeeping_tags',
+      ))->save();
+    }
+    return $tag;
+  }
+
+  public function getDonationTag() {
+    $tag = current(taxonomy_term_load_multiple_by_name('donation', 'bookkeeping_tags'));
+    if(!$tag) {
+      $tag = Term::create(array(
+        'parent' => array(),
+        'name' => 'donation',
+        'vid' => 'bookkeeping_tags',
+      ))->save();
+    }
+    return $tag;
+  }
+
+  public function getFoodDrinksTag() {
+    $tag = current(taxonomy_term_load_multiple_by_name('food & drinks', 'bookkeeping_tags'));
+    if(!$tag) {
+      $tag = Term::create(array(
+        'parent' => array(),
+        'name' => 'food & drinks',
+        'vid' => 'bookkeeping_tags',
+      ))->save();
+    }
+    return $tag;
+  }
+
+  public function getFixedCostsTag() {
+    $tag = current(taxonomy_term_load_multiple_by_name('fixed costs', 'bookkeeping_tags'));
+    if(!$tag) {
+      $tag = Term::create(array(
+        'parent' => array(),
+        'name' => 'fixed costs',
+        'vid' => 'bookkeeping_tags',
+      ))->save();
+    }
+    return $tag;
   }
 
 }
