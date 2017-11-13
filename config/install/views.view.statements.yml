@@ -8,12 +8,14 @@ dependencies:
     - simplified_bookkeeping.booking_type.bankstatement
     - simplified_bookkeeping.booking_type.cashstatement
     - system.menu.bookkeeping
+    - taxonomy.vocabulary.bookkeeping_tags
     - user.role.administrator
     - user.role.bookkeeper
   module:
     - datetime
     - ds
     - simplified_bookkeeping
+    - taxonomy
     - user
 id: statements
 label: Statements
@@ -430,6 +432,52 @@ display:
           entity_type: booking
           entity_field: type
           plugin_id: bundle
+        field_booking_tags_target_id:
+          id: field_booking_tags_target_id
+          table: booking__field_booking_tags
+          field: field_booking_tags_target_id
+          relationship: field_booking
+          group_type: group
+          admin_label: ''
+          operator: or
+          value: {  }
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_booking_tags_target_id_op
+            label: 'Filter on tag'
+            description: ''
+            use_operator: false
+            operator: field_booking_tags_target_id_op
+            identifier: tag
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              bookkeeper: '0'
+            reduce: false
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          reduce_duplicates: false
+          type: select
+          limit: true
+          vid: bookkeeping_tags
+          hierarchy: false
+          error_message: true
+          plugin_id: taxonomy_index_tid
       sorts:
         field_booking_date_value:
           id: field_booking_date_value
@@ -439,11 +487,23 @@ display:
           group_type: group
           admin_label: ''
           order: DESC
-          exposed: false
+          exposed: true
           expose:
-            label: 'Sale date (field_booking_date)'
+            label: Date
           granularity: second
           plugin_id: datetime
+        field_booking_amount_value:
+          id: field_booking_amount_value
+          table: booking__field_booking_amount
+          field: field_booking_amount_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          order: DESC
+          exposed: true
+          expose:
+            label: Amount
+          plugin_id: standard
       header:
         result:
           id: result
@@ -470,7 +530,25 @@ display:
             value: 'No statements found.'
             format: basic_html
           plugin_id: text
-      relationships: {  }
+      relationships:
+        field_booking:
+          id: field_booking
+          table: booking__field_booking
+          field: field_booking
+          relationship: none
+          group_type: group
+          admin_label: 'field_booking: Booking'
+          required: false
+          plugin_id: standard
+        field_booking_tags:
+          id: field_booking_tags
+          table: booking__field_booking_tags
+          field: field_booking_tags
+          relationship: field_booking
+          group_type: group
+          admin_label: 'field_booking_tags: Taxonomy term'
+          required: false
+          plugin_id: standard
       arguments: {  }
       display_extenders: {  }
       title: Statements
@@ -481,6 +559,9 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
+        - user
         - user.roles
       tags:
         - 'config:field.storage.booking.field_booking'
@@ -510,6 +591,9 @@ display:
         - 'languages:language_interface'
         - url
         - url.query_args
+        - 'url.query_args:sort_by'
+        - 'url.query_args:sort_order'
+        - user
         - user.roles
       tags:
         - 'config:field.storage.booking.field_booking'
