@@ -18,10 +18,14 @@ function simplified_bookkeeping_cronjob_queuestatements() {
 
 
 /**
- * Implements hook_entity_insert().
+ * Implements hook_entity_presave().
  */
-function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface $entity) {
+function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
   $bookkeeping = \Drupal::service('simplified_bookkeeping.bookkeeping');
+
+  if (isset($entity->original)) {
+    return;
+  }
 
   if($entity->bundle() == 'bankstatement') {
     $memo = $entity->field_booking_structured_memo->value;
@@ -53,7 +57,8 @@ function simplified_bookkeeping_entity_insert(Drupal\Core\Entity\EntityInterface
       strpos($memo, 'bytenight') !== FALSE ||
       strpos($memo, '(bytenight)') !== FALSE ||
       strpos($memo, 'ByteNight') !== FALSE ||
-      strpos($memo, 'CASH FROM KASSA') !== FALSE
+      strpos($memo, 'CASH FROM KASSA') !== FALSE ||
+      strpos($memo, 'BITKASSA') !== FALSE
     ) {
       $sale_data = [
         'type' => 'sale',
