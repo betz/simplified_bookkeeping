@@ -19,13 +19,13 @@ settings:
       label: 'To process'
     -
       value: queued
-      label: 'Queued for processing'
+      label: Queued
     -
       value: unfinished
-      label: 'Manual work needed'
+      label: 'work needed'
     -
       value: completed
-      label: 'Completed, processed'
+      label: Completed
   allowed_values_function: ''
 module: options
 locked: false
