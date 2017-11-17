@@ -4,7 +4,6 @@ use \Drupal\simplified_bookkeeping\entity\BookingEntity;
 use \Drupal\Core\Url;
 use \Drupal\Core\Link;
 use \Drupal\Core\Form\FormStateInterface;
-use \Drupal\taxonomy\Entity\Term;
 use \Drupal\charts\Charts\ModuleSelector;
 use \Drupal\views\ViewExecutable;
 use \Drupal\views\Plugin\views\query\QueryPluginBase;
