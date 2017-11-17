@@ -41,7 +41,10 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
       strpos($owner_name, 'Falisse') !== FALSE ||
       strpos($owner_name, 'Apelbaum') !== FALSE ||
       strpos($owner_name, 'Electrabel') !== FALSE ||
-      strpos($owner_name, 'ELECTRABEL') !== FALSE
+      strpos($owner_name, 'ELECTRABEL') !== FALSE ||
+      strpos($owner_name, 'Federale verzekering') !== FALSE ||
+      strpos($owner_name, 'Federale assurances') !== FALSE ||
+      strpos($owner_name, 'AG Insurances') !== FALSE
     ) {
       $purchase_data = [
         'type' => 'purchase',
@@ -49,7 +52,6 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
         'field_booking_amount' => $entity->field_booking_amount->value,
         'field_booking_date' => $entity->field_booking_date->value,
         'field_booking_tags' => $bookkeeping->getFixedCostsTag(),
-        'field_sale_payment_method' => 'banktransfer',
         'uid' => 1
       ];
       $purchase = BookingEntity::create($purchase_data);
@@ -67,7 +69,11 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
       strpos($memo, 'CASH FROM KASSA') !== FALSE ||
       strpos($memo, 'Cash from kassa') !== FALSE ||
       strpos($memo, 'cash from kassa') !== FALSE ||
-      strpos($owner_name, 'BITKASSA') !== FALSE
+      strpos($memo, 'Cash from Kassa') !== FALSE ||
+      strpos($owner_name, 'BITKASSA') !== FALSE ||
+      strpos($owner_name, 'Storting cash') !== FALSE ||
+      strpos($owner_name, 'STORTING CASH') !== FALSE ||
+      strpos($owner_name, 'kassa') !== FALSE
     ) {
       $sale_data = [
         'type' => 'sale',
@@ -75,13 +81,53 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
         'field_booking_amount' => $entity->field_booking_amount->value,
         'field_booking_date' => $entity->field_booking_date->value,
         'field_booking_tags' => $bookkeeping->getFoodDrinksTag(),
-        'field_sale_payment_method' => 'banktransfer',
         'uid' => 1
       ];
       $sale = BookingEntity::create($sale_data);
       $sale->save();
 
       $entity->field_booking[] = $sale;
+      $entity->field_booking_status = 'completed';
+    }
+
+    if(
+      strpos($owner_name, 'Lovibond') !== FALSE ||
+      strpos($owner_name, 'Brouwerij De Block') !== FALSE ||
+      strpos($owner_name, 'Colruyt run') !== FALSE ||
+      strpos($owner_name, 'Colruyt bill') !== FALSE ||
+      strpos($memo, 'Durstloescher') !== FALSE
+    ) {
+      $purchase_data = [
+        'type' => 'purchase',
+        'name' => 'Food & Drinks',
+        'field_booking_amount' => $entity->field_booking_amount->value,
+        'field_booking_date' => $entity->field_booking_date->value,
+        'field_booking_tags' => $bookkeeping->getFoodDrinksTag(),
+        'uid' => 1
+      ];
+      $purchase = BookingEntity::create($purchase_data);
+      $purchase->save();
+
+      $entity->field_booking[] = $purchase;
+      $entity->field_booking_status = 'completed';
+    }
+
+    if(
+      strpos($owner_name, 'Socialware') !== FALSE ||
+      strpos($owner_name, 'OVH') !== FALSE
+    ) {
+      $purchase_data = [
+        'type' => 'purchase',
+        'name' => 'Material',
+        'field_booking_amount' => $entity->field_booking_amount->value,
+        'field_booking_date' => $entity->field_booking_date->value,
+        'field_booking_tags' => $bookkeeping->getMaterialTag(),
+        'uid' => 1
+      ];
+      $purchase = BookingEntity::create($purchase_data);
+      $purchase->save();
+
+      $entity->field_booking[] = $purchase;
       $entity->field_booking_status = 'completed';
     }
 
@@ -333,22 +379,12 @@ function simplified_bookkeeping_views_data_alter(array &$data) {
  */
 function simplified_bookkeeping_entity_delete(Drupal\Core\Entity\EntityInterface $entity) {
 
-  // If the bundle is a bankstatement, also delete referenced bookings
-  // like sale and purchase bookings, referenced to the bankstatement.
-  if($entity->bundle() == 'bankstatement') {
-    //$booking_entities = $entity->get('field_booking')->referencedEntities();
-    //foreach ($booking_entities as $booking_entity) {
-      //$booking_entity->delete();
-    //}
-  }
-
-  // If the bundle is a cashstatement, also delete referenced bookings
-  // like sale and purchase bookings, referenced to the bankstatement.
-  if($entity->bundle() == 'cashstatement') {
-    //$booking_entities = $entity->get('field_booking')->referencedEntities();
-    //foreach ($booking_entities as $booking_entity) {
-      //$booking_entity->delete();
-    //}
+  // If the bundle is a bank or cashstatement, delete referenced bookings
+  if($entity->bundle() == 'bankstatement' || $entity->bundle() == 'cashstatement') {
+    $booking_entities = $entity->get('field_booking')->referencedEntities();
+    foreach ($booking_entities as $booking_entity) {
+      $booking_entity->delete();
+    }
   }
 }
 

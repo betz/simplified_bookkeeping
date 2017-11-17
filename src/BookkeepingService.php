@@ -269,4 +269,16 @@ class BookkeepingService {
     return $tag;
   }
 
+  public function getMaterialTag() {
+    $tag = current(taxonomy_term_load_multiple_by_name('material', 'bookkeeping_tags'));
+    if(!$tag) {
+      $tag = Term::create(array(
+        'parent' => array(),
+        'name' => 'material',
+        'vid' => 'bookkeeping_tags',
+      ))->save();
+    }
+    return $tag;
+  }
+
 }
