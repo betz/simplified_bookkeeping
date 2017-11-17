@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - simplified_bookkeeping
+id: booking.purchase_table_view
+label: 'purchase table view'
+targetEntityType: booking
+cache: true
