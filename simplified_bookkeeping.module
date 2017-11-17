@@ -20,8 +20,6 @@ function simplified_bookkeeping_cronjob_queuestatements() {
 
 function simplified_bookkeeping_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
   $query->distinct = TRUE;
-  //ksm($view);
-  //ksm($query);
 }
 
 
@@ -259,6 +257,13 @@ function simplified_bookkeeping_form_alter(&$form, \Drupal\Core\Form\FormStateIn
     case 'booking_bankstatement_edit_form':
       $form['#attached']['library'][] = 'simplified_bookkeeping/simplified_bookkeeping';
       $form['actions']['submit']['#value'] = 'Save bank statement';
+      $amount = floatval($form['field_booking_amount']['widget'][0]['value']['#default_value']);
+      if($amount > 0) {
+        unset($form['field_booking']['widget']['actions']['bundle']['#options']['purchase']);
+      }
+      if($amount < 0) {
+        unset($form['field_booking']['widget']['actions']['bundle']['#options']['sale']);
+      }
       unset($form['name']);
       unset($form['revision_log_message']);
       unset($form['new_revision']);
