@@ -33,7 +33,7 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
   }
 
   if($entity->bundle() == 'bankstatement') {
-    $memo = $entity->field_booking_structured_memo->value;
+    $memo = $entity->field_booking_memo->value;
     $owner_name = $entity->field_bankstatement_name->value;
 
     if(

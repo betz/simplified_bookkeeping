@@ -2,13 +2,13 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_booking_structured_memo
+    - field.storage.booking.field_booking_memo
     - simplified_bookkeeping.booking_type.cashstatement
-id: booking.cashstatement.field_booking_structured_memo
-field_name: field_booking_structured_memo
+id: booking.cashstatement.field_booking_memo
+field_name: field_booking_memo
 entity_type: booking
 bundle: cashstatement
-label: 'Structured memo'
+label: Memo
 description: ''
 required: false
 translatable: true

@@ -7,9 +7,9 @@ dependencies:
     - field.field.booking.bankstatement.field_booking
     - field.field.booking.bankstatement.field_booking_amount
     - field.field.booking.bankstatement.field_booking_date
+    - field.field.booking.bankstatement.field_booking_memo
     - field.field.booking.bankstatement.field_booking_repeat_membership
     - field.field.booking.bankstatement.field_booking_status
-    - field.field.booking.bankstatement.field_booking_structured_memo
     - simplified_bookkeeping.booking_type.bankstatement
   module:
     - datetime
@@ -25,7 +25,7 @@ third_party_settings:
         - field_booking_date
         - field_bankstatement_name
         - field_bankstatement_account
-        - field_booking_structured_memo
+        - field_booking_memo
         - field_booking_status
         - group_sales_purchases
       parent_name: ''
@@ -72,7 +72,7 @@ third_party_settings:
         - field_booking_date
         - field_bankstatement_name
         - field_bankstatement_account
-        - field_booking_structured_memo
+        - field_booking_memo
         - field_booking_status
         - group_sales_purchases
 id: booking.bankstatement.default
@@ -129,20 +129,20 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: ds_content
-  field_booking_status:
+  field_booking_memo:
+    type: string
     weight: 5
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
     region: ds_content
-  field_booking_structured_memo:
-    weight: 4
     label: inline
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
+  field_booking_status:
+    weight: 6
+    label: inline
+    settings: {  }
+    third_party_settings: {  }
+    type: list_default
     region: ds_content
 hidden:
   field_booking_repeat_membership: true

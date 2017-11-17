@@ -5,9 +5,9 @@ dependencies:
     - field.field.booking.cashstatement.field_booking
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
+    - field.field.booking.cashstatement.field_booking_memo
     - field.field.booking.cashstatement.field_booking_repeat_membership
     - field.field.booking.cashstatement.field_booking_status
-    - field.field.booking.cashstatement.field_booking_structured_memo
     - field.field.booking.cashstatement.field_cashstatement_attachment
     - simplified_bookkeeping.booking_type.cashstatement
   module:
@@ -45,6 +45,14 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: content
+  field_booking_memo:
+    weight: 29
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: string_textfield
+    region: content
   field_booking_repeat_membership:
     weight: 28
     settings: {  }
@@ -56,14 +64,6 @@ content:
     settings: {  }
     third_party_settings: {  }
     type: options_select
-    region: content
-  field_booking_structured_memo:
-    weight: 27
-    settings:
-      size: 60
-      placeholder: ''
-    third_party_settings: {  }
-    type: string_textfield
     region: content
   field_cashstatement_attachment:
     weight: 3

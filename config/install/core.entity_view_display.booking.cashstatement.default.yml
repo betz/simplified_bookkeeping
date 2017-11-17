@@ -5,9 +5,9 @@ dependencies:
     - field.field.booking.cashstatement.field_booking
     - field.field.booking.cashstatement.field_booking_amount
     - field.field.booking.cashstatement.field_booking_date
+    - field.field.booking.cashstatement.field_booking_memo
     - field.field.booking.cashstatement.field_booking_repeat_membership
     - field.field.booking.cashstatement.field_booking_status
-    - field.field.booking.cashstatement.field_booking_structured_memo
     - field.field.booking.cashstatement.field_cashstatement_attachment
     - simplified_bookkeeping.booking_type.cashstatement
   module:
@@ -37,7 +37,7 @@ third_party_settings:
         - group_cashstatement
         - field_booking_amount
         - field_booking_date
-        - field_booking_structured_memo
+        - field_booking_memo
         - field_booking_status
         - field_booking_repeat_membership
         - field_cashstatement_attachment
@@ -47,7 +47,7 @@ third_party_settings:
       children:
         - field_booking_amount
         - field_booking_date
-        - field_booking_structured_memo
+        - field_booking_memo
         - field_booking_status
         - field_booking_repeat_membership
         - field_cashstatement_attachment
@@ -94,30 +94,30 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: ds_content
+  field_booking_memo:
+    weight: 5
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: ds_content
   field_booking_repeat_membership:
-    weight: 6
+    weight: 7
     label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: ds_content
   field_booking_status:
-    weight: 5
+    weight: 6
     label: inline
     settings: {  }
     third_party_settings: {  }
     type: list_default
     region: ds_content
-  field_booking_structured_memo:
-    weight: 4
-    label: inline
-    settings:
-      link_to_entity: false
-    third_party_settings: {  }
-    type: string
-    region: ds_content
   field_cashstatement_attachment:
-    weight: 7
+    weight: 8
     label: inline
     settings: {  }
     third_party_settings: {  }
