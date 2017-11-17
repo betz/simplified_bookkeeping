@@ -75,9 +75,9 @@ class ExportAll extends ControllerBase {
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
     $query->condition('type', 'purchase');
-    $query->condition('field_purchase_date', $start_date_storage_format, '>=');
-    $query->condition('field_purchase_date', $end_date_storage_format, '<=');
-    $query->sort('field_purchase_date', 'ASC');
+    $query->condition('field_booking_date', $start_date_storage_format, '>=');
+    $query->condition('field_booking_date', $end_date_storage_format, '<=');
+    $query->sort('field_booking_date', 'ASC');
     $purchase_ids = $query->execute();
     $purchases = entity_load_multiple('booking', $purchase_ids);
     $purchase_header = ['nr', 'date', 'purchase description', 'bank nr', 'bank amount', 'cash nr', 'cash amount', 'total'];
@@ -183,7 +183,7 @@ class ExportAll extends ControllerBase {
       $purchase_row_nrs[$key] = $purchase_row_nr;
       $purchase_rows[] = [
         $purchase_row_nr,
-        \Drupal::service('date.formatter')->format(strtotime($purchase->field_purchase_date->value), 'bookkeeping_date'),
+        \Drupal::service('date.formatter')->format(strtotime($purchase->field_booking_date->value), 'bookkeeping_date'),
         $purchase->label(),
         $bankstatement_id,
         $bank_amount,
