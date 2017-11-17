@@ -65,7 +65,7 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
       strpos($memo, 'CASH FROM KASSA') !== FALSE ||
       strpos($memo, 'Cash from kassa') !== FALSE ||
       strpos($memo, 'cash from kassa') !== FALSE ||
-      strpos($memo, 'BITKASSA') !== FALSE
+      strpos($owner_name, 'BITKASSA') !== FALSE
     ) {
       $sale_data = [
         'type' => 'sale',
