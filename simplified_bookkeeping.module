@@ -33,13 +33,15 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
   }
 
   if($entity->bundle() == 'bankstatement') {
+
     $memo = $entity->field_booking_memo->value;
     $owner_name = $entity->field_bankstatement_name->value;
 
     if(
       strpos($owner_name, 'Falisse') !== FALSE ||
       strpos($owner_name, 'Apelbaum') !== FALSE ||
-      strpos($owner_name, 'Electrabel') !== FALSE
+      strpos($owner_name, 'Electrabel') !== FALSE ||
+      strpos($owner_name, 'ELECTRABEL') !== FALSE
     ) {
       $purchase_data = [
         'type' => 'purchase',
