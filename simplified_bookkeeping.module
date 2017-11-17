@@ -19,7 +19,7 @@ function simplified_bookkeeping_cronjob_queuestatements() {
 
 
 function simplified_bookkeeping_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
-  //$query->distinct = TRUE;
+  $query->distinct = TRUE;
   //ksm($view);
   //ksm($query);
 }

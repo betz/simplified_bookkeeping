@@ -16,6 +16,7 @@ dependencies:
     - ds
     - field_group
     - options
+    - reference_table_formatter
 third_party_settings:
   field_group:
     group_statement:
@@ -26,7 +27,6 @@ third_party_settings:
         - field_bankstatement_account
         - field_booking_structured_memo
         - field_booking_status
-        - field_booking_repeat_membership
         - group_sales_purchases
       parent_name: ''
       weight: 0
@@ -38,16 +38,17 @@ third_party_settings:
         classes: ''
       label: 'Bank statement'
     group_sales_purchases:
-      children: {  }
+      children:
+        - field_booking
       parent_name: group_statement
       weight: 7
       format_type: fieldset
       format_settings:
-        label: Bookings
+        label: ''
         description: ''
         id: bookings
         classes: ''
-      label: Bookings
+      label: ''
   ds:
     layout:
       id: ds_1col
@@ -67,12 +68,12 @@ third_party_settings:
       ds_content:
         - group_statement
         - field_booking_amount
+        - field_booking
         - field_booking_date
         - field_bankstatement_name
         - field_bankstatement_account
         - field_booking_structured_memo
         - field_booking_status
-        - field_booking_repeat_membership
         - group_sales_purchases
 id: booking.bankstatement.default
 targetEntityType: booking
@@ -95,6 +96,19 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_booking:
+    type: entity_reference_table
+    weight: 0
+    region: ds_content
+    label: hidden
+    settings:
+      view_mode: default
+      show_entity_label: true
+      empty_cell_value: '-'
+      hide_header: '0'
+    third_party_settings:
+      ds:
+        ds_limit: ''
   field_booking_amount:
     weight: 0
     label: inline
@@ -115,13 +129,6 @@ content:
     third_party_settings: {  }
     type: datetime_default
     region: ds_content
-  field_booking_repeat_membership:
-    weight: 6
-    label: inline
-    settings: {  }
-    third_party_settings: {  }
-    type: list_default
-    region: ds_content
   field_booking_status:
     weight: 5
     label: inline
@@ -138,6 +145,6 @@ content:
     type: string
     region: ds_content
 hidden:
-  field_booking: true
+  field_booking_repeat_membership: true
   name: true
   user_id: true

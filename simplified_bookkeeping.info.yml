@@ -34,4 +34,5 @@ dependencies:
   - ultimate_cron
   - user
   - views
+  - views_bulk_operations
 version: 8.x-1.0-alpha1
