@@ -164,29 +164,6 @@ class BookkeepingService {
 
   }
 
-  public function queueStatements() {
-    $query = $this->entity_query->get('booking');
-    $query->condition('status', 1);
-    $query->condition('field_status', "unprocessed");
-    $query->condition('type', ['bankstatement', 'cashstatement'], 'IN');
-    $query->sort('field_booking_date' , 'ASC');
-
-    $queue_factory = \Drupal::service('queue');
-    $queue = $queue_factory->get('statements_queue_processor');
-
-    foreach ($query->execute() as $bid) {
-      // Add to the queue.
-      $queue->createItem($bid);
-
-      // set statement as status 'queued'.
-      $booking = BookingEntity::load($bid);
-      $booking->field_status->value = "queued";
-      $booking->save();
-    }
-
-    return;
-  }
-
   public function genPurchases() {
     $query = $this->entity_query->get('booking');
     $query->condition('status', 1);

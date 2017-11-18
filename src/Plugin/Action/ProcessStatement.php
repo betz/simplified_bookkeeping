@@ -21,6 +21,9 @@ class ProcessStatement extends ViewsBulkOperationsActionBase {
    * {@inheritdoc}
    */
   public function execute($entity = NULL) {
+    $membership = \Drupal::service('hsbxl_members.membership');
+    $membership->processStatement($entity->id());
+
     return $this->t('Process statements');
   }
 
@@ -29,9 +32,11 @@ class ProcessStatement extends ViewsBulkOperationsActionBase {
    */
   public function access($object, AccountInterface $account = NULL, $return_as_object = FALSE) {
     $access = $object->access('delete', $account, TRUE);
+
     if ($object->getEntityType() === 'node') {
       $access->andIf($object->status->access('delete', $account, TRUE));
     }
+
     return $return_as_object ? $access : $access->isAllowed();
   }
 
