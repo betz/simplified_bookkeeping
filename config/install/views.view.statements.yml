@@ -184,18 +184,28 @@ display:
           empty_zero: false
           hide_alter_empty: true
           batch: true
-          batch_size: 10
+          batch_size: 20
           form_step: true
           action_title: Action
           selected_actions:
+            simplified_bookkeeping_statement_purchase: simplified_bookkeeping_statement_purchase
+            simplified_bookkeeping_statement_sale: simplified_bookkeeping_statement_sale
             simplified_bookkeeping_process_statement: simplified_bookkeeping_process_statement
             views_bulk_operations_delete_entity: views_bulk_operations_delete_entity
+            views_bulk_operations_example: views_bulk_operations_example
             pathauto_update_alias: 0
           preconfiguration:
+            simplified_bookkeeping_statement_purchase:
+              label_override: ''
+            simplified_bookkeeping_statement_sale:
+              label_override: ''
             simplified_bookkeeping_process_statement:
               label_override: ''
             views_bulk_operations_delete_entity:
               label_override: 'Delete selected statements'
+            views_bulk_operations_example:
+              label_override: ''
+              example_preconfig_setting: ''
           plugin_id: views_bulk_operations_bulk_form
         field_booking_date:
           id: field_booking_date
@@ -682,6 +692,84 @@ display:
           hierarchy: false
           error_message: true
           plugin_id: taxonomy_index_tid
+        field_bankstatement_name_value:
+          id: field_bankstatement_name_value
+          table: booking__field_bankstatement_name
+          field: field_bankstatement_name_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_bankstatement_name_value_op
+            label: 'Filter on bankaccount owner name '
+            description: ''
+            use_operator: false
+            operator: field_bankstatement_name_value_op
+            identifier: bank_owner_name
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              bookkeeper: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
+        field_booking_memo_value:
+          id: field_booking_memo_value
+          table: booking__field_booking_memo
+          field: field_booking_memo_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: contains
+          value: ''
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_booking_memo_value_op
+            label: 'Filter on memo'
+            description: ''
+            use_operator: false
+            operator: field_booking_memo_value_op
+            identifier: memo
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              bookkeeper: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: string
       sorts:
         field_booking_date_value:
           id: field_booking_date_value
