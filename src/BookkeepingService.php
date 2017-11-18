@@ -36,7 +36,7 @@ class BookkeepingService {
     if(is_object($statement)) {
       $this->statement = $statement;
     }
-    if(is_int($statement)) {
+    if(is_numeric($statement)) {
       $this->statement = $this->bookingStorage->load($statement);
     }
     return FALSE;
@@ -92,27 +92,50 @@ class BookkeepingService {
   }
 
 
-
-
-
-  public function genSale() {
+  public function genSale($tag) {
     if($this->isCompleted()) {
       return;
     }
 
     $sale_data = [
       'type' => 'sale',
-      'name' => $this->name,
-      'field_booking_amount' => $this->amount,
-      'field_booking_date' => $this->date,
-      'field_booking' => $this->statement->id(),
+      'name' => $tag->label(),
+      'field_booking_amount' => $this->statement->field_booking_amount->value,
+      'field_booking_date' => $this->statement->field_booking_date->value,
+      'field_booking_tags' => $tag,
       'uid' => 1
     ];
 
     $sale = BookingEntity::create($sale_data);
     $sale->save();
+
+    $this->statement->field_booking[] = $sale;
+    $this->statement->field_booking_status = 'completed';
+    $this->statement->save();
   }
 
+
+  public function genPurchase($tag) {
+    if($this->isCompleted()) {
+      return;
+    }
+
+    $purchase_data = [
+      'type' => 'purchase',
+      'name' => $tag->label(),
+      'field_booking_amount' => $this->statement->field_booking_amount->value,
+      'field_booking_date' => $this->statement->field_booking_date->value,
+      'field_booking_tags' => $tag,
+      'uid' => 1
+    ];
+
+    $purchase = BookingEntity::create($purchase_data);
+    $purchase->save();
+
+    $this->statement->field_booking[] = $purchase;
+    $this->statement->field_booking_status = 'completed';
+    $this->statement->save();
+  }
 
 
   public function genSalePurchaseFull($booking_id) {
@@ -162,40 +185,6 @@ class BookkeepingService {
       $booking->save();
     }
 
-  }
-
-  public function genPurchases() {
-    $query = $this->entity_query->get('booking');
-    $query->condition('status', 1);
-    //$query->condition('field_processed', FALSE);
-    $query->condition('type', ['bankstatement', 'cashstatement'], 'IN');
-    $query->sort('field_booking_date' , 'ASC');
-
-    $booking_storage = $this
-      ->entityManager
-      ->getStorage('booking');
-
-    foreach ($query->execute() as $bid) {
-      $output[] = $bid;
-      $booking = $booking_storage->load($bid);
-
-      if($booking->get('field_booking_amount')->getValue()[0]['value'] < 0) {
-        $sale_data = [
-          'type' => 'purchase',
-          'name' => $booking->get('name')->getValue()[0]['value'],
-          'field_purchase_total_amount' => $booking->get('field_booking_amount')->getValue()[0]['value'],
-          'field_booking_date' => $booking->get('field_booking_date')->getValue()[0]['value'],
-          'field_booking' => $booking->id(),
-          //'field_payment_method' => $booking->bundle(),
-          'uid' => 1
-        ];
-
-        //$sale = BookingEntity::create($sale_data);
-        //$sale->save();
-      }
-    }
-
-    return $output;
   }
 
   public function getMembershipTag() {

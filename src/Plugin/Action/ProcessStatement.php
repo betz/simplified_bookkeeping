@@ -4,6 +4,7 @@ namespace Drupal\simplified_bookkeeping\Plugin\Action;
 
 use Drupal\views_bulk_operations\Action\ViewsBulkOperationsActionBase;
 use Drupal\Core\Session\AccountInterface;
+use Drupal\Core\Form\FormStateInterface;
 
 /**
  * Process statement.
@@ -40,4 +41,12 @@ class ProcessStatement extends ViewsBulkOperationsActionBase {
     return $return_as_object ? $access : $access->isAllowed();
   }
 
+  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
+    $form['example_config_setting'] = [
+      '#title' => t('Example setting pre-execute'),
+      '#type' => 'textfield',
+      '#default_value' => $form_state->getValue('example_config_setting'),
+    ];
+    return $form;
+  }
 }

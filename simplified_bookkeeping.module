@@ -58,10 +58,8 @@ function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterfac
       strpos($memo, 'bytenight') !== FALSE ||
       strpos($memo, '(bytenight)') !== FALSE ||
       strpos($memo, 'ByteNight') !== FALSE ||
-      strpos($memo, 'CASH FROM KASSA') !== FALSE ||
-      strpos($memo, 'Cash from kassa') !== FALSE ||
-      strpos($memo, 'cash from kassa') !== FALSE ||
-      strpos($memo, 'Cash from Kassa') !== FALSE ||
+      strpos($memo, 'KASSA') !== FALSE ||
+      strpos($memo, 'kassa') !== FALSE ||
       strpos($owner_name, 'BITKASSA') !== FALSE ||
       strpos($owner_name, 'Storting cash') !== FALSE ||
       strpos($owner_name, 'STORTING CASH') !== FALSE ||
