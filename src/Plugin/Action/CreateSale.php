@@ -55,6 +55,11 @@ class CreateSale extends ViewsBulkOperationsActionBase {
       $term_data[$term->tid] = $term->name;
     }
 
+    // remove membership from list, this is not the correct way to make a membership.
+    if (($key = array_search('membership', $term_data)) !== false) {
+      unset($term_data[$key]);
+    }
+
     $form['tag'] = [
       '#title' => t('Sale tag'),
       '#type' => 'select',
