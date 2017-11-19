@@ -20,6 +20,26 @@ function simplified_bookkeeping_views_query_alter(ViewExecutable $view, QueryPlu
 function simplified_bookkeeping_entity_presave(Drupal\Core\Entity\EntityInterface $entity) {
   $bookkeeping = \Drupal::service('simplified_bookkeeping.bookkeeping');
 
+  if ($entity->bundle() == 'bankstatement' || $entity->bundle() == 'cashstatement') {
+    $statement_total = $entity->field_booking_amount->value;
+
+    // If the status is not set as 'completed', check if the sum of all
+    // attached sales and purchases are enough to complete the statement.
+    if($entity->field_booking_status != 'completed') {
+      $booking_total = 0;
+      foreach ($entity->get('field_booking')->referencedEntities() as $booking) {
+        $booking_total = $booking_total + floatval($booking->field_booking_amount->value);
+      }
+
+      if($booking_total == $statement_total) {
+        $entity->field_booking_status->value = 'completed';
+      }
+      else {
+        $entity->field_booking_status->value = 'unfinished';
+      }
+    }
+  }
+
   if (isset($entity->original)) {
     return;
   }
