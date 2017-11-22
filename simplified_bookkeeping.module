@@ -9,8 +9,27 @@ use \Drupal\views\ViewExecutable;
 use \Drupal\views\Plugin\views\query\QueryPluginBase;
 
 
+/**
+ * Implements hook_views_query_alter().
+ * @param \Drupal\views\ViewExecutable $view
+ * @param \Drupal\views\Plugin\views\query\QueryPluginBase $query
+ */
 function simplified_bookkeeping_views_query_alter(ViewExecutable $view, QueryPluginBase $query) {
-  $query->distinct = TRUE;
+  switch($view->storage->id()) {
+    case 'statements':
+      $query->distinct = TRUE;
+      break;
+  }
+}
+
+
+/**
+ * Implements hook_views_pre_render().
+ */
+function simplified_bookkeeping_views_pre_render(ViewExecutable $view) {
+  if (isset($view) && ($view->storage->id() == 'statements')) {
+    $view->element['#attached']['library'][] = 'simplified_bookkeeping/statements_form';
+  }
 }
 
 

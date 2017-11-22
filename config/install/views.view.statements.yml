@@ -8,6 +8,8 @@ dependencies:
     - field.storage.booking.field_booking_status
     - simplified_bookkeeping.booking_type.bankstatement
     - simplified_bookkeeping.booking_type.cashstatement
+    - simplified_bookkeeping.booking_type.purchase
+    - simplified_bookkeeping.booking_type.sale
     - system.menu.bookkeeping
     - taxonomy.vocabulary.bookkeeping_tags
     - user.role.administrator
@@ -54,11 +56,11 @@ display:
       exposed_form:
         type: basic
         options:
-          submit_button: Apply
+          submit_button: Filter
           reset_button: false
           reset_button_label: Reset
           exposed_sorts_label: 'Sort by'
-          expose_sort_order: true
+          expose_sort_order: false
           sort_asc_label: Asc
           sort_desc_label: Desc
       pager:
@@ -646,6 +648,50 @@ display:
             group_items: {  }
           reduce_duplicates: false
           plugin_id: list_field
+        type_2:
+          id: type_2
+          table: booking
+          field: type
+          relationship: field_booking
+          group_type: group
+          admin_label: ''
+          operator: in
+          value:
+            purchase: purchase
+            sale: sale
+          group: 1
+          exposed: true
+          expose:
+            operator_id: type_2_op
+            label: Sale/purchase
+            description: ''
+            use_operator: false
+            operator: type_2_op
+            identifier: type_2
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              bookkeeper: '0'
+            reduce: true
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          entity_type: booking
+          entity_field: type
+          plugin_id: bundle
         field_booking_tags_target_id:
           id: field_booking_tags_target_id
           table: booking__field_booking_tags
@@ -770,6 +816,92 @@ display:
             default_group_multiple: {  }
             group_items: {  }
           plugin_id: string
+        field_booking_date_value:
+          id: field_booking_date_value
+          table: booking__field_booking_date
+          field: field_booking_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '>='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_booking_date_value_op
+            label: 'After date'
+            description: ''
+            use_operator: false
+            operator: field_booking_date_value_op
+            identifier: date_from
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              bookkeeper: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: datetime
+        field_booking_date_value_1:
+          id: field_booking_date_value_1
+          table: booking__field_booking_date
+          field: field_booking_date_value
+          relationship: none
+          group_type: group
+          admin_label: ''
+          operator: '<='
+          value:
+            min: ''
+            max: ''
+            value: ''
+            type: date
+          group: 1
+          exposed: true
+          expose:
+            operator_id: field_booking_date_value_1_op
+            label: 'Before date'
+            description: ''
+            use_operator: false
+            operator: field_booking_date_value_1_op
+            identifier: date_to
+            required: false
+            remember: false
+            multiple: false
+            remember_roles:
+              authenticated: authenticated
+              anonymous: '0'
+              administrator: '0'
+              bookkeeper: '0'
+          is_grouped: false
+          group_info:
+            label: ''
+            description: ''
+            identifier: ''
+            optional: true
+            widget: select
+            multiple: false
+            remember: false
+            default_group: All
+            default_group_multiple: {  }
+            group_items: {  }
+          plugin_id: datetime
       sorts:
         field_booking_date_value:
           id: field_booking_date_value
@@ -848,7 +980,6 @@ display:
         - url
         - url.query_args
         - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
         - user
         - user.roles
       tags:
@@ -873,6 +1004,7 @@ display:
         weight: -49
         context: '0'
         menu_name: bookkeeping
+      exposed_block: false
     cache_metadata:
       max-age: 0
       contexts:
@@ -881,7 +1013,6 @@ display:
         - url
         - url.query_args
         - 'url.query_args:sort_by'
-        - 'url.query_args:sort_order'
         - user
         - user.roles
       tags:

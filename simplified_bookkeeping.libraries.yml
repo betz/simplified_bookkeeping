@@ -5,3 +5,15 @@ simplified_bookkeeping:
   dependencies:
     - core/jquery
     - core/drupal
+
+
+statements_form:
+  version: VERSION
+  js:
+    js/statements_form.js: {}
+  css:
+    base:
+      css/statements_form.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal.date
