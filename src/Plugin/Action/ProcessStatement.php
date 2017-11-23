@@ -40,13 +40,4 @@ class ProcessStatement extends ViewsBulkOperationsActionBase {
 
     return $return_as_object ? $access : $access->isAllowed();
   }
-
-  public function buildConfigurationForm(array $form, FormStateInterface $form_state) {
-    $form['example_config_setting'] = [
-      '#title' => t('Example setting pre-execute'),
-      '#type' => 'textfield',
-      '#default_value' => $form_state->getValue('example_config_setting'),
-    ];
-    return $form;
-  }
 }
