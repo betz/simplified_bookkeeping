@@ -8,6 +8,7 @@ dependencies:
     - field.field.booking.bankstatement.field_booking_amount
     - field.field.booking.bankstatement.field_booking_date
     - field.field.booking.bankstatement.field_booking_memo
+    - field.field.booking.bankstatement.field_booking_memo_internal
     - field.field.booking.bankstatement.field_booking_repeat_membership
     - field.field.booking.bankstatement.field_booking_status
     - simplified_bookkeeping.booking_type.bankstatement
@@ -137,6 +138,14 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
+  field_booking_memo_internal:
+    weight: 8
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    type: string
+    region: content
   field_booking_status:
     weight: 6
     label: inline

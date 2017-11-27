@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_booking_memo_internal
+    - simplified_bookkeeping.booking_type.cashstatement
+id: booking.cashstatement.field_booking_memo_internal
+field_name: field_booking_memo_internal
+entity_type: booking
+bundle: cashstatement
+label: 'Memo internal'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

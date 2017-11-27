@@ -32,6 +32,7 @@ process:
   name: title
   field_booking_amount: amount
   field_booking_memo: title
+  field_booking_memo_internal: title
   field_booking_date:
     plugin: format_date
     from_format: d-m-Y

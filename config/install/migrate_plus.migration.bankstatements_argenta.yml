@@ -51,6 +51,7 @@ process:
   field_bankstatement_account: account
   field_bankstatement_name: name
   field_booking_memo: memo
+  field_booking_memo_internal: memo
   field_booking_date:
     plugin: format_date
     from_format: d-m-Y

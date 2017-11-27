@@ -2,16 +2,16 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.storage.booking.field_booking_memo
+    - field.storage.booking.field_booking_memo_internal
     - simplified_bookkeeping.booking_type.bankstatement
-id: booking.bankstatement.field_booking_memo
-field_name: field_booking_memo
+id: booking.bankstatement.field_booking_memo_internal
+field_name: field_booking_memo_internal
 entity_type: booking
 bundle: bankstatement
-label: 'Memo original'
+label: 'Memo internal'
 description: ''
 required: false
-translatable: true
+translatable: false
 default_value: {  }
 default_value_callback: ''
 settings: {  }
