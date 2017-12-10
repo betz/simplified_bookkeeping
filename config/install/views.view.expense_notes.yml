@@ -8,7 +8,6 @@ dependencies:
     - field.storage.booking.field_expensenote_status
     - simplified_bookkeeping.booking_type.expense_note
     - system.menu.bookkeeping
-    - user.role.administrator
     - user.role.bookkeeper
   module:
     - file
