@@ -9,7 +9,6 @@ dependencies:
     - field.storage.booking.field_expensenote_payment_paid
     - field.storage.booking.field_payed_from
     - simplified_bookkeeping.booking_type.expense_note_payment
-    - user.role.administrator
     - user.role.bookkeeper
   module:
     - datetime
@@ -35,6 +34,7 @@ display:
         type: role
         options:
           role:
+            administrator: administrator
             bookkeeper: bookkeeper
       cache:
         type: tag
