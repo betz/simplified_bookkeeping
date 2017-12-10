@@ -12,7 +12,6 @@ dependencies:
     - simplified_bookkeeping.booking_type.sale
     - system.menu.bookkeeping
     - taxonomy.vocabulary.bookkeeping_tags
-    - user.role.administrator
     - user.role.bookkeeper
   module:
     - datetime
