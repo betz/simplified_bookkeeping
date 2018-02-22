@@ -27,7 +27,6 @@ dependencies:
   - rest
   - search
   - serialization
-  - simplified_bookkeeping
   - system
   - taxonomy
   - text
