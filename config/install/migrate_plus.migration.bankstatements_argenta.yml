@@ -54,7 +54,7 @@ process:
   field_booking_memo_internal: memo
   field_booking_date:
     plugin: format_date
-    from_format: d-m-Y
+    from_format: j/m/Y
     to_format: Y-m-d
     source: date
 destination:

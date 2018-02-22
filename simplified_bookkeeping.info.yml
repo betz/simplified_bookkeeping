@@ -22,7 +22,6 @@ dependencies:
   - options
   - path
   - pathauto
-  - payment_form
   - prepopulate
   - reference_table_formatter
   - rest
