@@ -18,6 +18,7 @@ dependencies:
   - inline_entity_form
   - message
   - migrate_plus
+  - migrate_source_csv
   - migrate_tools
   - options
   - path
