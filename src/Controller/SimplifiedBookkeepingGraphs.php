@@ -34,16 +34,16 @@ class SimplifiedBookkeepingGraphs extends ControllerBase implements ContainerInj
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
     $query->condition('type', 'bankstatement');
-    $query->condition('field_bankstatement_date', $start_date_storage_format, '>=');
-    $query->condition('field_bankstatement_date', $end_date_storage_format, '<=');
-    $query->sort('field_bankstatement_date', 'ASC');
+    $query->condition('field_booking_date', $start_date_storage_format, '>=');
+    $query->condition('field_booking_date', $end_date_storage_format, '<=');
+    $query->sort('field_booking_date', 'ASC');
     $bankstatement_ids = $query->execute();
     $bankstatements = entity_load_multiple('booking', $bankstatement_ids);
 
     $banktotal = 0;
     $bankheaders = [];
     foreach($bankstatements as $key => $bankstatement) {
-      $bankheaders[] = \Drupal::service('date.formatter')->format(strtotime($bankstatement->field_bankstatement_date->value), 'bookkeeping_date');
+      $bankheaders[] = \Drupal::service('date.formatter')->format(strtotime($bankstatement->field_booking_date->value), 'bookkeeping_date');
 
       $bankdata[] = $banktotal = $banktotal + (int)$bankstatement->field_booking_amount->value;
     }

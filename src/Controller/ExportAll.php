@@ -37,9 +37,9 @@ class ExportAll extends ControllerBase {
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
     $query->condition('type', 'bankstatement');
-    $query->condition('field_bankstatement_date', $start_date_storage_format, '>=');
-    $query->condition('field_bankstatement_date', $end_date_storage_format, '<=');
-    $query->sort('field_bankstatement_date', 'ASC');
+    $query->condition('field_booking_date', $start_date_storage_format, '>=');
+    $query->condition('field_booking_date', $end_date_storage_format, '<=');
+    $query->sort('field_booking_date', 'ASC');
     $bankstatement_ids = $query->execute();
     $bankstatements = entity_load_multiple('booking', $bankstatement_ids);
     $bankstatement_rows = [];
@@ -141,7 +141,7 @@ class ExportAll extends ControllerBase {
 
       $bank_rows[] = [
         $bankstatement_nrs[$bankstatement->ID()],
-        \Drupal::service('date.formatter')->format(strtotime($bankstatement->field_bankstatement_date->value), 'bookkeeping_date'),
+        \Drupal::service('date.formatter')->format(strtotime($bankstatement->field_booking_date->value), 'bookkeeping_date'),
         $bankstatement->label(),
         '',
         $incoming,

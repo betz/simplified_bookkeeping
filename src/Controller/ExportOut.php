@@ -25,7 +25,7 @@ class ExportOut extends ControllerBase {
     $query->condition('status', 1);
     $query->condition('type', 'purchase');
     $query->condition('field_booking_date', $start_date_storage_format, '>=');
-    $query->sort('field_bankstatement_date', 'ASC');
+    $query->sort('field_booking_date', 'ASC');
 
     $entity_ids = $query->execute();
     $bookings = entity_load_multiple('booking', $entity_ids);

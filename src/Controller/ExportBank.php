@@ -28,7 +28,7 @@ class ExportBank extends ControllerBase {
     $query = \Drupal::entityQuery('booking');
     $query->condition('status', 1);
     $query->condition('type', 'bankstatement');
-    $query->sort('field_bankstatement_date', 'ASC');
+    $query->sort('field_booking_date', 'ASC');
 
     $entity_ids = $query->execute();
     $bookings = entity_load_multiple('booking', $entity_ids);
@@ -47,7 +47,7 @@ class ExportBank extends ControllerBase {
     $startrow = TRUE;
     foreach ($bookings as $booking) {
 
-      $booking_date = new DrupalDateTime($booking->field_bankstatement_date->value);
+      $booking_date = new DrupalDateTime($booking->field_booking_date->value);
       $booking_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
       $booking_date = $booking_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
@@ -75,7 +75,7 @@ class ExportBank extends ControllerBase {
       if ($startrow === TRUE) {
         $rows[] = [
           '0',
-          $booking->field_bankstatement_date->value,
+          $booking->field_booking_date->value,
           'Start amount on bankaccount',
           '',
           $total - $amount,
@@ -88,7 +88,7 @@ class ExportBank extends ControllerBase {
 
       $rows[] = [
         $nr,
-        $booking->field_bankstatement_date->value,
+        $booking->field_booking_date->value,
         $memo,
         'invoice nr',
         $incoming,
