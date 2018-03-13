@@ -13,11 +13,11 @@ class ExportOut extends ControllerBase {
 
   public function content() {
 
-    $start_date = new DrupalDateTime('1 january 2016 00:00:00');
+    $start_date = new DrupalDateTime('1 january 2017 00:00:00');
     $start_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
     $start_date_storage_format = $start_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
-    $end_date = new DrupalDateTime('31 december 2016 23:11:59');
+    $end_date = new DrupalDateTime('31 december 2017 23:11:59');
     $end_date->setTimezone(new \DateTimezone(DATETIME_STORAGE_TIMEZONE));
     $end_date_storage_format = $end_date->format(DATETIME_DATETIME_STORAGE_FORMAT);
 
