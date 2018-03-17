@@ -194,7 +194,8 @@ class BookkeepingService {
         'parent' => array(),
         'name' => 'membership',
         'vid' => 'bookkeeping_tags',
-      ))->save();
+      ));
+      $tag->save();
     }
     return $tag;
   }
@@ -206,7 +207,8 @@ class BookkeepingService {
         'parent' => array(),
         'name' => 'donation',
         'vid' => 'bookkeeping_tags',
-      ))->save();
+      ));
+      $tag->save();
     }
     return $tag;
   }
@@ -218,7 +220,8 @@ class BookkeepingService {
         'parent' => array(),
         'name' => 'food & drinks',
         'vid' => 'bookkeeping_tags',
-      ))->save();
+      ));
+      $tag->save();
     }
     return $tag;
   }
@@ -230,7 +233,8 @@ class BookkeepingService {
         'parent' => array(),
         'name' => 'fixed costs',
         'vid' => 'bookkeeping_tags',
-      ))->save();
+      ));
+      $tag->save();
     }
     return $tag;
   }
@@ -242,7 +246,8 @@ class BookkeepingService {
         'parent' => array(),
         'name' => 'material',
         'vid' => 'bookkeeping_tags',
-      ))->save();
+      ));
+      $tag->save();
     }
     return $tag;
   }

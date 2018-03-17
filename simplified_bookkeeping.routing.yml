@@ -46,7 +46,6 @@ simplified_bookkeeping.config_form:
     _title: 'Config Simplified Bookkeeping'
   requirements:
     _permission: 'access bookkeeping'
-  
 
 simplified_bookkeeping.simplified_bookkeeping_graphs_graph:
   path: '/bookkeeping/bankaccounts/graph/{start}/{end}'
