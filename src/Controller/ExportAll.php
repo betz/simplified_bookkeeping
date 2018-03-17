@@ -189,7 +189,7 @@ class ExportAll extends ControllerBase {
         $bank_amount,
         $cashstatement_id,
         $cash_amount,
-        round($purchase->field_purchase_total_amount->value, 2) . '€'
+        round($purchase->field_booking_amount->value, 2) . '€'
       ];
     }
     $purchase_rows[] = [
@@ -324,7 +324,7 @@ class ExportAll extends ControllerBase {
 
     $a = 0;
 
-    $path = drupal_realpath($file->getFileUri());
+    //$path = drupal_realpath($file->getFileUri());
 
     $a = 0;
 
