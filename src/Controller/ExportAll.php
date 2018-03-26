@@ -227,7 +227,7 @@ class ExportAll extends ControllerBase {
       $sale_row_nr++;
       $sale_rows[] = [
         $sale_row_nr,
-        //\Drupal::service('date.formatter')->format(strtotime($sale->field_sale_date->value), 'bookkeeping_date'),
+        'date',
         !empty($sale->field_sale_memo->value) ? $sale->field_sale_memo->value : $sale->label,
         $bankstatement_id,
         $bank_amount,

@@ -9,6 +9,7 @@ dependencies:
     - field.storage.booking.field_expensenote_payment_paid
     - field.storage.booking.field_payed_from
     - simplified_bookkeeping.booking_type.expense_note_payment
+    - user.role.administrator
     - user.role.bookkeeper
   module:
     - datetime
@@ -683,7 +684,7 @@ display:
       display_extenders: {  }
       title: Payments
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -709,7 +710,7 @@ display:
         items_per_page: true
       block_category: 'Lists (Views)'
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

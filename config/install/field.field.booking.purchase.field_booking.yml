@@ -1,0 +1,29 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_booking
+    - simplified_bookkeeping.booking_type.bankstatement
+    - simplified_bookkeeping.booking_type.cashstatement
+    - simplified_bookkeeping.booking_type.purchase
+id: booking.purchase.field_booking
+field_name: field_booking
+entity_type: booking
+bundle: purchase
+label: Booking
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:booking'
+  handler_settings:
+    target_bundles:
+      bankstatement: bankstatement
+      cashstatement: cashstatement
+    sort:
+      field: _none
+    auto_create: false
+    auto_create_bundle: bankstatement
+field_type: entity_reference

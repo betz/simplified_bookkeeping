@@ -42,7 +42,7 @@ class MembershipPayments extends ControllerBase {
     $query->condition('status', 1);
     //$query->sort('field_sale_date', 'DESC');
     $paymentids = $query->execute();
-    kint($paymentids);
+    ksm($paymentids);
     return entity_load_multiple('booking', $paymentids);
   }
 

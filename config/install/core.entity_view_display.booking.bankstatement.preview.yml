@@ -9,6 +9,7 @@ dependencies:
     - field.field.booking.bankstatement.field_booking_amount
     - field.field.booking.bankstatement.field_booking_date
     - field.field.booking.bankstatement.field_booking_memo
+    - field.field.booking.bankstatement.field_booking_memo_internal
     - field.field.booking.bankstatement.field_booking_repeat_membership
     - field.field.booking.bankstatement.field_booking_status
     - simplified_bookkeeping.booking_type.bankstatement
@@ -95,6 +96,7 @@ content:
     region: content
 hidden:
   field_booking_memo: true
+  field_booking_memo_internal: true
   field_booking_repeat_membership: true
   field_booking_status: true
   name: true

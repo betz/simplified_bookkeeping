@@ -16,10 +16,12 @@ dependencies:
   - hsbxl_members
   - image
   - inline_entity_form
+  - menu_ui
   - message
   - migrate_plus
   - migrate_source_csv
   - migrate_tools
+  - node
   - options
   - path
   - pathauto
@@ -28,6 +30,7 @@ dependencies:
   - rest
   - search
   - serialization
+  - simplified_bookkeeping
   - system
   - taxonomy
   - text

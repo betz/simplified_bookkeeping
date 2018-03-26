@@ -8,6 +8,7 @@ dependencies:
     - field.storage.booking.field_expensenote_status
     - simplified_bookkeeping.booking_type.expense_note
     - system.menu.bookkeeping
+    - user.role.administrator
     - user.role.bookkeeper
   module:
     - file
@@ -668,7 +669,7 @@ display:
       arguments: {  }
       display_extenders: {  }
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'
@@ -697,7 +698,7 @@ display:
         context: '0'
         menu_name: bookkeeping
     cache_metadata:
-      max-age: 0
+      max-age: -1
       contexts:
         - 'languages:language_content'
         - 'languages:language_interface'

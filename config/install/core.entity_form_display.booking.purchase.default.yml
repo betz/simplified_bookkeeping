@@ -2,6 +2,7 @@ langcode: en
 status: true
 dependencies:
   config:
+    - field.field.booking.purchase.field_booking
     - field.field.booking.purchase.field_booking_amount
     - field.field.booking.purchase.field_booking_date
     - field.field.booking.purchase.field_booking_invoice
@@ -16,6 +17,15 @@ targetEntityType: booking
 bundle: purchase
 mode: default
 content:
+  field_booking:
+    weight: 31
+    settings:
+      match_operator: CONTAINS
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+    type: entity_reference_autocomplete
+    region: content
   field_booking_amount:
     weight: 1
     settings:

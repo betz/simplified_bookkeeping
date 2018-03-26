@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_val
+    - node.type.moneymovement
+  module:
+    - datetime
+id: node.moneymovement.field_date_val
+field_name: field_date_val
+entity_type: node
+bundle: moneymovement
+label: date_val
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

@@ -1,0 +1,28 @@
+id: moneymovements
+label: 'Money Movements'
+langcode: en
+status: true
+dependencies:
+  enforced:
+    module:
+      - simplified_bookkeeping
+migration_group: simplified_bookkeeping
+source:
+  plugin: hsbprod_moneymovements
+  key: migrate
+process:
+  title: transaction_id
+  field_date_val: date_val
+  field_date_account: date_account
+  field_this_account: this_account
+  field_other_account: other_account
+  field_amount: amount
+  field_currency: currency
+  field_message: message
+  field_other_account_name: other_account_name
+  field_raw_csv_line: raw_csv_line
+  type:
+    plugin: default_value
+    default_value: moneymovement
+destination:
+  plugin: 'entity:node'
