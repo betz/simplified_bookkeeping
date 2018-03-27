@@ -2,28 +2,27 @@ langcode: en
 status: true
 dependencies:
   config:
-    - field.field.node.moneymovement.field_amount
-    - field.field.node.moneymovement.field_currency
-    - field.field.node.moneymovement.field_date_account
-    - field.field.node.moneymovement.field_date_val
-    - field.field.node.moneymovement.field_message
-    - field.field.node.moneymovement.field_other_account
-    - field.field.node.moneymovement.field_other_account_name
-    - field.field.node.moneymovement.field_raw_csv_line
-    - field.field.node.moneymovement.field_this_account
-    - field.field.node.moneymovement.field_transaction_id
-    - node.type.moneymovement
+    - field.field.booking.money_movements.field_amount
+    - field.field.booking.money_movements.field_currency
+    - field.field.booking.money_movements.field_date_account
+    - field.field.booking.money_movements.field_date_val
+    - field.field.booking.money_movements.field_message
+    - field.field.booking.money_movements.field_other_account
+    - field.field.booking.money_movements.field_other_account_name
+    - field.field.booking.money_movements.field_raw_csv
+    - field.field.booking.money_movements.field_this_account
+    - simplified_bookkeeping.booking_type.money_movements
   module:
     - datetime
     - user
-id: node.moneymovement.default
-targetEntityType: node
-bundle: moneymovement
+id: booking.money_movements.default
+targetEntityType: booking
+bundle: money_movements
 mode: default
 content:
   field_amount:
-    weight: 4
-    label: inline
+    weight: 1
+    label: above
     settings:
       thousand_separator: ''
       decimal_separator: .
@@ -33,16 +32,16 @@ content:
     type: number_decimal
     region: content
   field_currency:
-    weight: 5
-    label: inline
+    weight: 2
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
   field_date_account:
-    weight: 10
-    label: inline
+    weight: 3
+    label: above
     settings:
       format_type: medium
       timezone_override: ''
@@ -50,8 +49,8 @@ content:
     type: datetime_default
     region: content
   field_date_val:
-    weight: 1
-    label: inline
+    weight: 4
+    label: above
     settings:
       format_type: medium
       timezone_override: ''
@@ -59,16 +58,16 @@ content:
     type: datetime_default
     region: content
   field_message:
-    weight: 6
-    label: inline
+    weight: 5
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
   field_other_account:
-    weight: 3
-    label: inline
+    weight: 6
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
@@ -76,37 +75,39 @@ content:
     region: content
   field_other_account_name:
     weight: 7
-    label: inline
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  field_raw_csv_line:
-    weight: 9
-    label: inline
+  field_raw_csv:
+    weight: 8
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
   field_this_account:
-    weight: 2
-    label: inline
+    weight: 9
+    label: above
     settings:
       link_to_entity: false
     third_party_settings: {  }
     type: string
     region: content
-  field_transaction_id:
-    weight: 8
-    label: inline
+  name:
+    label: above
+    type: string
+    weight: -4
+    region: content
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    type: string
-    region: content
-  links:
+  user_id:
+    label: hidden
+    type: author
     weight: 0
     region: content
     settings: {  }

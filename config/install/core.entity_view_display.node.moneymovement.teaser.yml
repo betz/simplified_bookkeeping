@@ -3,6 +3,16 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.node.teaser
+    - field.field.node.moneymovement.field_amount
+    - field.field.node.moneymovement.field_currency
+    - field.field.node.moneymovement.field_date_account
+    - field.field.node.moneymovement.field_date_val
+    - field.field.node.moneymovement.field_message
+    - field.field.node.moneymovement.field_other_account
+    - field.field.node.moneymovement.field_other_account_name
+    - field.field.node.moneymovement.field_raw_csv_line
+    - field.field.node.moneymovement.field_this_account
+    - field.field.node.moneymovement.field_transaction_id
     - node.type.moneymovement
   module:
     - user
@@ -14,4 +24,14 @@ content:
   links:
     weight: 100
     region: content
-hidden: {  }
+hidden:
+  field_amount: true
+  field_currency: true
+  field_date_account: true
+  field_date_val: true
+  field_message: true
+  field_other_account: true
+  field_other_account_name: true
+  field_raw_csv_line: true
+  field_this_account: true
+  field_transaction_id: true

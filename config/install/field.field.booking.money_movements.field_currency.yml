@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_currency
+    - simplified_bookkeeping.booking_type.money_movements
+id: booking.money_movements.field_currency
+field_name: field_currency
+entity_type: booking
+bundle: money_movements
+label: Currency
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: EUR
+default_value_callback: ''
+settings: {  }
+field_type: string

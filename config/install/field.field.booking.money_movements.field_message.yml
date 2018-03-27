@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_message
+    - simplified_bookkeeping.booking_type.money_movements
+id: booking.money_movements.field_message
+field_name: field_message
+entity_type: booking
+bundle: money_movements
+label: Message
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

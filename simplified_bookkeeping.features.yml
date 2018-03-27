@@ -1,1 +1,3 @@
+excluded:
+  - user.role.administrator
 required: true

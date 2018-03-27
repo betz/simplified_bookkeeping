@@ -3,6 +3,7 @@ status: true
 dependencies:
   config:
     - core.entity_view_mode.booking.preview
+    - field.field.booking.sale.field_booking
     - field.field.booking.sale.field_booking_amount
     - field.field.booking.sale.field_booking_client
     - field.field.booking.sale.field_booking_date
@@ -85,6 +86,7 @@ content:
     type: entity_reference_label
     region: second
 hidden:
+  field_booking: true
   field_booking_client: true
   field_booking_valid: true
   name: true

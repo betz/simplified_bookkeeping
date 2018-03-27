@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_other_account_name
+    - simplified_bookkeeping.booking_type.money_movements
+id: booking.money_movements.field_other_account_name
+field_name: field_other_account_name
+entity_type: booking
+bundle: money_movements
+label: 'Other account name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.booking.field_date_account
+    - simplified_bookkeeping.booking_type.money_movements
+  module:
+    - datetime
+id: booking.money_movements.field_date_account
+field_name: field_date_account
+entity_type: booking
+bundle: money_movements
+label: 'Date account'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime
